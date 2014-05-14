@@ -13,4 +13,4 @@ by grandtheftjiujitsu
 * Started an account on codecademy.com to learn basic Python
 
 ![Picture](http://www.codecademy.com/assets/logo/logo--dark-blue.svg)
-<<<<<<< HEAD
+![Picture](http://www.bopen.eu/technologies/open-source-technologies/python-programming-language/content_logo)
