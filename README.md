@@ -14,7 +14,3 @@ by grandtheftjiujitsu
 
 ![Picture](http://www.codecademy.com/assets/logo/logo--dark-blue.svg)
 <<<<<<< HEAD
-![Picture](http://www.bopen.eu/technologies/open-source-technologies/python-programming-language/content_logo)
-=======
-![Picture](http://www.bopen.eu/technologies/open-source-technologies/python-programming-language/content_logo)
->>>>>>> bf1255a18c21a90d62529f4ef1937e33944046ed
