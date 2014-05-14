@@ -28,6 +28,6 @@ echo "network={
   psk=\"$psk\"
 }" > /etc/wpa_supplicant/$ssid
 
-wpa_supplicant -i $interface -c /etc/wpa_supplicant/$ssid
+wpa_supplicant -B -i $interface -c /etc/wpa_supplicant/$ssid
 
 dhcpcd $interface

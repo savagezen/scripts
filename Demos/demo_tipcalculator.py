@@ -1,6 +1,6 @@
-#!/usr/local/bin/python2.7
+#!/bin/python2.7
 # codeacademy.com - Python
-# Tip Calculatory
+# Tip Calculator
 
 meal = 44.5
 tax = 0.0675
