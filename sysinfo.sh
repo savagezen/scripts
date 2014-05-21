@@ -16,7 +16,7 @@ echo -ne "\nGTK 2 Theme:  " && cat ~/.gtkrc-2.0 | grep gtk-theme | tail -c +18
 echo -n "GTK 2 Font Theme:  " && cat ~/.gtkrc-2.0 | grep gtk-font | tail -c +17
 echo -n "GTK 2 Icon Theme:  " && cat ~/.gtkrc-2.0 | grep gtk-icon | tail -c +23
 
-echo -ne "\nCPU Model:  " && cat cpuinfo | grep -m 1 "model name" | tail -c +14
+echo -ne "\nCPU Model:  " && cat /proc/cpuinfo | grep -m 1 "model name" | tail -c +14
 echo -n "CPU Temp:  " && cat /sys/bus/platform/devices/coretemp.0/temp1_input
 echo -n "CPU Governor:  " && cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
 echo -n "CPU Usage:  " && top -bn1 | grep "Cpu(s)" | \sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | \awk '{print 100 - $1"%"}'
@@ -29,7 +29,7 @@ cat /proc/meminfo | grep MemAvailable
 echo ""
 df -Th -x sys -x tmpfs -x devtmpfs		# From alsi.conf
 
-echo -ne "\nScreen Resolution:  " && xrandr | grep '*' | head -c 12
+echo -ne "\nScreen Resolution:  " && xrandr | grep '*' | head -c 12 && echo ""
 lspci | grep VGA | tail -c +8
 
 echo ""
