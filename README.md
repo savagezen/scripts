@@ -9,7 +9,8 @@ by grandtheftjiujitsu
 * [System Information](https://github.com/grandtheftjiujitsu/Scripts/blob/master/sysinfo.sh)
 * [Unit Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/unit_coversion.py)
 >* Temperature:  Celcius, Fahrenheit, Kelvin
->* Length: Mile, Kilometer, Meter, Yard, Feet, Inches, Centimeter.
+>* Length:  Mile, Kilometer, Meter, Yard, Feet, Inches, Centimeter.
+>* Mass:  Metric Ton, Stone, Kilogram, Pound, Ounce, Gram, Milligram.
 * [WPA / Wifi setup using "iw" and "dhcpcd"](https://github.com/grandtheftjiujitsu/Scripts/blob/master/wifi-wpa.sh)
 * [Climbing Grade Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/wifi-wpa.sh)
 >* Yosemite Decimal System (YDS)
