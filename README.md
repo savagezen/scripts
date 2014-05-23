@@ -18,6 +18,7 @@ by grandtheftjiujitsu
 > * Mass:  Metric Ton, Stone, Kilogram, Pound, Ounce, Gram, Milligram.
 > * Volume:  US gal, US quart, US pint, US cup, US ounce, US tbsp, US tsp, Cubic meter, Cubic foot, Cubic inch, Liter, Milliliter.
 > * Digital Storage: Bit, Byte, Kilobit, Kilobyte, Megabit, Megabyte, Gigabit, Gigabyte, Terabit, Terabyte, Petabit, Petabyte.
+> * Speed: Miles per hour, Feet per second, Meters per second, Knots.
 * [Climbing Grade Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/climbing_grade_conversion.py)
 > * Yosemite Decimal System (YDS)
 > * Hueco (V)
