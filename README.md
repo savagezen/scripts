@@ -11,6 +11,7 @@ by grandtheftjiujitsu
 > * Temperature:  Celcius, Fahrenheit, Kelvin
 > * Length:  Mile, Kilometer, Meter, Yard, Feet, Inches, Centimeter.
 > * Mass:  Metric Ton, Stone, Kilogram, Pound, Ounce, Gram, Milligram.
+> *	Volume:  US gal, US quart, US pint, US cup, US ounce, US tbsp, US tsp, Cubic meter, Cubic foot, Cubic inch, Liter, Milliliter.
 * [WPA / Wifi setup using "iw" and "dhcpcd"](https://github.com/grandtheftjiujitsu/Scripts/blob/master/wifi-wpa.sh)
 * [Climbing Grade Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/wifi-wpa.sh)
 > * Yosemite Decimal System (YDS)
