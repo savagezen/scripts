@@ -1,12 +1,18 @@
 #!/bin/python2.7
 # Unit Converter - based on Google conversions
 
+error1 = "Error: The unit you selected is not available.  Check your spelling."
+error2 = "Error: You slected the same unit as your base and target"
 print "Available conversions:"
 print "	Temperature"
 print "	Length"
 print "	Mass"
 print "	Volume"
-print "	Digital Storage (Not Yet Supported)"
+print "	Digital Storage"
+print " Speed (Not Yet Supported)"
+print " Area (Not Yet Supported)"
+print " Fuel Consumption (Not Yet Supported)"
+print " Time (Not Yet Supported)"
 conv_type = raw_input("Select conversion type: ")
 ###############
 # Temperature #
@@ -28,8 +34,10 @@ if conv_type == "Temperature" :
 		elif target == "Kelvin":
 			value = value + 273.15
 			print " %s %s " % value, target
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Fahrenheit":
 		if target == "Celcius":
 			value = int(input("Enter base value: "))
@@ -52,10 +60,12 @@ if conv_type == "Temperature" :
 			value = value * 5
 			value = value / 9
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	else:
-		print "Not a valid choice"
+		print error1
 ##########
 # Length #
 ##########
@@ -90,8 +100,10 @@ elif conv_type == "Length":
 		elif target == "Centimeter":
 			value = value * 100000
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2		
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Mile":
 		value = int(input("Enter base value: "))
 		target = raw_input("Enter target unit: ")
@@ -113,8 +125,10 @@ elif conv_type == "Length":
 		elif target == "Centimeter":
 			value = value * 160934
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Meter":
 		value = int(input("Enter base value: "))
 		target == raw_input("Enter target unit: ")
@@ -136,8 +150,10 @@ elif conv_type == "Length":
 		elif target == "Centimeter":
 			value = value * 100
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Yard":
 		value = int(input("Enter base value: "))
 		target == raw_input("Enter target unit: ")
@@ -159,8 +175,10 @@ elif conv_type == "Length":
 		elif target == "Centimeter":
 			value = value * 91.44
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Foot":
 		value = int(input("Enter base value: "))
 		target = raw_input("Enter target unit: ")
@@ -182,8 +200,10 @@ elif conv_type == "Length":
 		elif target == "Centimeter":
 			value = value * 30.48
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Inch":
 		value = int(input("Enter base value: "))
 		target = raw_input("Enter target unit: ")
@@ -205,8 +225,10 @@ elif conv_type == "Length":
 		elif target == "Centimeter":
 			value = value * 2.54
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Centimeter":
 		value = int(input("Enter base value: "))
 		target = raw_input("Enter target unit: ")
@@ -228,10 +250,12 @@ elif conv_type == "Length":
 		elif target == "Inch":
 			value = value * 0.393701
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	else:
-		print "Not a valid choice."
+		print error1
 ########
 # Mass #
 ########
@@ -266,8 +290,10 @@ elif conv_type == "Mass":
 		elif target == "Milligram":
 			value = value * 1000000263
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Stone":
 		if target == "Metric Ton":
 			value = value * 0.00635029
@@ -287,8 +313,10 @@ elif conv_type == "Mass":
 		elif target == "Milligram":
 			value = value * 6350290
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Kilogram":
 		if target == "Metric Ton":
 			value = value * 0.001
@@ -308,8 +336,10 @@ elif conv_type == "Mass":
 		elif target == "Milligram":
 			value = value * 1000000
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Pound":
 		if target == "Metric Ton":
 			value = value * 0.000453592
@@ -329,8 +359,10 @@ elif conv_type == "Mass":
 		elif target == "Milligram":
 			value = value * 453492
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Ounce":
 		if target == "Metric Ton":
 			value = value * 0.0000283495
@@ -350,8 +382,10 @@ elif conv_type == "Mass":
 		elif target == "Milligram":
 			value = value * 28349.5
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Gram":
 		if target == "Metric Ton":
 			value = value * 0.000001
@@ -371,8 +405,10 @@ elif conv_type == "Mass":
 		elif target == "Milligram":
 			value = value * 1000
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Milligram":
 		if target == "Metric Ton":
 			value = value * 0.000001
@@ -396,10 +432,12 @@ elif conv_type == "Mass":
 		elif target == "Gram":
 			value = value * 0.001
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	else:
-		print "Not a valid choice."
+		print error1
 ##########
 # Volume #
 ##########
@@ -454,8 +492,10 @@ elif conv_type == "Volume":
 		elif target == "Milliliter":
 			value = value * 3785.41
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "US quart":
 		if target == "US gal":
 			value = value * 0.25
@@ -490,8 +530,10 @@ elif conv_type == "Volume":
 		elif target == "Milliliter":
 			value = value * 946.353
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "US pint":
 		if target == "US gal":
 			value = value * 0.125
@@ -526,8 +568,10 @@ elif conv_type == "Volume":
 		elif target == "Milliliter":
 			value = value * 473.176
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "US cup":
 		if target == "US gal":
 			value = value * 0.0625
@@ -562,8 +606,10 @@ elif conv_type == "Volume":
 		elif target == "Milliliter":
 			value = value * 236.588
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "US ounce":
 		if target == "US gal":
 			value = value * 0.0078125
@@ -598,8 +644,10 @@ elif conv_type == "Volume":
 		elif target == "Milliliters":
 			value = value * 29.5735
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "US tbsp":
 		if target == "US gal":
 			value = value * 0.00390625
@@ -634,8 +682,10 @@ elif conv_type == "Volume":
 		elif target == "Milliliter":
 			value = value * 14.7868
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "US tsp":
 		if target == "US gal":
 			value = value * 0.00130208
@@ -670,8 +720,10 @@ elif conv_type == "Volume":
 		elif target == "Milliliter":
 			value = value * 4.92892
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Cubic meter":
 		if target == "US gal":
 			value = value * 264.172
@@ -706,8 +758,10 @@ elif conv_type == "Volume":
 		elif target == "Milliliter":
 			value = value * 1000000
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Cubic foot":
 		if target == "US gal":
 			value = value * 7.48052
@@ -742,8 +796,10 @@ elif conv_type == "Volume":
 		elif target == "Milliliter":
 			value = value * 28316.8
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Cubic inch":
 		if target == "US gal":
 			value = value * 0.004329
@@ -778,8 +834,10 @@ elif conv_type == "Volume":
 		elif target == "Milliliter":
 			value = value * 16.3871
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Liter":
 		if target == "US gal":
 			value = value * 0.264172
@@ -814,8 +872,10 @@ elif conv_type == "Volume":
 		elif target == "Milliliter":
 			value = value * 1000
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	elif base == "Milliliter":
 		if target == "US gal":
 			value = value * 0.000264172
@@ -850,13 +910,486 @@ elif conv_type == "Volume":
 		elif target == "Liter":
 			value = value * 0.001
 			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
 		else:
-			print "Not a valid choice."
+			print error1
 	else:
-		print "Not a valid choice."
-#elif conv_type == "Digital Storage":
-#		base = raw_input("Enter base unit: ")
-#		value = int(input("Enter base value: "))
-#		target = raw_input("Enter target unit: ")		
+		print error1
+####################
+# Digital Storaget #
+####################
+elif conv_type == "Digital Storage":
+	print "Available Units:"
+	print "	Bit"
+	print "	Byte"
+	print "	Kilobit"
+	print "	Kilobyte"
+	print "	Megabit"
+	print "	Megabyte"
+	print "	Gigabit"
+	print "	Gigabyte"
+	print "	Terabit"
+	print "	Terabyte"
+	print "	Petabit"
+	print "	Pteabyte"
+	base = raw_input("Enter base unit: ")
+	value = int(input("Enter base value: "))
+	target = raw_input("Enter target unit: ")
+	if base == "Bit":
+		if target == "Byte":
+			value = value * 0.125
+			print " %s %s" % (value, target)
+		elif target == "Kilobit":
+			value = value * 0.000976563
+			print " %s %s" % (value, target)
+		elif target == "Kilobyte":
+			value = value * 0.00012207
+			print " %s %s" % (value, target)
+		elif target == "Megabit":
+			value = value * 9.5367e-7
+			print " %s %s" % (value, target)
+		elif target == "Megabyte":
+			value = value * 1.1921e-7
+			print " %s %s" % (value, target)
+		elif target == "Gigabit":
+			value = value * 9.3132e-10
+			print " %s %s" % (value, target)
+		elif target == "Gigabyte":
+			value = value * 1.1642e-10
+			print " %s %s" % (value, target)
+		elif target == "Terabit":
+			value = value * 9.0949e-13
+			print " %s %s" % (value, target)
+		elif target == "Terabyte":
+			value = value * 1.1369e-13
+			print " %s %s" % (value, target)
+		elif target == "Petabit":
+			value = value * 8.8818e-16
+			print " %s %s" % (value, target)
+		elif target == "Petabyte":
+			value = value * 1.1102e-16
+			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Byte":
+		if target == "Bit":
+			value = value * 8
+			print " %s %s" % (value, target)
+		elif target == "Kilobit":
+			value = value * 0.0078125
+			print " %s %s" % (value, target)
+		elif target == "Kilobyte":
+			value = value * 0.000976563
+			print " %s %s" % (value, target)
+		elif target == "Megabit":
+			value = value * 7.6294e-6
+			print " %s %s" % (value, target)
+		elif target == "Megabyte":
+			value = value * 9.5367e-7
+			print " %s %s" % (value, target)
+		elif target == "Gigabit":
+			value = value * 7.4506e-9
+			print " %s %s" % (value, target)
+		elif target == "Gigabyte":
+			value = value * 9.3132e-10
+			print " %s %s" % (value, target)
+		elif target == "Terabit":
+			value = value * 7.276e-12
+			print " %s %s" % (value, target)
+		elif target == "Terabyte":
+			value = value * 9.0949e-13
+			print " %s %s" % (value, target)
+		elif target == "Petabit":
+			value = value * 7.1054e-15
+			print " %s %s" % (value, target)
+		elif target == "Petabyte":
+			value = value * 8.8818e-16
+			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Kilobit":
+		if target == "Bit":
+			value = value * 1024
+			print " %s %s" % (value, target)
+		elif target == "Byte":
+			value = value * 128
+			print " %s %s" % (value, target)
+		elif target == "Kilobyte":
+			value = value * 0.125
+			print " %s %s" % (value, target)
+		elif target == "Megabit":
+			value = value * 0.000976563
+			print " %s %s" % (value, target)
+		elif target == "Megabyte":
+			value = value * 0.00012207
+			print " %s %s" % (value, target)
+		elif target == "Gigabit":
+			value = value * 9.5367e-7
+			print " %s %s" % (value, target)
+		elif target == "Gigabyte":
+			value = value * 1.921e-7
+			print " %s %s" % (value, target)
+		elif target == "Terabit":
+			value = value * 9.3132e-10
+			print " %s %s" % (value, target)
+		elif target == "Terabyte":
+			value = value * 1.1642e-10
+			print " %s %s" % (value, target)
+		elif target == "Petabit":
+			value = value * 9.0949e-13
+			print " %s %s" % (value, target)
+		elif target == "Petabyte":
+			value = value * 1.1369e-13
+			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1		
+	elif base == "Kilobyte":
+		if target == "Bit":
+			value = value * 8192
+			print " %s %s" % (value, target)
+		elif target == "Byte":
+			value = value * 1024
+			print " %s %s" % (value, target)
+		elif target == "Kilobit":
+			value = value * 8
+			print " %s %s" % (value, target)
+		elif target == "Megabit":
+			value = value * 0.0078125
+			print " %s %s" % (value, target)
+		elif target == "Megabyte":
+			value = value * 0.000976563
+			print " %s %s" % (value, target)
+		elif target == "Gigabit":
+			value = value * 7.6294e-6
+			print " %s %s" % (value, target)
+		elif target == "Gigabyte":
+			value = value * 9.5367e-7
+			print " %s %s" % (value, target)
+		elif target == "Terabit":
+			value = value * 7.4506e-9
+			print " %s %s" % (value, target)
+		elif target == "Terabyte":
+			value = value * 9.3132e-10
+			print " %s %s" % (value, target)
+		elif target == "Petabit":
+			value = value * 7.276e-12
+			print " %s %s" % (value, target)
+		elif target == "Petabyte":
+			value = value * 9.0949e-13
+			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Megabit":
+		if target == "Bit":
+			value = value * 1.049e+6
+			print " %s %s" % (value, target)
+		elif target == "Byte":
+			value = value * 131072
+			print " %s %s" % (value, target)
+		elif target == "Kilobit":
+			value = value * 102
+			print " %s %s" % (value, target)
+		elif target == "Kilobyte":
+			value = value * 128
+			print " %s %s" % (value, target)
+		elif target == "Megabyte":
+			value = value * 0.125
+			print " %s %s" % (value, target)
+		elif target == "Gigabit":
+			value = value * 0.000976563
+			print " %s %s" % (value, target)
+		elif target == "Gigabyte":
+			value = value * 0.00012207
+			print " %s %s" % (value, target)
+		elif target == "Terabit":
+			value = value * 9.5367e-7
+			print " %s %s" % (value, target)
+		elif target == "Terabyte":
+			value = value * 1.1921e-7
+			print " %s %s" % (value, target)
+		elif target == "Petabit":
+			value = value * 9.3132e-10
+			print " %s %s" % (value, target)
+		elif target == "Petabyte":
+			value = value * 1.1642e-10
+			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Megabyte":
+		if target == "Bit":
+			value = value * 8.389e+6
+			print " %s %s" % (value, target)
+		elif target == "Byte":
+			value = value * 1.049e+6
+			print " %s %s" % (value, target)
+		elif target == "Kilobit":
+			value = value * 8192
+			print " %s %s" % (value, target)
+		elif target == "Kilobyte":
+			value = value * 1024
+			print " %s %s" % (value, target)
+		elif target == "Megabit":
+			value = value * 8
+			print " %s %s" % (value, target)
+		elif target == "Gigabit":
+			value = value * 0.00078125
+			print " %s %s" % (value, target)
+		elif target == "Gigabyte":
+			value = value * 0.000976563
+			print " %s %s" % (value, target)
+		elif target == "Terabit":
+			value = value * 7.6294e-6
+			print " %s %s" % (value, target)
+		elif target == "Terabyte":
+			value = value * 9.5367e-7
+			print " %s %s" % (value, target)
+		elif target == "Petabit":
+			value = value * 7.4506e-9
+			print " %s %s" % (value, target)
+		elif target == "Petabyte":
+			value = value * 9.3132e-10
+			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Gigabit":
+		if target == "Bit":
+			value = value * 1.074e+9
+			print " %s %s" % (value, target)
+		elif target == "Byte":
+			value = value * 1.342e+8
+			print " %s %s" % (value, target)
+		elif target == "Kilobit":
+			value = value * 1.049e+6
+			print " %s %s" % (value, target)
+		elif target == "Kilobyte":
+			value = value * 131072
+			print " %s %s" % (value, target)
+		elif target == "Megabit":
+			value = value * 1024
+			print " %s %s" % (value, target)
+		elif target == "Megabyte":
+			value = value * 128
+			print " %s %s" % (value, target)
+		elif target == "Gigabyte":
+			value = value * 0.125
+			print " %s %s" % (value, target)
+		elif target == "Terabit":
+			value = value * 0.000976563
+			print " %s %s" % (value, target)
+		elif target == "Terabyte":
+			value = value * 0.00012207
+			print " %s %s" % (value, target)
+		elif target == "Petabit":
+			value = value * 9.5367e-7
+			print " %s %s" % (value, target)
+		elif target == "Petabyte":
+			value = value * 1.1921e-7
+			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Gigabyte":
+		if target == "Bit":
+			value = value * 8.5e+9
+			print " %s %s" % (value, target)
+		elif target == "Byte":
+			value = value * 1.074e+9
+			print " %s %s" % (value, target)
+		elif target == "Kilobit":
+			value = value * 8.39e+6
+			print " %s %s" % (value, target)
+		elif target == "Kilobyte":
+			value = value * 1.049e+6
+			print " %s %s" % (value, target)
+		elif target == "Megabit":
+			value = value * 8192
+			print " %s %s" % (value, target)
+		elif target == "Megabyte":
+			value = value * 1024
+			print " %s %s" % (value, target)
+		elif target == "Gigabit":
+			value = value * 8
+			print " %s %s" % (value, target)
+		elif target == "Terabit":
+			value = value * 0.125
+			print " %s %s" % (value, target)
+		elif target == "Terabyte":
+			value = value * 0.00012207
+			print " %s %s" % (value, target)
+		elif target == "Petabit":
+			value = value * 9.5367e-7
+			print " %s %s" % (value, target)
+		elif target == "Petabyte":
+			value = value * 1.1921e-7
+			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Terabit":
+		if target == "Bit":
+			value = value * 1.1e+12
+			print " %s %s" % (value, target)
+		elif target == "Byte":
+			value = value * 1.374e+11
+			print " %s %s" % (value, target)
+		elif target == "Kilobit":
+			value = value * 1.074e+9
+			print " %s %s" % (value, target)
+		elif target == "Kilobyte":
+			value = value * 1.342e+8
+			print " %s %s" % (value, target)
+		elif target == "Megabit":
+			value = value * 1.049e+6
+			print " %s %s" % (value, target)
+		elif target == "Megabyte":
+			value = value * 131072
+			print " %s %s" % (value, target)
+		elif target == "Gigabit":
+			value = value * 1024
+			print " %s %s" % (value, target)
+		elif target == "Gigabyte":
+			value = value * 128
+			print " %s %s" % (value, target)
+		elif target == "Terabyte":
+			value = value * 0.125
+			print " %s %s" % (value, target)
+		elif target == "Petabit":
+			value = value * 0.000976563
+			print " %s %s" % (value, target)
+		elif target == "Petabyte":
+			value = value * 0.00012207
+			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Terabyte":
+		if target == "Bit":
+			value = value * 8.796e+12
+			print " %s %s" % (value, target)
+		elif target == "Byte":
+			value = value * 1.1e+12
+			print " %s %s" % (value, target)
+		elif target == "Kilobit":
+			value = value * 8.59e+9
+			print " %s %s" % (value, target)
+		elif target == "Kilobyte":
+			value = value * 1.074e+9
+			print " %s %s" % (value, target)
+		elif target == "Megabit":
+			value = value * 8.389e+6
+			print " %s %s" % (value, target)
+		elif target == "Megabyte":
+			value = value * 1.049e+6
+			print " %s %s" % (value, target)
+		elif target == "Gigabit":
+			value = value * 8192
+			print " %s %s" % (value, target)
+		elif target == "Gigabyte":
+			value = value * 1024
+			print " %s %s" % (value, target)
+		elif target == "Terabit":
+			value = value * 8
+			print " %s %s" % (value, target)
+		elif target == "Petabit":
+			value = value * 0.0078125
+			print " %s %s" % (value, target)
+		elif target == "Petabyte":
+			value = value * 0.000976563
+			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Petabit":
+		if target == "Bit":
+			value = value * 1.126e+15
+			print " %s %s" % (value, target)
+		elif target == "Byte":
+			value = value * 1.407e+14
+			print " %s %s" % (value, target)
+		elif target == "Kilobit":
+			value = value * 1.1e+12
+			print " %s %s" % (value, target)
+		elif target == "Kilobyte":
+			value = value * 1.374e+11
+			print " %s %s" % (value, target)
+		elif target == "Megabit":
+			value = value * 1.074e+9
+			print " %s %s" % (value, target)
+		elif target == "Megabyte":
+			value = value * 1.342e+8
+			print " %s %s" % (value, target)
+		elif target == "Gigabit":
+			value = value * 1.04e+6
+			print " %s %s" % (value, target)
+		elif target == "Gigabyte":
+			value = value * 131072
+			print " %s %s" % (value, target)
+		elif target == "Terabit":
+			value = value * 1024
+			print " %s %s" % (value, target)
+		elif target == "Terabyte":
+			value = value * 128
+			print " %s %s" % (value, target)
+		elif target == "Petabyte":
+			value = value * 0.125
+			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Petabyte":
+		if target == "Bit":
+			value = value * 9.007e+15
+			print " %s %s" % (value, target)
+		elif target == "Byte":
+			value = value * 1.126e+15
+			print " %s %s" % (value, target)
+		elif target == "Kilobit":
+			value = value * 8.796e+12
+			print " %s %s" % (value, target)
+		elif target == "Kilobyte":
+			value = value * 8.59e+9
+			print " %s %s" % (value, target)
+		elif target == "Megabyte":
+			value = value * 1.074e+9
+			print " %s %s" % (value, target)
+		elif target == "Gigabit":
+			value = value * 8.389e+6
+			print " %s %s" % (value, target)
+		elif target == "Gigabyte":
+			value = value * 1.049e+6
+			print " %s %s" % (value, target)
+		elif target == "Terabit":
+			value = value * 8192
+			print " %s %s" % (value, target)
+		elif target == "Terabyte":
+			value = value * 1024
+			print " %s %s" % (value, target)
+		elif target == "Petabit":
+			value = value * 8
+			print " %s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	else:
+		print error1			
 else:
-	print "Not a valid choice."
+	print error1
