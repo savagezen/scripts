@@ -8,14 +8,14 @@ by grandtheftjiujitsu
 * [Simple CD / DVD rip using "dd"](https://github.com/grandtheftjiujitsu/Scripts/blob/master/dvdrip.sh)
 * [System Information](https://github.com/grandtheftjiujitsu/Scripts/blob/master/sysinfo.sh)
 * [Unit Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/unit_conversion.py)
-> * Temperature:  Celcius, Fahrenheit, Kelvin
-> * Length:  Mile, Kilometer, Meter, Yard, Feet, Inches, Centimeter.
-> * Mass:  Metric Ton, Stone, Kilogram, Pound, Ounce, Gram, Milligram.
-> *	Volume:  US gal, US quart, US pint, US cup, US ounce, US tbsp, US tsp, Cubic meter, Cubic foot, Cubic inch, Liter, Milliliter.
+> Temperature:  Celcius, Fahrenheit, Kelvin
+> Length:  Mile, Kilometer, Meter, Yard, Feet, Inches, Centimeter.
+> Mass:  Metric Ton, Stone, Kilogram, Pound, Ounce, Gram, Milligram.
+> Volume:  US gal, US quart, US pint, US cup, US ounce, US tbsp, US tsp, Cubic meter, Cubic foot, Cubic inch, Liter, Milliliter.
 * [WPA / Wifi setup using "iw" and "dhcpcd"](https://github.com/grandtheftjiujitsu/Scripts/blob/master/wifi-wpa.sh)
 * [Climbing Grade Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/wifi-wpa.sh)
-> * Yosemite Decimal System (YDS)
-> * Hueco
+> Yosemite Decimal System (YDS)
+> Hueco (V)
 
 ### Current Homework:
 * Making Demonstration / Educational Scripts while reading:
