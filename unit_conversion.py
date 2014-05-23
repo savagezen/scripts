@@ -11,7 +11,7 @@ print "	Volume"
 print "	Digital Storage"
 print "	Speed"
 print "	Area"
-print "	Fuel Consumption (Not Yet Supported)"
+print "	Fuel Consumption"
 print "	Time (Not Yet Supported)"
 conv_type = raw_input("Select conversion type: ")
 ###############
@@ -1651,19 +1651,510 @@ elif conv_type == "Area":
 			print error1
 	else:
 		print error1
-#elif conv_type == "Fuel":
-#	print "Available Units:"
-#	base = raw_input("Enter base unit: ")
-#	value = int(input("Enter base value: "))
-#	target = raw_input("Enter target unit: ")
-#	else:
-#		print error1
-#elif conv_type == "Time":
-#	print "Available Units:"
-#	base = raw_input("Enter base unit: ")
-#	value = int(input("Enter base value: "))
-#	target = raw_input("Enter target unit: ")
-#	else:
-#		print error1
+####################
+# Fuel Consumption #
+####################
+elif conv_type == "Fuel Consumption":
+	print "Available Units:"
+	print "	Miles per Gallon (US)"
+	print "	Kilometers per Liter"
+	base = raw_input("Enter base unit: ")
+	value = int(input("Enter base value: "))
+	target = raw_input("Enter target unit: ")
+	if base == "Miles per Gallon (US)":
+		if target == "Kilometers per Liter":
+			value = value * 0.425144
+			print "%s %s" % (value, target)
+		elif base == target:
+			print error2
+		else:
+			print error1
+	elif base == "Kilometers per Liter":
+		if target == "Miles per Gallon (US)":
+			value == value * 2.35215
+			print "%s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	else:
+		print error1
+########
+# Time #
+########
+elif conv_type == "Time":
+	print "Available Units:"
+	print "	Nanoseconds"
+	print "	Microseconds"
+	print "	Milliseconds"
+	print "	Seconds"
+	print "	Minutes"
+	print "	Hours"
+	print "	Days"
+	print "	Weeks"
+	print "	Months"
+	print "	Years"
+	print "	Decades"
+	print "	Centuries"
+	base = raw_input("Enter base unit: ")
+	value = int(input("Enter base value: "))
+	target = raw_input("Enter target unit: ")
+	if base == "Nanoseconds":
+		if target == "Microseconds":
+			value = value * 0.001
+			print "%s %s" % (value, target)
+		elif target == "Milliseconds":
+			value = value * 1e-6
+			print "%s %s" % (value, target)
+		elif target == "Seconds":
+			value = value * 1e-9
+			print "%s %s" % (value, target)
+		elif target == "Minutes":
+			value = value * 1.6667e-11
+			print "%s %s" % (value, target)
+		elif target == "Hours":
+			value = value * 2.7778e-13
+			print "%s %s" % (value, target)
+		elif target == "Days":
+			value = value * 1.1574e-14
+			print "%s %s" % (value, target)
+		elif target == "Weeks":
+			value = value * 1.6534e-15
+			print "%s %s" % (value, target)
+		elif target == "Months":
+			value = value * 3.8027e-16
+			print "%s %s" % (value, target)
+		elif target == "Years":
+			value = value * 3.1689e-17
+			print "%s %s" % (value, target)
+		elif target == "Decades":
+			value = value * 3.1689e-18
+			print "%s %s" % (value, target)
+		elif target == "Centuries":
+			value = value * 3.1689e-19
+			print "%s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Microseconds":
+		if target == "Nanoseconds":
+			value = value * 1000
+			print "%s %s" % (value, target)
+		if target == "Milliseconds":
+			value = value * 0.001
+			print "%s %s" % (value, target)
+		elif target == "Seconds":
+			value = value * 1e-6
+			print "%s %s" % (value, target)
+		elif target == "Minutes":
+			value = value * 1.6667e-8
+			print "%s %s" % (value, target)
+		elif target == "Hours":
+			value = value * 2.778e-10
+			print "%s %s" % (value, target)
+		elif target == "Days":
+			value = value * 1.1574e-11
+			print "%s %s" % (value, target)
+		elif target == "Weeks":
+			value = value * 1.6534e-12
+			print "%s %s" % (value, target)
+		elif target == "Months":
+			value = value * 3.8027e-13
+			print "%s %s" % (value, target)
+		elif target == "Years":
+			value = value * 3.1689e-14
+			print "%s %s" % (value, target)
+		elif target == "Decades":
+			value = value * 3.1689e-15
+			print "%s %s" % (value, target)
+		elif target == "Centuries":
+			value = value * 3.1689e-16
+			print "%s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Milliseconds":
+		if target == "Nanoseconds":
+			value = value * 1e+6
+			print "%s %s" % (value, target)
+		elif target == "Microseconds":
+			value = value * 1000
+			print "%s %s" % (value, target)
+		elif target == "Seconds":
+			value = value * 0.001
+			print "%s %s" % (value, target)
+		elif target == "Minutes":
+			value = value * 1.6667e-5
+			print "%s %s" % (value, target)
+		elif target == "Hours":
+			value = value * 2.7778e-7
+			print "%s %s" % (value, target)
+		elif target == "Days":
+			value = value * 1.1574e-8
+			print "%s %s" % (value, target)
+		elif target == "Weeks":
+			value = value * 1.6534e-9
+			print "%s %s" % (value, target)
+		elif target == "Months":
+			value = value * 3.8027e-10
+			print "%s %s" % (value, target)
+		elif target == "Years":
+			value = value * 3.1689e-11
+			print "%s %s" % (value, target)
+		elif target == "Decades":
+			value = value * 3.1689e-12
+			print "%s %s" % (value, target)
+		elif target == "Centuries":
+			value = value * 3.1689e-13
+			print "%s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1	
+	elif base == "Seconds":
+		if target == "Nanoseconds":
+			value = value * 1e+9
+			print "%s %s" % (value, target)
+		elif target == "Microseconds":
+			value = value * 1e+6
+			print "%s %s" % (value, target)
+		elif target == "Milliseconds":
+			value = value * 1000
+			print "%s %s" % (value, target)
+		elif target == "Minutes":
+			value = value * 0.166667
+			print "%s %s" % (value, target)
+		elif target == "Hours":
+			value = value * 0.000277778
+			print "%s %s" % (value, target)
+		elif target == "Days":
+			value = value * 1.1574e-5
+			print "%s %s" % (value, target)
+		elif target == "Weeks":
+			value = value * 1.6534e-6
+			print "%s %s" % (value, target)
+		elif target == "Months":
+			value = value * 3.8027e-7
+			print "%s %s" % (value, target)
+		elif target == "Years":
+			value = value * 3.1689e-8
+			print "%s %s" % (value, target)
+		elif target == "Decades":
+			value = value * 3.1689e-9
+			print "%s %s" % (value, target)
+		elif target == "Centuries":
+			value = value * 3.1689e-10
+			print "%s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Minutes":
+		if target == "Nanoseconds":
+			value = value * 6e+10
+			print "%s %s" % (value, target)
+		elif target == "Microseconds":
+			value = value * 6e+7
+			print "%s %s" % (value, target)
+		elif target == "Milliseconds":
+			value = value * 60000
+			print "%s %s" % (value, target)
+		elif target == "Seconds":
+			value = value * 60
+			print "%s %s" % (value, target)
+		elif target == "Hours":
+			value = value * 0.166667
+			print "%s %s" % (value, target)
+		elif target == "Days":
+			value = value * 0.000694444
+			print "%s %s" % (value, target)
+		elif target == "Weeks":
+			value = value * 9.9206e-5
+			print "%s %s" % (value, target)
+		elif target == "Months":
+			value = value * 2.2816e-5
+			print "%s %s" % (value, target)
+		elif target == "Years":
+			value = value * 1.9013e-6
+			print "%s %s" % (value, target)
+		elif target == "Decades":
+			value = value * 1.9013e-7
+			print "%s %s" % (value, target)
+		elif target == "Centuries":
+			value = value * 1.9013e-8
+			print "%s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Hours":
+		if target == "Nanoseconds":
+			value = value * 3.6e+12
+			print "%s %s" % (value, target)
+		elif target == "Microseconds":
+			value = value * 3.6e+9
+			print "%s %s" % (value, target)
+		elif target == "Milliseconds":
+			value = value * 3.6e+6
+			print "%s %s" % (value, target)
+		elif target == "Seconds":
+			value = value * 3600
+			print "%s %s" % (value, target)
+		elif target == "Minutes":
+			value = value * 60
+			print "%s %s" % (value, target)
+		elif target == "Days":
+			value = value * 0.0416667
+			print "%s %s" % (value, target)
+		elif target == "Weeks":
+			value = value * 0.00595238
+			print "%s %s" % (value, target)
+		elif target == "Months":
+			value = value * 0.00136895
+			print "%s %s" % (value, target)
+		elif target == "Years":
+			value = value * 0.00011408
+			print "%s %s" % (value, target)
+		elif target == "Decades":
+			value = value * 1.1408e-5
+			print "%s %s" % (value, target)
+		elif target == "Centuries":
+			value = value * 1.1408e-6
+			print "%s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Days":
+		if target == "Nanoseconds":
+			value = value * 8.64e+13
+			print "%s %s" % (value, target)
+		elif target == "Microseconds":
+			value = value * 8.64e+10
+			print "%s %s" % (value, target)
+		elif target == "Milliseconds":
+			value = value * 8.64e+7
+			print "%s %s" % (value, target)
+		elif target == "Seconds":
+			value = value * 86400
+			print "%s %s" % (value, target)
+		elif target == "Minutes":
+			value = value * 1440
+			print "%s %s" % (value, target)
+		elif target == "Hours":
+			value = value * 24
+			print "%s %s" % (value, target)
+		elif target == "Weeks":
+			value = value * 0.142857
+			print "%s %s" % (value, target)
+		elif target == "Months":
+			value = value * 0.0328549
+			print "%s %s" % (value, target)
+		elif target == "Years":
+			value = value * 0.00273791
+			print "%s %s" % (value, target)
+		elif target == "Decades":
+			value = value * 0.000273791
+			print "%s %s" % (value, target)
+		elif target == "Centuries":
+			value = value * 2.7379e-5
+			print "%s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Weeks":
+		if target == "Nanoseconds":
+			value = value * 6.048e+14
+			print "%s %s" % (value, target)
+		elif target == "Microseconds":
+			value = value * 6.048e+11
+			print "%s %s" % (value, target)
+		elif target == "Milliseconds":
+			value = value * 6.048e+8
+			print "%s %s" % (value, target)
+		elif target == "Seconds":
+			value = value * 604800
+			print "%s %s" % (value, target)
+		elif target == "Minutes":
+			value = value * 10080
+			print "%s %s" % (value, target)
+		elif target == "Hours":
+			value = value * 168
+			print "%s %s" % (value, target)
+		elif target == "Days":
+			value = value * 7
+			print "%s %s" % (value, target)
+		elif target == "Months":
+			value = value * 0.229984
+			print "%s %s" % (value, target)
+		elif target == "Years":
+			value = value * 0.0191654
+			print "%s %s" % (value, target)
+		elif target == "Decades":
+			value = value * 0.00191654
+			print "%s %s" % (value, target)
+		elif target == "Centuries":
+			value = value * 0.000191654
+			print "%s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Months":
+		if target == "Nanoseconds":
+			value = value * 2.63e+15
+			print "%s %s" % (value, target)
+		elif target == "Microseconds":
+			value = value * 2.63e+12
+			print "%s %s" % (value, target)
+		elif target == "Milliseconds":
+			value = value * 2.63e+9
+			print "%s %s" % (value, target)
+		elif target == "Seconds":
+			value = value * 2.63e+6
+			print "%s %s" % (value, target)
+		elif target == "Minutes":
+			value = value * 43829.1
+			print "%s %s" % (value, target)
+		elif target == "Hours":
+			value = value * 730.484
+			print "%s %s" % (value, target)
+		elif target == "Days":
+			value = value * 30.4368
+			print "%s %s" % (value, target)
+		elif target == "Weeks":
+			value = value * 4.34812
+			print "%s %s" % (value, target)
+		elif target == "Years":
+			value = value * 0.0833333
+			print "%s %s" % (value, target)
+		elif target == "Decades":
+			value = value * 0.00833333
+			print "%s %s" % (value, target)
+		elif target == "Centuries":
+			value = value  * 0.000833333
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Years":
+		if target == "Nanoseconds":
+			value = value * 3.156e+16
+			print "%s %s" % (value, target)
+		if target == "Microseconds":
+			value = value * 3.156e+13
+			print "%s %s" % (value, target)
+		elif target == "Milliseconds":
+			value = value * 3.156e+10
+			print "%s %s" % (value, target)
+		elif target == "Seconds":
+			value = value * 3.156e+7
+			print "%s %s" % (value, target)
+		elif target == "Minutes":
+			value = value * 525949
+			print "%s %s" % (value, target)
+		elif target == "Hours":
+			value = value * 8765.81
+			print "%s %s" % (value, target)
+		elif target == "Days":
+			value = value * 365.242
+			print "%s %s" % (value, target)
+		elif target == "Weeks":
+			value = value * 52.1775
+			print "%s %s" % (value, target)
+		elif target == "Months":
+			value = value * 12
+			print "%s %s" % (value, target)
+		elif target == "Decades":
+			value = value * 0.1
+			print "%s %s" % (value, target)
+		elif target == "Centuries":
+			value = value * 0.001
+			print "%s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Decades":
+		if target == "Nanoseconds":
+			value = value * 3.156e+17
+			print "%s %s" % (value, target)
+		elif target == "Microseconds":
+			value = value * 3.156e+14
+			print "%s %s" % (value, target)
+		elif target == "Milliseconds":
+			value = value * 3.156e+11
+			print "%s %s" % (value, target)
+		elif target == "Seconds":
+			value = value * 3.156e+8
+			print "%s %s" % (value, target)
+		elif target == "Minutes":
+			value = value * 5.259e+6
+			print "%s %s" % (value, target)
+		elif target == "Hours":
+			value = value * 87658.1
+			print "%s %s" % (value, target)
+		elif target == "Days":
+			value = value * 3652.42
+			print "%s %s" % (value, target)
+		elif target == "Weeks":
+			value = value * 521.775
+			print "%s %s" % (value, target)
+		elif target == "Months":
+			value = value * 120
+			print "%s %s" % (value, target)
+		elif target == "Years":
+			value = value * 10
+			print "%s %s" % (value, target)
+		elif target == "Centuries":
+			value = value * 0.1
+			print "%s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	elif base == "Centuries":
+		if target == "Nanoseconds":
+			value = value * 3.156e+18
+			print "%s %s" % (value, target)
+		elif target == "Microseconds":
+			value = value * 3.156e+15
+			print "%s %s" % (value, target)
+		elif target == "Milliseconds":
+			value = value * 3.156e+12
+			print "%s %s" % (value, target)
+		elif target == "Seconds":
+			value = value * 3.156e+9
+			print "%s %s" % (value, target)
+		elif target == "Minutes":
+			value = value * 5.259e+7
+			print "%s %s" % (value, target)
+		elif target == "Hours":
+			value = value * 876581
+			print "%s %s" % (value, target)
+		elif target == "Days":
+			value = value * 36524.2
+			print "%s %s" % (value, target)
+		elif target == "Weeks":
+			value = value * 5217.75
+			print "%s %s" % (value, target)
+		elif target == "Months":
+			value = value * 1200
+			print "%s %s" % (value, target)
+		elif target == "Years":
+			value = value * 100
+			print "%s %s" % (value, target)
+		elif target == "Decades":
+			value = value * 10
+			print "%s %s" % (value, target)
+		elif target == base:
+			print error2
+		else:
+			print error1
+	else:
+		print error1
 else:
 	print error1

@@ -13,12 +13,15 @@ by grandtheftjiujitsu
 * [WPA / Wifi setup using "iw" and "dhcpcd"](https://github.com/grandtheftjiujitsu/Scripts/blob/master/wifi-wpa.sh)
 #### Python (2.7)
 * [Unit Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/unit_conversion.py)
-> * Temperature:  Celcius, Fahrenheit, Kelvin
-> * Length:  Mile, Kilometer, Meter, Yard, Feet, Inches, Centimeter.
-> * Mass:  Metric Ton, Stone, Kilogram, Pound, Ounce, Gram, Milligram.
-> * Volume:  US gal, US quart, US pint, US cup, US ounce, US tbsp, US tsp, Cubic meter, Cubic foot, Cubic inch, Liter, Milliliter.
-> * Digital Storage: Bit, Byte, Kilobit, Kilobyte, Megabit, Megabyte, Gigabit, Gigabyte, Terabit, Terabyte, Petabit, Petabyte.
-> * Speed: Miles per hour, Feet per second, Meters per second, Knots.
+> * Temperature:  Degrees Celcius, Degrees Fahrenheit, Kelvin
+> * Length:  Miles, Kilometers, Meters, Yards, Feets, Inches, Centimeters.
+> * Mass:  Metric Tons, Stones, Kilograms, Pounds, Ounces, Grams, Milligrams.
+> * Volume:  US Gallons, US Quarts, US Pints, US Cups, US Ounces, US Tablespoons, US Teaspoons, Cubic Meters, Cubic Feet, Cubic Inces, Liters, Milliliters.
+> * Digital Storage: Bits, Bytes, Kilobits, Kilobytes, Megabits, Megabytes, Gigabits, Gigabytes, Terabits, Terabytes, Petabits, Petabytes.
+> * Speed: Miles per Hour, Feet per Second, Meters per Second, Knots.
+> * Area: Square Kilometers, Square Meters, Square Miles, Acres, Square Yards, Square Feet, Square Inches.
+> * Fuel Consumption:  Miles per Gallon (US), Kilometers per Liter.
+> * Time: Nanoseconds, Microseconds, Milliseconds, Seconds, Minutes, Hours, Days, Weeks, Months, Years, Decades, Centuries.
 * [Climbing Grade Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/climbing_grade_conversion.py)
 > * Yosemite Decimal System (YDS)
 > * Hueco (V)
