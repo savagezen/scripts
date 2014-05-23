@@ -1,5 +1,84 @@
 #!/bin/python2.7
 # Unit Converter - based on Google conversions
+##############################################
+###### Supported Conversions and Units #######
+##############################################
+# Temperature
+#	Degrees Celcius
+#	Degrees Fahrenheit
+#	Kelvin
+# Length
+#	Miles
+#	Kilometers
+#	Meters
+#	Yards
+#	Feet
+#	Inches
+#	Centimeters
+# Mass
+#	Metric Tons
+#	Stones
+#	Kilograms
+#	Pounds
+#	Ounces
+#	Grams
+#	Milligrams
+# Volume
+#	US Gallons
+#	US Quarts
+#	US Pints
+#	US Cups
+#	US Ounces
+#	US Tablespoones
+#	US Teaspoons
+#	Cubic Meters
+#	Cubic Feet
+#	Cubic Inches
+#	Liters
+#	Milliliters
+# Digital Storage
+#	Bits
+#	Bytes
+#	Kilobits
+#	Kilobytes
+#	Megabits
+#	Megabytes
+#	Gigabits
+#	Gigabytes
+#	Terabits
+#	Terabytes
+#	Petabits
+#	Petabytes
+# Speed
+#	Miles per Hour
+#	Feet per Second
+#	Meters per Second
+#	Kilometers per Hour
+#	Knots
+# Area
+#	Square Kilometers
+#	Square Meters
+#	Square Miles
+#	Acres
+#	Sqaure Yards
+#	Square Feet
+#	Square Inches
+# Fuel Consumption
+#	Miles per Gallon (US)
+#	Kilometers per Liter
+# Time
+#	Nanoseconds
+#	Microseconds
+#	Milliseconds
+#	Seconds
+#	Minutes
+#	Hours
+#	Days
+#	Weeks
+#	Months
+#	Years
+#	Decades
+#	Centuries
 
 error1 = "Error: The unit you selected is not available.  Check your spelling."
 error2 = "Error: You slected the same unit as your base and target"
@@ -12,7 +91,7 @@ print "	Digital Storage"
 print "	Speed"
 print "	Area"
 print "	Fuel Consumption"
-print "	Time (Not Yet Supported)"
+print "	Time"
 conv_type = raw_input("Select conversion type: ")
 ###############
 # Temperature #
