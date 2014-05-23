@@ -17,7 +17,7 @@ if conv_type == "Temperature" :
 	print "	Fahrenheit"
 	print "	Kelvin"
 	base = raw_input("Select base unit: ")
-	value = int(raw_input("Enter base value: "))
+	value = int(input("Enter base value: "))
 	target = raw_input("Enter target unit: ")
 	if base == "Celcius":
 		if target == "Fahrenheit":
@@ -32,7 +32,7 @@ if conv_type == "Temperature" :
 			print "Not a valid choice."
 	elif base == "Fahrenheit":
 		if target == "Celcius":
-			value = int(raw_input("Enter base value: "))
+			value = int(input("Enter base value: "))
 			value = value - 32
 			value = value * 5
 			value = value / 9
@@ -70,7 +70,7 @@ elif conv_type == "Length":
 	print "	Centimeter"
 	base = raw_input("Select base unit: ")
 	if base == "Kilometer":
-		value = int(raw_input("Enter base value: "))
+		value = int(input("Enter base value: "))
 		target = raw_input("Enter target unit: ")
 		if target == "Mile":
 			value = value * 0.621371
@@ -93,7 +93,7 @@ elif conv_type == "Length":
 		else:
 			print "Not a valid choice."
 	elif base == "Mile":
-		value = int(raw_input("Enter base value: "))
+		value = int(input("Enter base value: "))
 		target = raw_input("Enter target unit: ")
 		if target == "Kilometer":
 			value = value * 1.60934
@@ -116,7 +116,7 @@ elif conv_type == "Length":
 		else:
 			print "Not a valid choice."
 	elif base == "Meter":
-		value = int(raw_input("Enter base value: "))
+		value = int(input("Enter base value: "))
 		target == raw_input("Enter target unit: ")
 		if target == "Kilometer":
 			value = value * 0.001
@@ -139,7 +139,7 @@ elif conv_type == "Length":
 		else:
 			print "Not a valid choice."
 	elif base == "Yard":
-		value = int(raw_input("Enter base value: "))
+		value = int(input("Enter base value: "))
 		target == raw_input("Enter target unit: ")
 		if target == "Kilometer":
 			value = value * 0.0009144
@@ -162,7 +162,7 @@ elif conv_type == "Length":
 		else:
 			print "Not a valid choice."
 	elif base == "Foot":
-		value = int(raw_input("Enter base value: "))
+		value = int(input("Enter base value: "))
 		target = raw_input("Enter target unit: ")
 		if target == "Kilometer":
 			value = value * 0.0003048
@@ -185,7 +185,7 @@ elif conv_type == "Length":
 		else:
 			print "Not a valid choice."
 	elif base == "Inch":
-		value = int(raw_input("Enter base value: "))
+		value = int(input("Enter base value: "))
 		target = raw_input("Enter target unit: ")
 		if target == "Kilometer":
 			value = value * 0.00025399989
@@ -208,7 +208,7 @@ elif conv_type == "Length":
 		else:
 			print "Not a valid choice."
 	elif base == "Centimeter":
-		value = int(raw_input("Enter base value: "))
+		value = int(input("Enter base value: "))
 		target = raw_input("Enter target unit: ")
 		if target == "Kilometer":
 			value = value * 0.00001
@@ -245,7 +245,7 @@ elif conv_type == "Mass":
 	print "	Gram"
 	print " Milligram"
 	base = raw_input("Enter base unit: ")
-	value = int(raw_input("Enter base value: "))
+	value = int(input("Enter base value: "))
 	target = raw_input("Enter target unit: ")
 	if base == "Metric Ton":
 		if target == "Stone":
@@ -418,7 +418,7 @@ elif conv_type == "Volume":
 	print "	Liter"
 	print "	Milliliter"
 	base = raw_input("Enter base unit: ")
-	value = int(raw_input("Enter base value: "))
+	value = int(input("Enter base value: "))
 	target = raw_input("Enter target unit: ")
 	if base == "US gal":
 		if target == "US quart":
@@ -856,7 +856,7 @@ elif conv_type == "Volume":
 		print "Not a valid choice."
 #elif conv_type == "Digital Storage":
 #		base = raw_input("Enter base unit: ")
-#		value = int(raw_input("Enter base value: "))
+#		value = int(input("Enter base value: "))
 #		target = raw_input("Enter target unit: ")		
 else:
 	print "Not a valid choice."

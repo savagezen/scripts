@@ -7,7 +7,7 @@ by grandtheftjiujitsu
 ### Utilities:
 * [Simple CD / DVD rip using "dd"](https://github.com/grandtheftjiujitsu/Scripts/blob/master/dvdrip.sh)
 * [System Information](https://github.com/grandtheftjiujitsu/Scripts/blob/master/sysinfo.sh)
-* [Unit Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/unit_coversion.py)
+* [Unit Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/unit_conversion.py)
 > * Temperature:  Celcius, Fahrenheit, Kelvin
 > * Length:  Mile, Kilometer, Meter, Yard, Feet, Inches, Centimeter.
 > * Mass:  Metric Ton, Stone, Kilogram, Pound, Ounce, Gram, Milligram.
