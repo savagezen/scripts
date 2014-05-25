@@ -3,105 +3,32 @@
 ##############################################
 ###### Supported Conversions and Units #######
 ##############################################
-# Temperature
-#	Degrees Celcius
-#	Degrees Fahrenheit
-#	Kelvin
-# Length
-#	Miles
-#	Kilometers
-#	Meters
-#	Yards
-#	Feet
-#	Inches
-#	Centimeters
-# Mass
-#	Metric Tons
-#	Stones
-#	Kilograms
-#	Pounds
-#	Ounces
-#	Grams
-#	Milligrams
-# Volume
-#	US Gallons
-#	US Quarts
-#	US Pints
-#	US Cups
-#	US Ounces
-#	US Tablespoones
-#	US Teaspoons
-#	Cubic Meters
-#	Cubic Feet
-#	Cubic Inches
-#	Liters
-#	Milliliters
-# Digital Storage
-#	Bits
-#	Bytes
-#	Kilobits
-#	Kilobytes
-#	Megabits
-#	Megabytes
-#	Gigabits
-#	Gigabytes
-#	Terabits
-#	Terabytes
-#	Petabits
-#	Petabytes
-# Speed
-#	Miles per Hour
-#	Feet per Second
-#	Meters per Second
-#	Kilometers per Hour
-#	Knots
-# Area
-#	Square Kilometers
-#	Square Meters
-#	Square Miles
-#	Acres
-#	Sqaure Yards
-#	Square Feet
-#	Square Inches
-# Fuel Consumption
-#	Miles per Gallon (US)
-#	Kilometers per Liter
-# Time
-#	Nanoseconds
-#	Microseconds
-#	Milliseconds
-#	Seconds
-#	Minutes
-#	Hours
-#	Days
-#	Weeks
-#	Months
-#	Years
-#	Decades
-#	Centuries
+conversions = ["Temperature", "Length", "Mass", "Volume", "Digital Storage", "Speed", "Area", "Fuel Consumption", "Time"]
+temperature = ["Degrees Fahrenheit", "Degrees Celcius", "Kelvin"]
+length = ["Miles", "Kilometers", "Meters", "Yards", "Feet", "Inches", "Centimeters"]
+mass = ["Metric Tons", "Stones", "Pounds", "Ounces", "Grams", "Milligrams"]
+volume = ["US Gallons", "US Quarts", "US Pints", "US Cups", "US Ounces", "US Tablespoons", "US Teaspoons", "Cubic Meters", "Cubic Feet", "Cubic Inches", "Liters", "Milliliters"]
+digital_storage = ["Bits", "Bytes", "Kilobits", "Kilobytes", "Megabits", "Megabytes", "Gigabits", "Gigabytes", "Terabits", "Terabytes", "Petabits", "Petabytes"]
+speed = ["Miles per Hour", "Feet per Second", "Meters per Second", "Kilometers per Hour"]
+area = ["Square Kilometers", "Square Miles", "Acres", "Square Yards", "Square Feet", "Square Inches"]
+fuel_consumption = ["Miles per Gallon (US)", "Kilometers per Liter"]
+time = ["Nanoseconds", "Microseconds", "Milliseconds", "Seconds", "Minutes", "Hours", "Days", "Weeks", "Months", "Years", "Decades", "Centuries"]
 
 error1 = "Error: The unit you selected is not available.  Check your spelling."
 error2 = "Error: You slected the same unit as your base and target"
-print "Available conversions:"
-print "	Temperature"
-print "	Length"
-print "	Mass"
-print "	Volume"
-print "	Digital Storage"
-print "	Speed"
-print "	Area"
-print "	Fuel Consumption"
-print "	Time"
-conv_type = raw_input("Select conversion type: ")
+
+print "Available Conversions:"
+for conversion in conversions:
+	print "	%s" % (conversion)
+conv_type = raw_input("Enter conversion type: ")
 ###############
 # Temperature #
 ###############
-if conv_type == "Temperature" :
+if conv_type == "Temperature":
 	print "Available Units:"
-	print "	Degrees Celcius"
-	print "	Degrees Fahrenheit"
-	print "	Kelvin"
-	base = raw_input("Select base unit: ")
+	for unit in temperature:
+		print "	%s" % (unit)
+	base = raw_input("Enter base unit: ")
 	value = int(input("Enter base value: "))
 	target = raw_input("Enter target unit: ")
 	if base == "Degrees Celcius":
@@ -150,14 +77,9 @@ if conv_type == "Temperature" :
 ##########
 elif conv_type == "Length":	
 	print "Available Units:"
-	print "	Kilometers"
-	print "	Miles"
-	print "	Meters"
-	print "	Yards"
-	print "	Feet"
-	print "	Inches"
-	print "	Centimeters"
-	base = raw_input("Select base unit: ")
+	for unit in length:
+		print "	%s" % (unit)
+	base = raw_input("Enter base unit: ")
 	value = int(input("Enter base value: "))
 	target = raw_input("Enter target unit: ")
 	if base == "Kilometers":
@@ -328,13 +250,8 @@ elif conv_type == "Length":
 ########
 elif conv_type == "Mass":
 	print "Available Units:"
-	print "	Metric Tons"
-	print "	Stones"
-	print "	Kilograms"
-	print "	Pounds"
-	print "	Ounces"
-	print "	Grams"
-	print "	Milligrams"
+	for unit in mass:
+		print "	%s" % (unit)
 	base = raw_input("Enter base unit: ")
 	value = int(input("Enter base value: "))
 	target = raw_input("Enter target unit: ")
@@ -510,18 +427,8 @@ elif conv_type == "Mass":
 ##########
 elif conv_type == "Volume":
 	print "Available Units:"
-	print "	US Gallons"
-	print "	US Quarts"
-	print "	US Pints"
-	print "	US Cups"
-	print "	US Ounces"
-	print "	US Tablespoons"
-	print "	US Teaspoons"
-	print "	Cubic Meters"
-	print "	Cubic Feet"
-	print "	Cubic Inches"
-	print "	Liters"
-	print "	Milliliters"
+	for unit in volume:
+		print "	%s" % (unit)
 	base = raw_input("Enter base unit: ")
 	value = int(input("Enter base value: "))
 	target = raw_input("Enter target unit: ")
@@ -988,18 +895,8 @@ elif conv_type == "Volume":
 ####################
 elif conv_type == "Digital Storage":
 	print "Available Units:"
-	print "	Bits"
-	print "	Bytes"
-	print "	Kilobits"
-	print "	Kilobytes"
-	print "	Megabits"
-	print "	Megabytes"
-	print "	Gigabits"
-	print "	Gigabytes"
-	print "	Terabits"
-	print "	Terabytes"
-	print "	Petabits"
-	print "	Petabytes"
+	for unit in digital_storage:
+		print "	%s" % (unit)
 	base = raw_input("Enter base unit: ")
 	value = int(input("Enter base value: "))
 	target = raw_input("Enter target unit: ")
@@ -1463,11 +1360,8 @@ elif conv_type == "Digital Storage":
 #########
 elif conv_type == "Speed":
 	print "Available Units:"
-	print "	Miles per Hour"
-	print "	Feet per Second"
-	print "	Meters per Second"
-	print "	Kilometers per Hour"
-	print "	Knots"
+	for unit in speed:
+		print "	%s"	% (unit)
 	base = raw_input("Enter base unit: ")
 	value = int(input("Enter base value: "))
 	target = raw_input("Enter target unit: ")
@@ -1557,13 +1451,8 @@ elif conv_type == "Speed":
 ########
 elif conv_type == "Area":
 	print "Available Units:"
-	print "	Square Kilometers"
-	print "	Square Meters"
-	print "	Square Miles"
-	print "	Acres"
-	print "	Square Yards"
-	print "	Square Feet"
-	print "	Square Inches"
+	for unit in area:
+		print "	%s" % (unit)
 	base = raw_input("Enter base unit: ")
 	value = int(input("Enter base value: "))
 	target = raw_input("Enter target unit: ")
@@ -1735,8 +1624,8 @@ elif conv_type == "Area":
 ####################
 elif conv_type == "Fuel Consumption":
 	print "Available Units:"
-	print "	Miles per Gallon (US)"
-	print "	Kilometers per Liter"
+	for unit in fuel_consumption:
+		print "	%s"	% (unit)
 	base = raw_input("Enter base unit: ")
 	value = int(input("Enter base value: "))
 	target = raw_input("Enter target unit: ")
@@ -1763,18 +1652,8 @@ elif conv_type == "Fuel Consumption":
 ########
 elif conv_type == "Time":
 	print "Available Units:"
-	print "	Nanoseconds"
-	print "	Microseconds"
-	print "	Milliseconds"
-	print "	Seconds"
-	print "	Minutes"
-	print "	Hours"
-	print "	Days"
-	print "	Weeks"
-	print "	Months"
-	print "	Years"
-	print "	Decades"
-	print "	Centuries"
+	for unit in time:
+		print "	%s"	% (unit)
 	base = raw_input("Enter base unit: ")
 	value = int(input("Enter base value: "))
 	target = raw_input("Enter target unit: ")
