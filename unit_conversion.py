@@ -6,7 +6,7 @@
 conversions = ["Temperature", "Length", "Mass", "Volume", "Digital Storage", "Speed", "Area", "Fuel Consumption", "Time"]
 temperature = ["Degrees Fahrenheit", "Degrees Celcius", "Kelvin"]
 length = ["Miles", "Kilometers", "Meters", "Yards", "Feet", "Inches", "Centimeters"]
-mass = ["Metric Tons", "Stones", "Pounds", "Ounces", "Grams", "Milligrams"]
+mass = ["Metric Tons", "Stones", "Kilograms", "Pounds", "Ounces", "Grams", "Milligrams"]
 volume = ["US Gallons", "US Quarts", "US Pints", "US Cups", "US Ounces", "US Tablespoons", "US Teaspoons", "Cubic Meters", "Cubic Feet", "Cubic Inches", "Liters", "Milliliters"]
 digital_storage = ["Bits", "Bytes", "Kilobits", "Kilobytes", "Megabits", "Megabytes", "Gigabits", "Gigabytes", "Terabits", "Terabytes", "Petabits", "Petabytes"]
 speed = ["Miles per Hour", "Feet per Second", "Meters per Second", "Kilometers per Hour"]
