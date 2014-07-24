@@ -56,60 +56,77 @@ abilities = [
 "  Charisma:      Force of Personality, Persuasiveness, Leadership"
 ]
 
+socials1 = ["Cheerful", "Charming", "Talkative", "Witty", "Reserved", "Relaxed"]
+socials2 = ["Enthusiastic", "Grim", "Hopeful", "Self-assured", "Fatalistic", "Brooding"]
+socials3 = ["Gullible", "Suspicious", "Open-minded", "Naive", "Skeptical", "Trusting"]
+
+decisions1 = ["Humble", "Timid", "Adaptable", "Easygoing", "Commanding", "Impatient"]
+decisions2 = ["Scrupulous", "Honest", "Pragmatic", "Flexible", "Dutiful", "Wild"]
+decisions3 = ["Kind", "Protective", "Stern", "Hard-hearted", "Thoughtful", "Oblivious"]
+
+straits1 = ["Brave", "Cautious", "Competitive", "Reckless", "Steady", "Fierce"]
+straits2 = ["Stoic", "Vengeful", "Driven", "Bold", "Happy-go-lucky", "Impassioned"]
+straits3 = ["Calm", "Impulsive", "Skittish", "Patient", "Restless", "Unshakable"]
+
 error_msg = "Oops! Something went wrong.  Exiting..."
 
 # Description
 print "Dungeons & Dragons (4th Ed.) Character Generator"
 
 # Name
-print "Part 1.1 : Name"
+print "Part 1 : General Information"
+print "  Section 1.1 : Naming"
 char_name = raw_input("	Enter Character Name:  ")
 player_name = raw_input("	Enter Player's Name:  ")
 
 # Race
-print "Part 1.2 : Race"
+print "  Section 1.2 : Race"
 for race in races:
 	print "	%s" % (race)
 char_race = raw_input("	Enter Chosen Race:  ")
 
 # Class
-print "Part 1.3 : Class"
+print "  Section 1.3 : Class"
 for c in classes:
 	print "	%s" % (c)
 char_class = raw_input("	Enter Chosen Class:  ")
 
+# Gender
+print "  Section 1.4 : Gender"
+gender = raw_input("	Select a Gender (Male / Female):  ")
+
 # Role
-print "Part 1.4 : Roles / Combat Functions:"
-print "	!!Role Availability is Limited by Character Class!!"
+print "  Section 1.5 : Role / Combat Function"
+print "  !!Role Availability is Limited by Character Class!!"
 for role in roles:
 	print "	%s" % (role)
 char_role = raw_input("	Enter Chosen Role:  ")
 
 if char_class == "Cleric" or char_class == "Warlord":
 	if char_role == "Leader":
-		print "	%s 's  %s - %s : %s" % (player_name, char_name, char_class, char_role)
+		print "	%s (%s - %s:%s)" % (char_name, gender, char_class, char_role)
 	else:
 		print "Clerics and Warlords are best suited as - Leaders"
 elif char_class == "Fighter" or char_class == "Paladin":
 	if char_role == "Defender":
-		print "	%s 's  %s - %s : %s" % (player_name, char_name, char_class, char_role)
+		print "	%s (%s - %s:%s)" % (char_name, gender, char_class, char_role)
 	else:
 		print "Fighters and Paladins are best suited as - Defenders"
 elif char_class == "Ranger" or char_class == "Rogue" or char_class == "Warlock":
 	if char_role == "Striker":
-		print "	%s 's  %s - %s : %s" % (player_name, char_name, char_class, char_role)
+		print "	%s (%s - %s:%s)" % (char_name, gender, char_class, char_role)
 	else:
 		print "Rangers, Rogues, and Warlocks are best suited as - Strikers"
 elif char_class == "Wizard":
 	if char_role == "Controller":
-		print "	%s 's  %s - %s : %s" % (player_name, char_name, char_class, char_role)
+		print "	%s (%s - %s:%s)" % (char_name, gender, char_class, char_role)
 	else:
 		print "Wizards are best suited as - Controllers"
 else:
 	print error_msg
 
 # Alignment
-print "Part 1.5 : Alignment (v3.5)"
+print "  Section 1.6 : Alignment (v3.5)"
 for alignment in law_chaos:
 	print "	%s"	% (alignment)
 law_chaos_align = raw_input("Choose 1st Axis Alignment:  ")
@@ -119,37 +136,37 @@ good_evil_align = raw_input("Choose 2nd Axis Alignment:  ")
 
 if law_chaos_align == "Law":
 	if good_evil_align == "Good":
-		print "	%s 's Lawful-Good %s - %s : %s" % (player_name, char_name, char_class, char_role)
+		print "	%s 's  %s (%s - %s:%s - Lawful-Good)" % (player_name, char_name, gender, char_class, char_role)
 	elif good_evil_align == "Evil":
-		print "	%s 's  Lawful-Evil %s - %s : %s" % (player_name, char_name, char_class, char_role)
+		print "	%s 's  %s (%s - %s:%s - Lawful-Evil)" % (player_name, char_name, gender, char_class, char_role)
 	elif good_evil_align == "Neutral":
-		print "	%s 's  Lawful-Neutral %s - %s : %s" % (player_name, char_name, char_class, char_role)
+		print "	%s 's  %s (%s - %s:%s - Lawful-Neutral)" % (player_name, char_name, gender, char_class, char_role)
 	else:
 		print error_msg
 elif law_chaos_align == "Chaos":
 	if good_evil_align == "Good":
-		print "	%s 's Chaotic-Good %s - %s : %s" % (player_name, char_name, char_class, char_role)
+		print "	%s 's  %s (%s - %s:%s - Chaotic-Good)" % (player_name, char_name, gender, char_class, char_role)
 	elif good_evil_align == "Evil":
-		print "	%s 's  Chaotic-Evil %s - %s : %s" % (player_name, char_name, char_class, char_role)
+		print "	%s 's  %s (%s - %s:%s - Chaotic-Evil)" % (player_name, char_name, gender, char_class, char_role)
 	elif good_evil_align == "Neutral":
-		print "	%s 's  Chaotic-Neutral %s - %s : %s" % (player_name, char_name, char_class, char_role)
+		print "	%s 's  %s (%s - %s:%s - Chaotic-Neutral)" % (player_name, char_name, gender, char_class, char_role)
 	else:
 		print error_msg
 elif law_chaos_align == "Neutral":
 	if good_evil_align == "Good":
-		print "	%s 's Neutral-Good %s - %s : %s" % (player_name, char_name, char_class, char_role)
+		print "	%s 's  %s (%s - %s:%s - Neutral-Good)" % (player_name, char_name, gender, char_class, char_role)
 	elif good_evil_align == "Evil":
-		print "	%s 's  Neutral-Evil %s - %s : %s" % (player_name, char_name, char_class, char_role)
+		print "	%s 's  %s (%s - %s:%s - Neutral-Evil)" % (player_name, char_name, gender, char_class, char_role)
 	elif good_evil_align == "Neutral":
-		print "	%s 's  Neutral-Neutral %s - %s : %s" % (player_name, char_name, char_class, char_role)
+		print "	%s 's  %s (%s - %s:%s - Neutral-Neutral)" % (player_name, char_name, gender, char_class, char_role)
 	else:
 		print error_msg
 else:
 	print error_msg
 
 # Abilities
-print "Part 2.1 : Ability Scores"
-print "	These will be radom rolled scores.  See Player Handbook for more information."
+print "Part 2 : Abiliteis"
+print "  Section 1 : Rolling Ability Scores"
 for ability in abilities:
 	print "	%s" % (ability)
 
@@ -176,7 +193,8 @@ print "	Wisdom:", wisdom
 charisma = stat_roll()
 print "	Charisma:", charisma
 
-reroll = raw_input("You can reroll one (1) stat, would you like to reroll? y/n  ")
+print "  Section 2.2 : Rerolling"
+reroll = raw_input("  You can reroll one (1) stat, would you like to reroll? y/n  ")
 if reroll == "y" or reroll == "Y":
 	reroll1 = raw_input("Select a stat to reroll: ")
 	if reroll1 == "Strength" or reroll1 == "strength" or reroll1 == "str":
@@ -239,3 +257,55 @@ elif reroll == "n" or reroll == "N":
 	print "Ability stats have not been changed"
 else:
 	print error_msg
+
+# Social Descriptors
+print "Part 3 : Personality"
+print "  Section 3.1 : Social Interactions (Influence on others out-of-combat)"
+print "	How do others percieve you in social interactions?"
+for interaction in socials1:
+	print "	  %s" % (interaction)
+social1 = raw_input("	Answer:  ")
+
+print "	How optimistic are you?"
+for interaction in socials2:
+	print "	  %s" % (interaction)
+social2 = raw_input("	Answer:  ")
+
+print "	How trusting are you?"
+for interaction in socials3:
+	print "	  %s" % (interaction)
+social3 = raw_input("	Answer:  ")
+
+# Decision Points
+print "  Section 3.2 : Decision Points (Personallity's influence on tough decisions)"
+print "	How assertive are youat a decision point?"
+for point in decisions1:
+	print "	  %s" % (point)
+dec1 = raw_input("	Answer:  ")
+
+print "	How assertive are youat a decision point?"
+for point in decisions2:
+	print "	  %s" % (point)
+dec2 = raw_input("	Answer:  ")
+
+print "	How assertive are youat a decision point?"
+for point in decisions3:
+	print "	  %s" % (point)
+dec3 = raw_input("	Answer:  ")
+
+# Dire Straits
+print "  Section 3.3 : Dire Straits (Reactions to dire situations)"
+print "  How courageous are you in dire straits?"
+for ds in straits1:
+	print "	  %s" % (ds)
+dire_strait1 = raw_input("	Answer:  ")
+
+print "How do you feel when faced by setbacks?"
+for ds in straits2:
+	print "	  %s" % (ds)
+dire_strait2 = raw_input("	Answer:  ")
+
+print "How are your nerves?"
+for ds in straits3:
+	print "	  %s" % (ds)
+dire_strait3 = raw_input("	Answer:  ")
