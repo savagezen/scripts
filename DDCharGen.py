@@ -1,9 +1,11 @@
 #!/bin/python2.7
 # Dungeons & Dragons Character Generator
 # Reference - http://pastebin.com/8nTb1h1U
+# Refernce - http://www.ibisfightclub.co.uk/dnd/Basics.asp
 
 # Python Imports
 import random
+import math
 
 # Lists
 races = [
@@ -28,11 +30,32 @@ classes = [
 "  Wizard:   Masters of Arcane Power, Disdain Physical Combat, Arcane Blasts"
 ]
 
+avg_height = [
+"  Dragonborn:  6'2\" - 6'8\"",
+"  Dwarf:	    4'3\" - 4'9\"",
+"  Eladrin:     5'5\" - 6'1\"",
+"  Elf:         5'4\" - 6'0\"",
+"  Half-elf:    5'5\" - 6'2\"",
+"  Halfing:     3'10\" - 4'2\"",
+"  Human:       5'6\" - 6'2\"",
+"  Tiefling:    5'6\" - 6'-2\"",
+]
+
+avg_weight = [
+"  Dragonborn:  220 - 230 lbs.",
+"  Dwarf:       160 - 220 lbs.",
+"  Elf:         130 - 170 lbs.",
+"  Half-Elf:    130 - 190 lbs.",
+"  Halfling:    75 - 85 lbs.",
+"  Human:       135 - 220 lbs.",
+"  Tiefling:    140 - 230 lbs."
+]
+	
 roles = [
-"  Controller:  Control Control and Area Offense",
-"  Defender:    Defense, Good Close Up Offense,",
-"  Leader:      Healing and Support, Good Defenses, Best at Protecting",
-"  Striker:     Focused Single-Target Offense, Mobile, Tricksters"
+"  Controller:  Control Control and Area Offense (Wizards)",
+"  Defender:    Defense, Good Close Up Offense (Fighter / Paladin)",
+"  Leader:      Healing and Support, Good Defenses, Best at Protecting (Cleric / Warlord)",
+"  Striker:     Focused Single-Target Offense, Mobile, Tricksters (Ranger / Rogue / Warlock)"
 ]
 
 law_chaos = [
@@ -72,6 +95,19 @@ error_msg = "Oops! Something went wrong.  Exiting..."
 
 # Description
 print "Dungeons & Dragons (4th Ed.) Character Generator"
+print "	Summary"
+print "	  Part 1:  General Information"
+print "	  Part 2:  Ability Scores"
+print "	  Part 3:  Personality"
+
+def cont():
+	cont = raw_input("Do you want to continue? y/n  ")
+	if cont ==	"n" or cont == "N":
+		quit()
+	else:
+		pass
+
+cont()
 
 # Name
 print "Part 1 : General Information"
@@ -91,12 +127,8 @@ for c in classes:
 	print "	%s" % (c)
 char_class = raw_input("	Enter Chosen Class:  ")
 
-# Gender
-print "  Section 1.4 : Gender"
-gender = raw_input("	Select a Gender (Male / Female):  ")
-
 # Role
-print "  Section 1.5 : Role / Combat Function"
+print "  Section 1.4 : Role / Combat Function"
 print "  !!Role Availability is Limited by Character Class!!"
 for role in roles:
 	print "	%s" % (role)
@@ -104,26 +136,47 @@ char_role = raw_input("	Enter Chosen Role:  ")
 
 if char_class == "Cleric" or char_class == "Warlord":
 	if char_role == "Leader":
-		print "	%s (%s - %s:%s)" % (char_name, gender, char_class, char_role)
+		pass
 	else:
 		print "Clerics and Warlords are best suited as - Leaders"
 elif char_class == "Fighter" or char_class == "Paladin":
 	if char_role == "Defender":
-		print "	%s (%s - %s:%s)" % (char_name, gender, char_class, char_role)
+		pass
 	else:
 		print "Fighters and Paladins are best suited as - Defenders"
 elif char_class == "Ranger" or char_class == "Rogue" or char_class == "Warlock":
 	if char_role == "Striker":
-		print "	%s (%s - %s:%s)" % (char_name, gender, char_class, char_role)
+		pass
 	else:
 		print "Rangers, Rogues, and Warlocks are best suited as - Strikers"
 elif char_class == "Wizard":
 	if char_role == "Controller":
-		print "	%s (%s - %s:%s)" % (char_name, gender, char_class, char_role)
+		pass
 	else:
 		print "Wizards are best suited as - Controllers"
 else:
 	print error_msg
+
+# Physical Attirbutes
+print "  Section 1.5 : Physical Attributes"
+gender = raw_input("	Select a Gender (Male / Female):  ")
+age = int(input("	Enter Character Age:  "))
+
+print "	Average Height per Race:"
+for height in avg_height:
+	print "	%s" % (height)
+height = int(input("	Enter height in number of inches (6'0\" = 72 inches):  "))
+height_ft = height / 12
+height_ft = math.trunc(height_ft)
+height_in = height % 12
+print "	Character Height:  %s ' %s \"" % (height_ft, height_in)
+
+print "	Average Weight per Race:"
+for weight in avg_weight:
+	print "	%s" % (weight)
+wegiht = int(input("	Enter Character Weight:  "))
+
+cont()
 
 # Alignment
 print "  Section 1.6 : Alignment (v3.5)"
@@ -164,8 +217,10 @@ elif law_chaos_align == "Neutral":
 else:
 	print error_msg
 
+cont()
+
 # Abilities
-print "Part 2 : Abiliteis"
+print "Part 2 : Abilities"
 print "  Section 1 : Rolling Ability Scores"
 for ability in abilities:
 	print "	%s" % (ability)
@@ -254,9 +309,145 @@ if reroll == "y" or reroll == "Y":
 	else:
 		print error_msg
 elif reroll == "n" or reroll == "N":
-	print "Ability stats have not been changed"
+	print "	Ability stats have not been changed"
 else:
 	print error_msg
+
+print "  Certain races generate a bonus to specific abilites"
+cont()
+if char_race == "Dragonborn":
+	strength = strength + 2
+	charisma = charisma + 2
+	print "	New Stats:"
+	print "	  Strength:      ", strength
+	print "	  Constitution:  ", constitution
+	print "	  Dexterity:     ", dexterity
+	print "	  Intelligence:  ", intelligence
+	print "	  Wisdom:        ", wisdom
+	print "	  Charisma:      ", charisma
+elif char_race == "Dwarf":
+	constitution = constitution + 2
+	wisdom = wisdom + 2
+	print "	New Stats:"
+	print "	  Strength:      ", strength
+	print "	  Constitution:  ", constitution
+	print "	  Dexterity:     ", dexterity
+	print "	  Intelligence:  ", intelligence
+	print "	  Wisdom:        ", wisdom
+	print "	  Charisma:      ", charisma
+elif char_race == "Eladrin":
+	dexterity = dexterity + 2
+	intelligence = intelligence + 2
+	print "	New Stats:"
+	print "	  Strength:      ", strength
+	print "	  Constitution:  ", constitution
+	print "	  Dexterity:     ", dexterity
+	print "	  Intelligence:  ", intelligence
+	print "	  Wisdom:        ", wisdom
+	print "	  Charisma:      ", charisma
+elif char_race == "Elf":
+	dexterity = dexterity + 2
+	wisdom = wisdom + 2
+	print "	New Stats:"
+	print "	  Strength:      ", strength
+	print "	  Constitution:  ", constitution
+	print "	  Dexterity:     ", dexterity
+	print "	  Intelligence:  ", intelligence
+	print "	  Wisdom:        ", wisdom
+	print "	  Charisma:      ", charisma
+elif char_race == "Half-Elf":
+	constitution = constitution + 2
+	charisma = charisma + 2
+	print "	New Stats:"
+	print "	  Strength:      ", strength
+	print "	  Constitution:  ", constitution
+	print "	  Dexterity:     ", dexterity
+	print "	  Intelligence:  ", intelligence
+	print "	  Wisdom:        ", wisdom
+	print "	  Charisma:      ", charisma
+elif char_race == "Halfling":
+	dexterity = dexterity + 2
+	charisma = charisma + 2
+	print "	New Stats:"
+	print "	  Strength:      ", strength
+	print "	  Constitution:  ", constitution
+	print "	  Dexterity:     ", dexterity
+	print "	  Intelligence:  ", intelligence
+	print "	  Wisdom:        ", wisdom
+	print "	  Charisma:      ", charisma
+elif char_race == "Human":
+	print "	Humans can are awarxed +2 to an ability of chocie"
+	for ability in abilities:
+		print "	  %s" % (ability)
+	choice = raw_input("Choose an ability:  ")
+	if choice == "Strength":
+		strength = strength + 2
+		print "	New Stats:"
+		print "	  Strength:      ", strength
+		print "	  Constitution:  ", constitution
+		print "	  Dexterity:     ", dexterity
+		print "	  Intelligence:  ", intelligence
+		print "	  Wisdom:        ", wisdom
+		print "	  Charisma:      ", charisma
+	elif choice == "Constitution":
+		constitution = constitution + 2
+		print "	New Stats:"
+		print "	  Strength:      ", strength
+		print "	  Constitution:  ", constitution
+		print "	  Dexterity:     ", dexterity
+		print "	  Intelligence:  ", intelligence
+		print "	  Wisdom:        ", wisdom
+		print "	  Charisma:      ", charisma
+	elif chocie == "Dexterity":
+		dexterity = dexterity + 2
+		print "	New Stats:"
+		print "	  Strength:      ", strength
+		print "	  Constitution:  ", constitution
+		print "	  Dexterity:     ", dexterity
+		print "	  Intelligence:  ", intelligence
+		print "	  Wisdom:        ", wisdom
+		print "	  Charisma:      ", charisma
+	elif chocie == "Wisdom":
+		wisdom = wisdom + 2
+		print "	New Stats:"
+		print "	  Strength:      ", strength
+		print "	  Constitution:  ", constitution
+		print "	  Dexterity:     ", dexterity
+		print "	  Intelligence:  ", intelligence
+		print "	  Wisdom:        ", wisdom
+		print "	  Charisma:      ", charisma
+	elif choice == "Intelligence":
+		intelligence = intelligence + 2
+		print "	New Stats:"
+		print "	  Strength:      ", strength
+		print "	  Constitution:  ", constitution
+		print "	  Dexterity:     ", dexterity
+		print "	  Intelligence:  ", intelligence
+		print "	  Wisdom:        ", wisdom
+		print "	  Charisma:      ", charisma
+	elif choice == "Charisma":
+		charisma = charisma + 2
+		print "	New Stats:"
+		print "	  Strength:      ", strength
+		print "	  Constitution:  ", constitution
+		print "	  Dexterity:     ", dexterity
+		print "	  Intelligence:  ", intelligence
+		print "	  Wisdom:        ", wisdom
+		print "	  Charisma:      ", charisma
+	else:
+		error_msg
+elif char_race == "Tiefling":
+	intelligence = intelligence + 2
+	charisma = charisma + 2
+	print "	New Stats:"
+	print "	  Strength:      ", strength
+	print "	  Constitution:  ", constitution
+	print "	  Dexterity:     ", dexterity
+	print "	  Intelligence:  ", intelligence
+	print "	  Wisdom:        ", wisdom
+	print "	  Charisma:      ", charisma
+else:
+	error_msg
 
 # Social Descriptors
 print "Part 3 : Personality"
