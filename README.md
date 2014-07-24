@@ -14,6 +14,7 @@ by grandtheftjiujitsu
 >#### Python (2.7)
 * [Unit Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/unit_conversion.py)
 * [Climbing Grade Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/climbing_grade_conversion.py)
+* [Dungeons & Dragons Charcter Generator](https://github.com/grandtheftjiujitsu/Scripts/blob/master/DDCharGen.py)
 
 ### Demos:
 >Experimental and educational scripts to serve as memeos and practice as I progress through the below "Homework"
