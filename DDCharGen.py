@@ -2,6 +2,7 @@
 # Dungeons & Dragons Character Generator
 # Reference - http://pastebin.com/8nTb1h1U
 # Refernce - http://www.ibisfightclub.co.uk/dnd/Basics.asp
+# Reference - http://thenickelscreen.files.wordpress.com/2011/05/dd-alignment-4-flat.png
 
 # Python Imports
 import random
@@ -169,7 +170,6 @@ height = int(input("	Enter height in number of inches (6'0\" = 72 inches):  "))
 height_ft = height / 12
 height_ft = math.trunc(height_ft)
 height_in = height % 12
-print "	Character Height:  %s ' %s \"" % (height_ft, height_in)
 
 print "	Average Weight per Race:"
 for weight in avg_weight:
@@ -189,33 +189,61 @@ good_evil_align = raw_input("Choose 2nd Axis Alignment:  ")
 
 if law_chaos_align == "Law":
 	if good_evil_align == "Good":
-		print "	%s 's  %s (%s - %s:%s - Lawful-Good)" % (player_name, char_name, gender, char_class, char_role)
+		alignment = "Lawful Good"
+		examples = "Superman, Captain America"
+		comment = "The Knight:  Follows strict moral code and always fights evil"
 	elif good_evil_align == "Evil":
-		print "	%s 's  %s (%s - %s:%s - Lawful-Evil)" % (player_name, char_name, gender, char_class, char_role)
+		alignment = "Lawful Evil"
+		examples = "Magneto, Darth Vader"
+		comment = "The Overlord:  Power above all else.  Uses law to maintina control"
 	elif good_evil_align == "Neutral":
-		print "	%s 's  %s (%s - %s:%s - Lawful-Neutral)" % (player_name, char_name, gender, char_class, char_role)
+		alignment = "Lawful Neutral":
+		examples = "Silver Surfer, Judge Dred"
+		comment = "The Judge:  Believes so strongly in justice, will carry out any order"
 	else:
 		print error_msg
 elif law_chaos_align == "Chaos":
 	if good_evil_align == "Good":
-		print "	%s 's  %s (%s - %s:%s - Chaotic-Good)" % (player_name, char_name, gender, char_class, char_role)
+		alignment = "Chaotic Good"
+		examples = "Robin Hood, Wolverine"
+		comment = "The Rebel:  Fight the system to do what you think is right"
 	elif good_evil_align == "Evil":
-		print "	%s 's  %s (%s - %s:%s - Chaotic-Evil)" % (player_name, char_name, gender, char_class, char_role)
+		alignment = "Chaotic Evil"
+		examples = "The Joker, Carnage"
+		comment = "The Psychopath:  Exists purely to destroy.  Revels in acts of evil"
 	elif good_evil_align == "Neutral":
-		print "	%s 's  %s (%s - %s:%s - Chaotic-Neutral)" % (player_name, char_name, gender, char_class, char_role)
+		alignment = "Chaotic Neutral"
+		examples = "Capn' Jack Sparrow, Conan the Barbarian"
+		comment = "Care only for yourself, ignoring morality and the law"
 	else:
 		print error_msg
 elif law_chaos_align == "Neutral":
 	if good_evil_align == "Good":
-		print "	%s 's  %s (%s - %s:%s - Neutral-Good)" % (player_name, char_name, gender, char_class, char_role)
+		alignment = "Neutral Good"
+		examples = "Spider-Man, Gandalf"
+		comment = "The Hero:  Always do the right thing even if the law is not on your side"
 	elif good_evil_align == "Evil":
-		print "	%s 's  %s (%s - %s:%s - Neutral-Evil)" % (player_name, char_name, gender, char_class, char_role)
+		alignment = "Neutral Evil"
+		examples = "Voldermort, Lex Luthor"
+		comment = "The Villain:  Pursues evil at all costs"
 	elif good_evil_align == "Neutral":
-		print "	%s 's  %s (%s - %s:%s - Neutral-Neutral)" % (player_name, char_name, gender, char_class, char_role)
+		alignment = "Neutral Neutral"
+		examples = "The Elks"
+		comment = "The Outsider:  Unaffected by the petty squabbles of the masses"
 	else:
 		print error_msg
 else:
 	print error_msg
+
+print "Part 1 Summary"
+print "	%s 's %s:%s:%s" % (player_name, char_race, char_class, char_role)
+print "	  Name:      %s" % (char_name)
+print "	  Age:       %s" % age
+print "	  Height:    %s ' %s \"" % (height_ft, height_in)
+print "   Weight:    %s" % (weight)
+print "	  Gender:    %s" % (gender)
+print "	  Alignment: %s (%s)" % (alignment, examples)
+print "	             %s" % (comment)
 
 cont()
 
@@ -254,58 +282,22 @@ if reroll == "y" or reroll == "Y":
 	reroll1 = raw_input("Select a stat to reroll: ")
 	if reroll1 == "Strength" or reroll1 == "strength" or reroll1 == "str":
 		strength = stat_roll()
-		print "	New Stats:"
-		print "	  Strength:      ", strength
-		print "	  Constitution:  ", constitution
-		print "	  Dexterity:     ", dexterity
-		print "	  Intelligence:  ", intelligence
-		print "	  Wisdom:        ", wisdom
-		print "	  Charisma:      ", charisma
+		print "	  Strength (new):      ", strength
 	elif reroll1 == "Constitution" or reroll1 == "constitution" or reroll1 == "con":
 		constitution = stat_roll()
-		print "	New Stats:"
-		print "	  Strength:      ", strength
-		print "	  Constitution:  ", constitution
-		print "	  Dexterity:     ", dexterity
-		print "	  Intelligence:  ", intelligence
-		print "	  Wisdom:        ", wisdom
-		print "	  Charisma:      ", charisma
+		print "	  Constitution (new):  ", constitution
 	elif reroll1 == "Dexterity" or reroll1 == "dexterity" or reroll1 == "dex":
 		dexterity = stat_roll()
-		print "	New Stats:"
-		print "	  Strength:      ", strength
-		print "	  Constitution:  ", constitution
-		print "	  Dexterity:     ", dexterity
-		print "	  Intelligence:  ", intelligence
-		print "	  Wisdom:        ", wisdom
-		print "	  Charisma:      ", charisma
+		print "	  Dexterity (new):     ", dexterity
 	elif reroll1 == "Intelligence" or reroll1 == "intelligence" or reroll1 == "int":
 		intelligence = stat_roll()
-		print "	New Stats:"
-		print "	  Strength:      ", strength
-		print "	  Constitution:  ", constitution
-		print "	  Dexterity:     ", dexterity
-		print "	  Intelligence:  ", intelligence
-		print "	  Wisdom:        ", wisdom
-		print "	  Charisma:      ", charisma
+		print "	  Intelligence (new):  ", intelligence
 	elif reroll1 == "Wisdom" or reroll1 == "wisdom" or reroll1 == "wis":
 		wisdom = stat_roll()
-		print "	New Stats:"
-		print "	  Strength:      ", strength
-		print "	  Constitution:  ", constitution
-		print "	  Dexterity:     ", dexterity
-		print "	  Intelligence:  ", intelligence
-		print "	  Wisdom:        ", wisdom
-		print "	  Charisma:      ", charisma
+		print "	  Wisdom (new):        ", wisdom
 	elif reroll1 == "Charisma" or reroll1 == "charisma" or reroll1 == "cha":
 		charisma = stat_roll()
-		print "	New Stats:"
-		print "	  Strength:      ", strength
-		print "	  Constitution:  ", constitution
-		print "	  Dexterity:     ", dexterity
-		print "	  Intelligence:  ", intelligence
-		print "	  Wisdom:        ", wisdom
-		print "	  Charisma:      ", charisma
+		print "	  Charisma (new):      ", charisma
 	else:
 		print error_msg
 elif reroll == "n" or reroll == "N":
@@ -316,138 +308,137 @@ else:
 print "  Certain races generate a bonus to specific abilites"
 cont()
 if char_race == "Dragonborn":
+	print "	Dragonborn Bonus:  +2 Charisma, +2 Strength"
 	strength = strength + 2
 	charisma = charisma + 2
-	print "	New Stats:"
-	print "	  Strength:      ", strength
-	print "	  Constitution:  ", constitution
-	print "	  Dexterity:     ", dexterity
-	print "	  Intelligence:  ", intelligence
-	print "	  Wisdom:        ", wisdom
-	print "	  Charisma:      ", charisma
 elif char_race == "Dwarf":
+	print "	Dwarf Bonus:  +2 Constitution, +2 Wisdom"
 	constitution = constitution + 2
 	wisdom = wisdom + 2
-	print "	New Stats:"
-	print "	  Strength:      ", strength
-	print "	  Constitution:  ", constitution
-	print "	  Dexterity:     ", dexterity
-	print "	  Intelligence:  ", intelligence
-	print "	  Wisdom:        ", wisdom
-	print "	  Charisma:      ", charisma
 elif char_race == "Eladrin":
+	print "	Eladrin Bonus:  +2 Dexterity, +2 Intelligence"
 	dexterity = dexterity + 2
 	intelligence = intelligence + 2
-	print "	New Stats:"
-	print "	  Strength:      ", strength
-	print "	  Constitution:  ", constitution
-	print "	  Dexterity:     ", dexterity
-	print "	  Intelligence:  ", intelligence
-	print "	  Wisdom:        ", wisdom
-	print "	  Charisma:      ", charisma
 elif char_race == "Elf":
+	print "	Elf Bonus:  +2 Dexterity, +2 Wisdom"
 	dexterity = dexterity + 2
 	wisdom = wisdom + 2
-	print "	New Stats:"
-	print "	  Strength:      ", strength
-	print "	  Constitution:  ", constitution
-	print "	  Dexterity:     ", dexterity
-	print "	  Intelligence:  ", intelligence
-	print "	  Wisdom:        ", wisdom
-	print "	  Charisma:      ", charisma
 elif char_race == "Half-Elf":
+	print "	Half-Elf Bonus:  +2 Constitution, +2 Charisma"
 	constitution = constitution + 2
 	charisma = charisma + 2
-	print "	New Stats:"
-	print "	  Strength:      ", strength
-	print "	  Constitution:  ", constitution
-	print "	  Dexterity:     ", dexterity
-	print "	  Intelligence:  ", intelligence
-	print "	  Wisdom:        ", wisdom
-	print "	  Charisma:      ", charisma
 elif char_race == "Halfling":
+	print "	Halfling Bonus:  +2 Dexterity, +2 Charisma"
 	dexterity = dexterity + 2
 	charisma = charisma + 2
-	print "	New Stats:"
-	print "	  Strength:      ", strength
-	print "	  Constitution:  ", constitution
-	print "	  Dexterity:     ", dexterity
-	print "	  Intelligence:  ", intelligence
-	print "	  Wisdom:        ", wisdom
-	print "	  Charisma:      ", charisma
 elif char_race == "Human":
-	print "	Humans can are awarxed +2 to an ability of chocie"
+	print "	Humans can are awarded +2 to an ability of chocie"
 	for ability in abilities:
 		print "	  %s" % (ability)
 	choice = raw_input("Choose an ability:  ")
 	if choice == "Strength":
 		strength = strength + 2
-		print "	New Stats:"
-		print "	  Strength:      ", strength
-		print "	  Constitution:  ", constitution
-		print "	  Dexterity:     ", dexterity
-		print "	  Intelligence:  ", intelligence
-		print "	  Wisdom:        ", wisdom
-		print "	  Charisma:      ", charisma
 	elif choice == "Constitution":
 		constitution = constitution + 2
-		print "	New Stats:"
-		print "	  Strength:      ", strength
-		print "	  Constitution:  ", constitution
-		print "	  Dexterity:     ", dexterity
-		print "	  Intelligence:  ", intelligence
-		print "	  Wisdom:        ", wisdom
-		print "	  Charisma:      ", charisma
 	elif chocie == "Dexterity":
 		dexterity = dexterity + 2
-		print "	New Stats:"
-		print "	  Strength:      ", strength
-		print "	  Constitution:  ", constitution
-		print "	  Dexterity:     ", dexterity
-		print "	  Intelligence:  ", intelligence
-		print "	  Wisdom:        ", wisdom
-		print "	  Charisma:      ", charisma
 	elif chocie == "Wisdom":
 		wisdom = wisdom + 2
-		print "	New Stats:"
-		print "	  Strength:      ", strength
-		print "	  Constitution:  ", constitution
-		print "	  Dexterity:     ", dexterity
-		print "	  Intelligence:  ", intelligence
-		print "	  Wisdom:        ", wisdom
-		print "	  Charisma:      ", charisma
 	elif choice == "Intelligence":
 		intelligence = intelligence + 2
-		print "	New Stats:"
-		print "	  Strength:      ", strength
-		print "	  Constitution:  ", constitution
-		print "	  Dexterity:     ", dexterity
-		print "	  Intelligence:  ", intelligence
-		print "	  Wisdom:        ", wisdom
-		print "	  Charisma:      ", charisma
 	elif choice == "Charisma":
 		charisma = charisma + 2
-		print "	New Stats:"
-		print "	  Strength:      ", strength
-		print "	  Constitution:  ", constitution
-		print "	  Dexterity:     ", dexterity
-		print "	  Intelligence:  ", intelligence
-		print "	  Wisdom:        ", wisdom
-		print "	  Charisma:      ", charisma
 	else:
 		error_msg
 elif char_race == "Tiefling":
+	print "	Tiefling Bonus: +2 Intelligence, +2 Charisma"
 	intelligence = intelligence + 2
 	charisma = charisma + 2
-	print "	New Stats:"
-	print "	  Strength:      ", strength
-	print "	  Constitution:  ", constitution
-	print "	  Dexterity:     ", dexterity
-	print "	  Intelligence:  ", intelligence
-	print "	  Wisdom:        ", wisdom
-	print "	  Charisma:      ", charisma
 else:
 	error_msg
+
+if char_class == "Cleric":
+	hp = constitution + 12
+	pwr_src = "Divine"
+	key_ability = "Wisdom, Strength, Charisma"
+	armr = "Cloth, Leather, Hide, Chainmail"
+	wpn = "Simple Melee, Simple Ranged"
+	options = "Battle Clereic, Devoted Cleric"
+elif char_class == "Fighter":
+	hp = constitution + 15
+	pwr_src = "Martial"
+	key_ability = "Strength, Dexterity, Wisdom, Constitution"
+	armr = "Cloth, Leather, Hide, Chainmail, Scale, Light Shield, Heavy Shield"
+	wpn = "Simple Melee, Military Melee, Simple Ranged, Military Ranged"
+	options = "Great Weapon Fighter, Guardian Fighter"
+elif char_class == "Paladin":
+	hp = constitution + 15
+	pwr_src = "Divine"
+	key_ability = "Strength, Charisma, Wisdom"
+	armr = "Cloth, Leather, Hide, Chainmail, Scale, Plate, Light Shield, Heavy Shield"
+	wpn = "Simple Melee, Military Melee, Simple Ranged"
+	options = "Avenging Paladin, Protecting Paladin"
+elif char_class == "Ranger":
+	hp = constitution + 12
+	pwr_src = "Martial"
+	key_ability = "Strength, Dexterity, Wisdom"
+	armr = "Cloth, Leather, Hide"
+	wpn = "Simple Melee, Military Melee, Simple Ranged, Military Rnaged"
+	options = "Archer Ranger, Two-Blade Ranger"
+elif char_class == "Rogue":
+	hp = constitution + 12
+	pwr_src = "Martial"
+	key_ability = "Dexterity, Strength, Charisma"
+	armr = "Cloth, Leather"
+	wpn = "Dagger, Hand Crossbow, Shuriken, Sling, Short Sword"
+	options = "Brawny Rogue, Trickster Rogue"
+elif char_class == "Warlock":
+	hp = constitution + 12
+	pwr_src = "Arcane"
+	key_ability = "Charisma, Constitution, Intelligence"
+	armr = "Cloth, Leather"
+	wpn = "Simple Melee, Simple Ranged"
+	options = "Deceptive Warlock, Scourge Warlock"
+elif char_class == "Warlord":
+	hp = constitution + 12
+	pwr_src = "Martial"
+	key_ability = "Strength, Intelligence, Charisma"
+	armr = "Cloth, Leather, Hide, Chainmail, Light Shield"
+	wpn = "Simple Melee, Military Melee, Simple Ranged"
+	options = "Inspiring Warlord, Tactical Warlord"
+elif char_class == "Wizard":
+	hp = constitution + 10
+	pwr_src = "Arcane"
+	key_ability = "Intelligence, Wisdom, Dexterity"
+	armr = "Cloth"
+	wpn = "Dagger, Quarterstaff"
+	options = "Control Wizard, War Wizard"
+else:
+	error_msg
+
+print "Part 2 Summary:"
+print "	%s 's %s:%s:%s" % (player_name, char_race, char_class, char_role)
+print "	  Name:            %s" % (char_name)
+print "	  Age:             %s" % age
+print "	  Height:          %s ' %s \"" % (height_ft, height_in)
+print "   Weight:          %s" % (weight)
+print "	  Gender:          %s" % (gender)
+print "	  Alignment:       %s (%s)" % (alignment, examples)
+print "	                   %s" % (comment)
+print "	  Power Source:    %s" % (pwr_src)
+print "	  Armor:           %s" % (armr)
+print "	  Weapons:         %s" % (wpn)
+
+print "		Strength:      %s" % (strength)
+print "		Constitution:  %s" % (constitution)
+print "		  Hit Points:  %s" % (hp)
+print "		Dexterity:     %s" % (dexterity)
+print "		Intelligence:  %s" % (intelligence)
+print "		Wisdom:        %s" % (wisdom)
+print "		Charisma:      %s" % (charisma)
+print "	  Prefered Stats:  %s" % (key_ability)
+print "	  Build Options:   %s" % (options)
+cont()
 
 # Social Descriptors
 print "Part 3 : Personality"
@@ -500,3 +491,35 @@ print "How are your nerves?"
 for ds in straits3:
 	print "	  %s" % (ds)
 dire_strait3 = raw_input("	Answer:  ")
+
+print "Part 3 Summary:"
+print "	%s 's %s:%s:%s" % (player_name, char_race, char_class, char_role)
+print "	  Name:            %s" % (char_name)
+print "	  Age:             %s" % age
+print "	  Height:          %s ' %s \"" % (height_ft, height_in)
+print "   Weight:          %s" % (weight)
+print "	  Gender:          %s" % (gender)
+print "	  Alignment:       %s (%s)" % (alignment, examples)
+print "	                   %s" % (comment)
+print "	  Power Source:    %s" % (pwr_src)
+print "	  Armor:           %s" % (armr)
+print "	  Weapons:         %s" % (wpn)
+print "	  Prefered Stats:  %s" % (key_ability)
+print "		Strength:      %s" % (strength)
+print "		Constitution:  %s" % (constitution)
+print "		  Hit Points:  %s" % (hp)
+print "		Dexterity:     %s" % (dexterity)
+print "		Intelligence:  %s" % (intelligence)
+print "		Wisdom:        %s" % (wisdom)
+print "		Charisma:      %s" % (charisma)
+print "	  Personality:"
+print "		Social:        %s" % (social1)
+print "		               %s" % (social2)
+print "		               %s" % (social3)
+print "		Decisions:     %s" % (dec1)
+print "		               %s" % (dec2)
+print "		               %s" % (dec3)
+print "		Dire Straits:  %s" % (dire_strait1)
+print "		               %s" % (dire_strait2)
+print "		               %s" % (dire_strait3)
+print "	  Build Options:   %s" % (options)
