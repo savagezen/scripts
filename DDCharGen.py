@@ -92,7 +92,9 @@ straits1 = ["Brave", "Cautious", "Competitive", "Reckless", "Steady", "Fierce"]
 straits2 = ["Stoic", "Vengeful", "Driven", "Bold", "Happy-go-lucky", "Impassioned"]
 straits3 = ["Calm", "Impulsive", "Skittish", "Patient", "Restless", "Unshakable"]
 
-error_msg = "Oops! Something went wrong.  Exiting..."
+def error_msg():
+	print "Opps!  Something went wrong.  Exiting...."
+	quit()
 
 # Description
 print "Dungeons & Dragons (4th Ed.) Character Generator"
@@ -102,8 +104,8 @@ print "	  Part 2:  Ability Scores"
 print "	  Part 3:  Personality"
 
 def cont():
-	cont = raw_input("Do you want to continue? y/n  ")
-	if cont ==	"n" or cont == "N":
+	cont = raw_input("This section is complete.  Do you want to continue? <y/n>  ")
+	if cont in ("N", "n"):
 		quit()
 	else:
 		pass
@@ -135,28 +137,48 @@ for role in roles:
 	print "	%s" % (role)
 char_role = raw_input("	Enter Chosen Role:  ")
 
-if char_class == "Cleric" or char_class == "Warlord":
+if char_class in ("Cleric", "Warlor"):
 	if char_role == "Leader":
 		pass
 	else:
-		print "Clerics and Warlords are best suited as - Leaders"
-elif char_class == "Fighter" or char_class == "Paladin":
+		print "	Clerics and Warlords are best suited as - Leaders"
+		role_option = raw_input("	Do you want to continue with this class? <y/n>  ")
+		if role_option in ("y", "y"):
+			pass
+		else:
+			char_role = raw_input("	Enter Chosen Role:  ")
+elif char_class in ("Fighter", "Paladin"):
 	if char_role == "Defender":
 		pass
 	else:
 		print "Fighters and Paladins are best suited as - Defenders"
-elif char_class == "Ranger" or char_class == "Rogue" or char_class == "Warlock":
+		role_option = raw_input("	Do you want to continue with this class? <y/n>  ")
+		if role_option in ("y", "y"):
+			pass
+		else:
+			char_role = raw_input("	Enter Chosen Role:  ")
+elif char_class in ("Ranger", "Rogue", "Warlock"):
 	if char_role == "Striker":
 		pass
 	else:
 		print "Rangers, Rogues, and Warlocks are best suited as - Strikers"
+		role_option = raw_input("	Do you want to continue with this class? <y/n>  ")
+		if role_option in ("y", "y"):
+			pass
+		else:
+			char_role = raw_input("	Enter Chosen Role:  ")
 elif char_class == "Wizard":
 	if char_role == "Controller":
 		pass
 	else:
 		print "Wizards are best suited as - Controllers"
+		role_option = raw_input("	Do you want to continue with this class? <y/n>  ")
+		if role_option in ("y", "y"):
+			pass
+		else:
+			char_role = raw_input("	Enter Chosen Role:  ")
 else:
-	print error_msg
+	error_msg()
 
 # Physical Attirbutes
 print "  Section 1.5 : Physical Attributes"
@@ -197,11 +219,11 @@ if law_chaos_align == "Law":
 		examples = "Magneto, Darth Vader"
 		comment = "The Overlord:  Power above all else.  Uses law to maintina control"
 	elif good_evil_align == "Neutral":
-		alignment = "Lawful Neutral":
+		alignment = "Lawful Neutral"
 		examples = "Silver Surfer, Judge Dred"
 		comment = "The Judge:  Believes so strongly in justice, will carry out any order"
 	else:
-		print error_msg
+		error_msg()
 elif law_chaos_align == "Chaos":
 	if good_evil_align == "Good":
 		alignment = "Chaotic Good"
@@ -216,7 +238,7 @@ elif law_chaos_align == "Chaos":
 		examples = "Capn' Jack Sparrow, Conan the Barbarian"
 		comment = "Care only for yourself, ignoring morality and the law"
 	else:
-		print error_msg
+		error_msg()
 elif law_chaos_align == "Neutral":
 	if good_evil_align == "Good":
 		alignment = "Neutral Good"
@@ -231,19 +253,9 @@ elif law_chaos_align == "Neutral":
 		examples = "The Elks"
 		comment = "The Outsider:  Unaffected by the petty squabbles of the masses"
 	else:
-		print error_msg
+		error_msg()
 else:
-	print error_msg
-
-print "Part 1 Summary"
-print "	%s 's %s:%s:%s" % (player_name, char_race, char_class, char_role)
-print "	  Name:      %s" % (char_name)
-print "	  Age:       %s" % age
-print "	  Height:    %s ' %s \"" % (height_ft, height_in)
-print "   Weight:    %s" % (weight)
-print "	  Gender:    %s" % (gender)
-print "	  Alignment: %s (%s)" % (alignment, examples)
-print "	             %s" % (comment)
+	error_msg()
 
 cont()
 
@@ -277,36 +289,35 @@ charisma = stat_roll()
 print "	Charisma:", charisma
 
 print "  Section 2.2 : Rerolling"
-reroll = raw_input("  You can reroll one (1) stat, would you like to reroll? y/n  ")
-if reroll == "y" or reroll == "Y":
+reroll = raw_input("  You can reroll one (1) stat, would you like to reroll? <y/n>  ")
+if reroll in ("Y", "y"):
 	reroll1 = raw_input("Select a stat to reroll: ")
-	if reroll1 == "Strength" or reroll1 == "strength" or reroll1 == "str":
+	if reroll1 in ("Strength", "strength", "str"):
 		strength = stat_roll()
 		print "	  Strength (new):      ", strength
-	elif reroll1 == "Constitution" or reroll1 == "constitution" or reroll1 == "con":
+	elif reroll1 in ("Constitution", "constitution", "con"):
 		constitution = stat_roll()
 		print "	  Constitution (new):  ", constitution
-	elif reroll1 == "Dexterity" or reroll1 == "dexterity" or reroll1 == "dex":
+	elif reroll1 in ("Dexterity", "dexterity", "dex"):
 		dexterity = stat_roll()
 		print "	  Dexterity (new):     ", dexterity
-	elif reroll1 == "Intelligence" or reroll1 == "intelligence" or reroll1 == "int":
+	elif reroll1 in ("Intelligence", "intelligence", "int"):
 		intelligence = stat_roll()
 		print "	  Intelligence (new):  ", intelligence
-	elif reroll1 == "Wisdom" or reroll1 == "wisdom" or reroll1 == "wis":
+	elif reroll1 in ("Wisdom", "wisdom", "wis"):
 		wisdom = stat_roll()
 		print "	  Wisdom (new):        ", wisdom
-	elif reroll1 == "Charisma" or reroll1 == "charisma" or reroll1 == "cha":
+	elif reroll1 in ("Charisma", "charisma", "cha"):
 		charisma = stat_roll()
 		print "	  Charisma (new):      ", charisma
 	else:
-		print error_msg
+		error_msg()
 elif reroll == "n" or reroll == "N":
 	print "	Ability stats have not been changed"
 else:
-	print error_msg
+	error_msg()
 
-print "  Certain races generate a bonus to specific abilites"
-cont()
+print "  Certain races generate a bonus to specific abilites.  Calculating..."
 if char_race == "Dragonborn":
 	print "	Dragonborn Bonus:  +2 Charisma, +2 Strength"
 	strength = strength + 2
@@ -349,13 +360,13 @@ elif char_race == "Human":
 	elif choice == "Charisma":
 		charisma = charisma + 2
 	else:
-		error_msg
+		error_msg()
 elif char_race == "Tiefling":
 	print "	Tiefling Bonus: +2 Intelligence, +2 Charisma"
 	intelligence = intelligence + 2
 	charisma = charisma + 2
 else:
-	error_msg
+	error_msg()
 
 if char_class == "Cleric":
 	hp = constitution + 12
@@ -414,30 +425,35 @@ elif char_class == "Wizard":
 	wpn = "Dagger, Quarterstaff"
 	options = "Control Wizard, War Wizard"
 else:
-	error_msg
+	error_msg()
 
-print "Part 2 Summary:"
-print "	%s 's %s:%s:%s" % (player_name, char_race, char_class, char_role)
-print "	  Name:            %s" % (char_name)
-print "	  Age:             %s" % age
-print "	  Height:          %s ' %s \"" % (height_ft, height_in)
-print "   Weight:          %s" % (weight)
-print "	  Gender:          %s" % (gender)
-print "	  Alignment:       %s (%s)" % (alignment, examples)
-print "	                   %s" % (comment)
-print "	  Power Source:    %s" % (pwr_src)
-print "	  Armor:           %s" % (armr)
-print "	  Weapons:         %s" % (wpn)
+# Ability Modifiers
+print "  Section 2.2 : Modifiers"
+if strength %2 == 0:
+	mod_str = ((strength - 10) / 2)
+else:
+	mod_str = ((strength - 11) / 2)
+if constitution %2 == 0:
+	mod_con = ((constitution - 10) / 2)
+else:
+	mod_con = ((constitution - 11) / 2)
+if dexterity %2 == 0:
+	mod_dex = ((dexterity - 10) / 2)
+else:
+	mod_dex = ((dexterity - 11) / 2)
+if intelligence %2 == 0:
+	mod_int = ((intelligence - 10) / 2)
+else:
+	mod_int = ((intelligence - 11) / 2)
+if wisdom %2 == 0:
+	mod_wis = ((wisdom - 10) / 2)
+else:
+	mod_wis = ((wisdom - 11) / 2)
+if charisma %2 == 0:
+	mod_cha = ((charisma - 10) / 2)
+else:
+	mod_cha = ((charisma - 11) / 2)
 
-print "		Strength:      %s" % (strength)
-print "		Constitution:  %s" % (constitution)
-print "		  Hit Points:  %s" % (hp)
-print "		Dexterity:     %s" % (dexterity)
-print "		Intelligence:  %s" % (intelligence)
-print "		Wisdom:        %s" % (wisdom)
-print "		Charisma:      %s" % (charisma)
-print "	  Prefered Stats:  %s" % (key_ability)
-print "	  Build Options:   %s" % (options)
 cont()
 
 # Social Descriptors
@@ -492,26 +508,26 @@ for ds in straits3:
 	print "	  %s" % (ds)
 dire_strait3 = raw_input("	Answer:  ")
 
-print "Part 3 Summary:"
+print "Character 3 Summary:"
 print "	%s 's %s:%s:%s" % (player_name, char_race, char_class, char_role)
-print "	  Name:            %s" % (char_name)
-print "	  Age:             %s" % age
-print "	  Height:          %s ' %s \"" % (height_ft, height_in)
-print "   Weight:          %s" % (weight)
-print "	  Gender:          %s" % (gender)
-print "	  Alignment:       %s (%s)" % (alignment, examples)
-print "	                   %s" % (comment)
-print "	  Power Source:    %s" % (pwr_src)
-print "	  Armor:           %s" % (armr)
-print "	  Weapons:         %s" % (wpn)
-print "	  Prefered Stats:  %s" % (key_ability)
-print "		Strength:      %s" % (strength)
-print "		Constitution:  %s" % (constitution)
-print "		  Hit Points:  %s" % (hp)
-print "		Dexterity:     %s" % (dexterity)
-print "		Intelligence:  %s" % (intelligence)
-print "		Wisdom:        %s" % (wisdom)
-print "		Charisma:      %s" % (charisma)
+print "	  Name:                  %s" % (char_name)
+print "	  Age:                   %s" % age
+print "	  Height:                %s ' %s \"" % (height_ft, height_in)
+print "   Weight:                %s" % (weight)
+print "	  Gender:                %s" % (gender)
+print "	  Alignment:             %s (%s)" % (alignment, examples)
+print "	                         %s" % (comment)
+print "	  Power Source:          %s" % (pwr_src)
+print "	  Armor:                 %s" % (armr)
+print "	  Weapons:               %s" % (wpn)
+print "	  Prefered Stats:        %s" % (key_ability)
+print "		Strength(mod):       %s (%s)" % (strength, mod_str)
+print "		Constitution (mod):  %s (%s)" % (constitution, mod_con)
+print "		  Hit Points:        %s (%s)" % (hp)
+print "		Dexterity (mod):     %s (%s)" % (dexterity, mod_dex)
+print "		Intelligence (mod):  %s (%s)" % (intelligence, mod_int)
+print "		Wisdom (mod):        %s (%s)" % (wisdom, mod_wis)
+print "		Charisma (mod):      %s (%s)" % (charisma, mod_cha)
 print "	  Personality:"
 print "		Social:        %s" % (social1)
 print "		               %s" % (social2)
