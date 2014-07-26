@@ -1,5 +1,6 @@
 #!/bin/python2.7
-# RPG Dice Roller
+# RPG Dice Roller 
+# by grandtheftjiujitsu & Senglis3
 
 import random
 
