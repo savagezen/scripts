@@ -33,7 +33,7 @@ echo -ne "\nScreen Resolution:  " && xrandr | grep '*' | head -c 12 && echo ""
 lspci | grep VGA | tail -c +8
 
 echo ""
-ip addr show
+ip route show
 lspci | grep Ethernet | tail -c +8
 lspci | grep "Netowrk controller" | tail -c +8
 
