@@ -17,8 +17,8 @@ by grandtheftjiujitsu
 * [Climbing Grade Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/climbing_grade_conversion.py)
 * [Dungeons & Dragons Charcter Generator](https://github.com/grandtheftjiujitsu/Scripts/blob/master/DDCharGen.py)
 * [RPG Dice Roller](https://github.com/grandtheftjiujitsu/Scripts/blob/master/RPG_dice.py)
-* [Battleship Game](https://github.com/grandtehftjiujitsu/Scripts/blob/master/battleship.py)
-* [PygLatin](https://github.com/grandtheftjiujitsu/Scripts/blob/master/pyglatin.sh)
+* [Battleship Game](https://github.com/grandtheftjiujitsu/Scripts/blob/master/battleship.py)
+* [PygLatin](https://github.com/grandtheftjiujitsu/Scripts/blob/master/pyglatin.py)
 
 ### Homework:
 * Codecademy Python Course
