@@ -10,6 +10,7 @@ by grandtheftjiujitsu
 * [Script to Rip / Burn / Play DVDs](https://github.com/grandtheftjiujitsu/Scripts/blob/master/dvd-tools.sh)
 * [System Information](https://github.com/grandtheftjiujitsu/Scripts/blob/master/sysinfo.sh)
 * [WPA / Wifi setup using "iw" and "dhcpcd"](https://github.com/grandtheftjiujitsu/Scripts/blob/master/wifi-wpa.sh)
+* [AUR and Offical Package Update Checker](https://github.com/grandtheftjiujitsu/Scripts/blob/master/update-check.sh)
 
 #### Python (2.7)
 * [Unit Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/unit_conversion.py)
