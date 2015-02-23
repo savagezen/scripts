@@ -1,23 +1,23 @@
 #!/bin/sh
 # Connect to WiFi with iw
 
-iw dev
+# unblock rfkill
+rfkill unblock all
+
+iw dev | grep Interface
 echo -n "Enter Interface Name: " && read interface
 
-echo "Checking Interface Status..."
-iw dev $interface link
+echo -n "Checking Interface Status:  " && iw dev $interface link
 
 echo "Activating Interface..."
 ip link set $interface up
 
-echo "Checking that Interface is Up..."
-ip link show $interface
+echo -n "Checking that Interface is Up:  "  && ip link show $interface
 
-echo "Setting ad hoc Network Mode..."
-iw dev $interface set type ibss
+echo -n "Setting ad hoc Network Mode:  " && iw dev $interface set type ibss
 
 echo "Scanning for Access Point..."
-iw dev $interface scan| grep SSID
+iw dev $interface scan | grep SSID
 echo -n "Enter Network Name: " && read ssid
 
 echo "Existing profiles:"
@@ -27,7 +27,7 @@ echo -n "Is the network you want to connect to listed above (y/n): " && read exi
 if [[ "$existing_profile" == "y" ]] ; then
 	wpa_supplicant -B -i $interface -c /etc/wpa_supplicant/$ssid
 else
-	echo -n "Enter Password for Network ($ssid): "  && read -s psk
+	echo -n "Enter Password for Network ($ssid): " && read -s psk
 	touch /etc/wpa_suppliant/$ssid
 	echo "network={
 	  ssid=\"$ssid\"
