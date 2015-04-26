@@ -13,6 +13,7 @@ by grandtheftjiujitsu
 * [Simple Options for WiFi Set Up Using Netctl](https://github.com/grandtheftjiujitsu/Scripts/blob/master/wifi-netctl.sh)
 * [AUR and Offical Package Update Checker](https://github.com/grandtheftjiujitsu/Scripts/blob/master/update-check.sh)
 * [Linux to Android Music Sync via SSH](https://github.com/grandtheftjiujitsu/Scripts/blob/master/ssh-music.sh)
+* [Media Sync from Linux to Removable (Anroid) SD Card](https://github.com/grandtheftjiujitsu/Scripts/blob/master/sd-sync.sh)
 
 #### Python (2.7)
 * [Unit Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/unit_conversion.py)
