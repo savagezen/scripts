@@ -5,7 +5,7 @@ user=/home/grandtheftjiujitsu
 sd=/mnt/sdcard
 
 mount /dev/sdb1 /mnt/sdcard
-	# Formatted to Vfat, Ext4 not recognizable on HTC One Remix
+	# Formatted to Vfat
 
 # Sync Phone Pictures and Video to PC
 rsync -rltzuv $sd/DCIM/ $user/Pictures/Phone
