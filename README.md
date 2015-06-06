@@ -14,6 +14,7 @@ by grandtheftjiujitsu
 * [AUR and Offical Package Update Checker](https://github.com/grandtheftjiujitsu/Scripts/blob/master/update-check.sh)
 * [Linux to Android Music Sync via SSH](https://github.com/grandtheftjiujitsu/Scripts/blob/master/ssh-music.sh)
 * [Media Sync from Linux to Removable (Anroid) SD Card](https://github.com/grandtheftjiujitsu/Scripts/blob/master/sd-sync.sh)
+* [Unlock (gpg) and Unzip (gz) File](https://github.com/grandtheftjiujisu/Scripts/blob/master/ungpg.sh)
 
 #### Python (2.7)
 * [Unit Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/unit_conversion.py)
