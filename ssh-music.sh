@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 # Music from Linux to your Mobile Device
 
 # 1) Install and configure an app for your device, such as SSHDroid by Berserker.

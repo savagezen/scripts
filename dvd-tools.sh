@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 # CD / DVD - Rip, Burn, Play
 
 # Functions

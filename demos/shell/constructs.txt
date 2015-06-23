@@ -1,0 +1,72 @@
+#################
+# if statements #
+#################
+if condition
+	do this
+fi
+
+#######################
+if condition
+then
+	do this
+else
+	do that
+fi
+
+#######################
+if condition
+then
+	do this
+elsif
+then
+	do that
+else
+	do something else
+fi
+
+#################
+# testing files #
+#################
+## if [ -f /etc/password ] ; then ...
+### -f = condition
+### /etc/password = file
+-e	check if file exists
+-d	check if the file is a directory
+-f	check if file is a regular file (not symbolic link, device node, directory, etc...)
+-s	check if file is of non-zero size
+-g	check if file has sgid set
+-u	check if file has suid set
+-r	check if file is readable
+-w	check if file is writable
+-x	check if file is executable
+
+###################
+# numerical tests #
+###################
+-eq	equal to
+-ne	not equal to
+-gt	greater than
+-lt	less than
+-ge	greater than or equal to
+-le	less than or equal to
+
+==	comparing strings
+		if [ "str1" == "str2" ] ; then
+||	OR condition; outside of range
+		if [ var1 -lt 13 ] && [ var1 -gt 19 ] ; then
+&&	AND condition; greater than 10 AND less than 20 (non-inclusive)
+		if [ var1 -lt 20 ] || [ var1 -gt 10 ] ; 
+=	Set variable
+		variable_name=value
+
+##############
+# arithmetic #
+##############
+deprected:
+	expr 8 + 8
+	echo $(expr 8 + 8)
+modern:
+	$((...))
+	echo $((...))
+	let x=(1 + 2); echo $x
+

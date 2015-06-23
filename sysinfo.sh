@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 echo -ne "\n\nOS:			" && cat /etc/*-release | grep "^NAME" | tail -c +6
 echo -n "Test Date:		" && date

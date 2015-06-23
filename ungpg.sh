@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 # Unlog GPG encrypted file and untar it as well
 
 LOCKED=$1

@@ -1,0 +1,50 @@
+#	used as comment, EXCEPT as #! or \#
+\	used at end of line to inidcate continuation to next line
+;	used to interpret what follows as a new command
+$	inidcate what follows is a variable
+
+###########################################################################
+$ command1 ; command2 ; command3
+	- three commands will be executed even if the preceding one fails
+
+$ command1 && command2 && command3
+	- commands will be aborted if previous one fails
+
+$ command1 || command2 || command 3
+	- proceed until something succeeds, then stop
+
+##########################################################################
+function_name () {
+  command....
+}
+
+display() {
+  echo "This is a sample function"
+}
+display
+
+display2() {
+	echo "This is the parameter passed from calling the function - " $1
+}
+display "parameter"
+# will print "This is the parameter passed from calling the function - parameter
+
+##########################################################################
+Variables and Values	- are only available in current script, not to child / sub-processes
+			- unless exported via:
+			  - export VAR=value ; or
+			  - VAR=value ; export VAR
+
+##########################################################################
+$0		script name
+$1		first parameter
+$2, $3, etc.	second, thrid parameter, etc.
+$*		all parameters
+$#		number of arguments (for #)
+
+#########################################################################
+direct output to file		command > /path/to/output/file
+				  Example:  free > /tmp/free.out
+
+redirect input			command < /path/to/get/input.from
+				  Example:  wc -l < /tmp/free.out

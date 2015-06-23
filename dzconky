@@ -1,6 +1,0 @@
-#!/bin/sh
-
-FG='#ffffff'
-BG='#000000'
-FONT=-misc-*-*-*-*--14-*-*-*-*-*-iso8859-1
-conky | dzen2 -e - -h '14' -w '1800' -ta r -x '300' -fg $FG -bg $BG -fn $FONT &

@@ -1,0 +1,89 @@
+Interactive Processes
+	- Need to be started by user via command line or graphic interface
+	Ex:  bash, firefox, top
+Batch Processes
+	- Automatic processes scheduled from and then disconnected from the terminal
+	- FIFO (first in first out) basis
+	Ex:  updatedb
+Daemons
+	- Server processes that run continuously
+	Ex:  httpd, xinetd, sshd
+Threads
+	- Lightweight processes that run under the umbrella of a main process
+	- Share resources but scheduled and run on individual basis
+	Ex:  gnome-terminal, firefox
+Kernel Threads
+	- Kernel tasks users neither start nor terminate and have little control over
+	Ex:  kswapd0, migration, ksoftirqd
+
+Scheduler - shuffles processes in and out of CPU for execution
+	- Run Queue -> Scheduler -> CPU
+	- Sleep State:  process wiating for s omething to hapen before resuming
+		- process in "Wait queue"
+
+Process ID (PID)	Unique process ID number
+Parent Process (PPID)	Process (Parent) that started this process
+Thread ID (TID)		Thread ID number.  Multi-threads = same PID, unique TID
+
+Real User ID (RUID)		User who starts process
+Effective User ID (EUID)	User who determines access right for users
+Real Group ID (RGID)		Group that started process
+Effective Groud ID (EGID)	Determines access rights of the group
+
+Niceness	- priority of process for CPU
+		- also known as niceness / nice value
+		- lower nice value = higher priority (Range = -20 to 19)
+		- "Real time priority" can be assigned to time-sensitive tasks (high priority)
+		- different from "hard real time" which gets job done on a deadline (all ranges)
+
+ps (command)	- privides information about currently running processes
+		- "top" provides reptitive update of this status (also htop and atop)
+		-u	display information of processess for specified user name
+		-ef	display all processes in the sustem in full detail
+		-eLf	display one line of information for every thread
+		-aux	display all processess of all users
+		-axo	specify which attributes to view
+			ex: stat,priority,pid,pcpu,comm
+pstree		- displays processess running on system in tree diagram
+kill <PID>	- kills process associated with give PID (you can only kill your own processes)
+
+top		- First line output = time(HH:MM:SS) uptime(HH:MM) users load-average
+			- load average -> 1.00 = fully subscribed but not overloaded
+		- Second line output = totoal processes, running, sleeping, stopped, zombie
+			- zombie processes = child completed w/o inquiry from parent
+		- Third line output = cpu output:  (us)ers, kernel(sy),
+						percent of user processes running at low priority,
+						idle mode (id) should be low if load is high,
+						waiting (wa) percentage of porcesses,
+						hardware(hi) and software(si) interupts,
+						steal time(st) used with virtual machines
+		- Fourth & Fifth lines = Memory usage
+		- PID		process id
+		- USER		process owner
+		- PR		priority
+		- NI		niceness
+		- VIRT		virtual memory
+		- RES		physical memory
+		- SHR		shared memory
+		- S		Status
+					D - uninterruptible sleep
+					R - running
+					S - sleeping
+					T - traced or stopped
+					Z - zombie
+		- %CPU		CPU usage
+		- %MEM		Memory usage
+		- TIME+		execution time
+		- COMMAND	command used to start
+
+top options (while active)
+	q	exit top
+	t	display or hide summary information (rows 2 & 3)
+	m	display or hide memory information (rows 4 & 5)
+	A	sort process list by top resource consumers
+	r	renice (change priorty of) specific processes
+	k	kill a specific process
+	f	enter the top configureation screen
+	o	interactively select a new sor order in the process list
+
+**Section 3

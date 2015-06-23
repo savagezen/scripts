@@ -4,7 +4,13 @@ by grandtheftjiujitsu
 
 ------------------
 ### Description:
->Useful handmade utilities<br>
+>Useful handmade utilities
+
+#### For Use with dzen2 + conky (Shell)
+* [dzconky - for getting conky into (d)wm status line](https://github.com/grandtheftjiujitsu/Scripts/blob/master/dzconky.sh)
+* [popup_media.sh - pop up with audio and video information](https://github.com/grandtheftjiujitsu/Scripts/blob/master/popup_media.sh)
+* [popup_packages.sh - pop up with package and update information](https://github.com/grandtheftjiujitsu/Scripts/blob/master/popup_packages.sh)
+* [popup_sysinfo.sh - pop up with kernel, disk space, resource usage, etc...](https://github.com/grandtheftjiujitsu/Scripts/blob/master/popup_sysinfo.sh)
 
 #### Shell
 * [Script to Rip / Burn / Play DVDs](https://github.com/grandtheftjiujitsu/Scripts/blob/master/dvd-tools.sh)
