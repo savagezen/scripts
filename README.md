@@ -1,16 +1,6 @@
-Scripts
+Command Line Utilities
 ====================
-by grandtheftjiujitsu
 
-------------------
-### Description:
->Useful handmade utilities
-
-#### For Use with dzen2 + conky (Shell)
-* [dzconky - for getting conky into (d)wm status line](https://github.com/grandtheftjiujitsu/Scripts/blob/master/dzconky.sh)
-* [popup_media.sh - pop up with audio and video information](https://github.com/grandtheftjiujitsu/Scripts/blob/master/popup_media.sh)
-* [popup_packages.sh - pop up with package and update information](https://github.com/grandtheftjiujitsu/Scripts/blob/master/popup_packages.sh)
-* [popup_sysinfo.sh - pop up with kernel, disk space, resource usage, etc...](https://github.com/grandtheftjiujitsu/Scripts/blob/master/popup_sysinfo.sh)
 
 #### Shell
 * [Script to Rip / Burn / Play DVDs](https://github.com/grandtheftjiujitsu/Scripts/blob/master/dvd-tools.sh)
@@ -22,7 +12,10 @@ by grandtheftjiujitsu
 * [Media Sync from Linux to Removable (Anroid) SD Card](https://github.com/grandtheftjiujitsu/Scripts/blob/master/sd-sync.sh)
 * [Unlock (gpg) and Unzip (gz) File](https://github.com/grandtheftjiujisu/Scripts/blob/master/ungpg.sh)
 
-### Python (3.X)
+#### Perl6
+* Demos from the [Perl6 Maven Tutorial Series](http://perl6maven.com/tutorial/toc)
+
+#### Python (3.x)
 * [Dungeons & Dragons 5e Character Generator & RPG Dice Roller](https://github.com/grandtheftjiujitsu/Scripts/blob/master/ddchargen-5e.py)
 
 #### Python (2.7)
@@ -30,5 +23,8 @@ by grandtheftjiujitsu
 * [Climbing Grade Conversions](https://github.com/grandtheftjiujitsu/Scripts/blob/master/climbing_grade_conversion.py)
 * Dungeons & Dragons Charcter Generator (deprecated by 5e versions above)
 * RPG Dice Roller (included feature in D&D Character Generator for Python 3.x)
-* [Battleship Game](https://github.com/grandtheftjiujitsu/Scripts/blob/master/battleship.py)
-* [PygLatin](https://github.com/grandtheftjiujitsu/Scripts/blob/master/pyglatin.py)
+
+#### For Use with dzen2 + conky
+* [popup_media.sh - pop up with audio and video information](https://github.com/grandtheftjiujitsu/Scripts/blob/master/popup_media.sh)
+* [popup_packages.sh - pop up with package and update information](https://github.com/grandtheftjiujitsu/Scripts/blob/master/popup_packages.sh)
+* [popup_sysinfo.sh - pop up with kernel, disk space, resource usage, etc...](https://github.com/grandtheftjiujitsu/Scripts/blob/master/popup_sysinfo.sh)
