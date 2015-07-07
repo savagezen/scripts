@@ -17,8 +17,8 @@ say $z;
 
 my $a = prompt "Enter a string:  ";
 my $b = prompt "Enter another string: ";
-my $c = $a ~ $b;
-my $d = $a ~" "~ $b;
+my $c = $a ~ $b;				# $a$b
+my $d = $a ~" "~ $b;				# $a $b
 say $c;
 say $d;
 
