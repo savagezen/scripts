@@ -16,7 +16,7 @@ FILE=~/.cache/weather.xml
  echo "  Sunset:    $(cat $FILE | grep astronomy | tail -c 11 | head -c 7)"
  echo ""
  echo "$(cal)"
-) | dzen2 -p -x "1680" -y "1046" -w "240" -l "16" -sa 'c' -ta 'c'\
+) | dzen2 -p -x "1125" -y "19" -w "240" -l "17" -sa 'c' -ta 'c'\
     -title-name 'popup_cal' -e 'onstart=uncollapse;button1=exit;button3=exit'
 
 # "onstart=uncollapse" ensures that slave window is visible from start.

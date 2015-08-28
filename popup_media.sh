@@ -15,7 +15,7 @@ VID=$(lspci | grep VGA | grep NVIDIA | tail -c +35 && lspci | grep VGA | grep In
  echo " Screen Resolution:     $RES"
  echo " Video Controller:      $VID"
 
-) | dzen2 -p -x "1150" -y "1046" -w "770" -l "15" -sa 'l' -ta 'c'\
+) | dzen2 -p -x "596" -y "19" -w "770" -l "15" -sa 'l' -ta 'c'\
     -title-name 'popup_packages' -e 'onstart=uncollapse;button1=exit;button3=exit'
 
 # "onstart=uncollapse" ensures that slave window is visible from start.

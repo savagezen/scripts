@@ -36,12 +36,12 @@ UPTIME=$( uptime | sed 's/.* up //' | sed 's/[0-9]* us.*//' | sed 's/ day, /d /'
  echo ""
  echo "$(df -Th -x sys -x tmpfs -x devtmpfs | tail -n +2)"
  echo ""
- echo " Ethernet Controller:   $ENP"
- echo ""
- echo " GTK2 Theme:            $GTK_THEME"
- echo " GTK2 Font:             $GTK_FONT"
- echo " GTK2 Icon:             $GTK_ICON"
-) | dzen2 -p -x "1260" -y "1046" -w "660" -l "20" -sa 'l' -ta 'c'\
+# echo " Ethernet Controller:   $ENP"
+# echo ""
+# echo " GTK2 Theme:            $GTK_THEME"
+# echo " GTK2 Font:             $GTK_FONT"
+# echo " GTK2 Icon:             $GTK_ICON"
+) | dzen2 -p -x "705" -y "19" -w "660" -l "15" -sa 'l' -ta 'c'\
     -title-name 'popup_packages' -e 'onstart=uncollapse;button1=exit;button3=exit'
 
 # "onstart=uncollapse" ensures that slave window is visible from start.
