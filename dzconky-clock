@@ -1,0 +1,11 @@
+#!/bin/sh
+
+FG='#eeeeee'
+BG='#222222'
+FONT=-misc-*-*-*-*--14-*-*-*-*-*-iso8859-1
+
+# delay to make sure wm starts first
+sleep 3 &&
+
+# centered clock
+conky -c $HOME/.conky/conkyrc-clock | dzen2 -e - -h '17' -w '150' -ta c -x '610' -y '0' -fg $FG -bg $BG -fn $FONT &

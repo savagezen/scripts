@@ -1,0 +1,11 @@
+#!/bin/sh
+
+BG='#222222'
+FG='#eeeeee'
+FONT=-misc-*-*-*-*--14-*-*-*-*-*-iso8859-1
+
+# delay to make sure wm starts first
+sleep 3 &&
+
+# main conky
+conky -c $HOME/.conky/conkyrc-music | dzen2 -e - -h '17' -w '460' -ta l -x '150' -y '0' -fg $FG -bg $BG -fn $FONT &

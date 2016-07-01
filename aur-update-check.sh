@@ -1,6 +1,4 @@
-#!/bin/zsh
-# Check RSS of AUR updates for installed AUR packaces
+#!/usr/bin/zsh
+# check installed aur versions against update rss
 
-wget -O /tmp/aur.rss https://aur.archlinux.org/rss/
-grep "$(pacman -Qqm)" /tmp/aur.rss > /tmp/rss.check 
-grep "<title>$(pacman -Qqm)</title>" /tmp/rss.check > /tmp/aur.updates
+curl https://aur.archlinux.org/rss/ | grep "<title>$(pacman -Qqm)</title>" | sed -e 's/<title>//' | sed -e 's/<\/title>//' | grep "$(pacman -Qqm)" > /tmp/aur.updates

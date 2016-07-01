@@ -1,22 +1,16 @@
-#!/bin/zsh
-# Clickable Dzen Pop-Up for Calendar and Weather
+#!/usr/bin/zsh
+# clickable popup for dzen + conky - calendar
 
-FILE=~/.cache/weather.xml
+FG='#008cd5'
+WTTR=$(cat /tmp/forecast | head -n 7 | tail -n 6 | grep F | tail -c 45)
 
 (
  # Title
- echo ""
+ echo "$(date +%A,\ %B\ %d)"
  # The following lines go to slave window
  echo ""
- echo "  $(date +%R) $(date +%A) $(date +%D)"
- echo ""
- echo "Temp:        $(cat $FILE | grep condition | tail -c 44 | head -c 2)'F"
- echo "Humidity:    $(cat $FILE | grep humidity | head -c 33 | tail -c 2)%"
- echo "  Sunrise:   $(cat $FILE | grep astronomy | head -c 36 | tail -c 7)"
- echo "  Sunset:    $(cat $FILE | grep astronomy | tail -c 11 | head -c 7)"
- echo ""
- echo "$(cal)"
-) | dzen2 -p -x "1125" -y "19" -w "240" -l "17" -sa 'c' -ta 'c'\
-    -title-name 'popup_cal' -e 'onstart=uncollapse;button1=exit;button3=exit'
+ cal | tail -n +2
+) | dzen2 -p '5' -x "585" -y "19" -w "200" -l "8" -sa 'c' -ta 'c' -fg $FG\
+    -title-name 'popup_cal' -e 'onstart=uncollapse;button1=exit;button3=exit' && sleep 0.1s && transset-df --name popup_cal 0.5
 
 # "onstart=uncollapse" ensures that slave window is visible from start.
