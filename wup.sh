@@ -12,9 +12,9 @@ echo "------------------------"
 sudo /home/austin/scripts/iptables.rules
 
 # fetch rootkit scan for conky
-echo "running rkhunter..."
-echo "-------------------"
-sudo rkhunter -c --sk > /tmp/rkhunter
+#echo "running rkhunter..."
+#echo "-------------------"
+#sudo rkhunter -c --sk > /tmp/rkhunter
 
 # backup server
 echo "starting backup server..."
@@ -27,3 +27,6 @@ echo "----------------------------"
 curl -o /tmp/ipinfo ipinfo.io						# ipinfo
 cat /tmp/ipinfo | grep postal | tr -d '\"' | tail -c 6 > /tmp/zip	# zip code
 checkupdates > /tmp/off.updates						# off pkg updates
+
+# start backup server
+syncthing

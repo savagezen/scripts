@@ -2,6 +2,7 @@
 # Clickable Dzen Pop-Up for System Information
 
 FG='#008cd5'
+BG='#222222'
 ICONS=$HOME/.icons/dzen2
 USER=$(whoami)
 HOST=$(uname -n)
@@ -21,7 +22,7 @@ UPTIME=$( uptime | sed 's/.* up //' | sed 's/[0-9]* us.*//' | sed 's/ day, /d /'
  echo "  ^i($ICONS/arch_10x10.xbm)  $KERNEL ($BITS)"
  echo ""
  conky -c $HOME/.conky/conkyrc-sys
-) | dzen2 -p '5' -x "1095" -y "19" -w "270" -l "10" -sa 'l' -ta 'c' -fg $FG\
+) | dzen2 -p '5' -x "1095" -y "19" -w "270" -l "10" -sa 'l' -ta 'c' -fg $FG -bg $BG\
     -title-name 'popup_sysinfo' -e 'onstart=uncollapse;button1=exit;button3=exit'
 
 # "onstart=uncollapse" ensures that slave window is visible from start
