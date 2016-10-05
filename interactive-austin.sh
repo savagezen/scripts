@@ -30,94 +30,70 @@
 #   sync_scale
 #   write_scale
 
-
 CODENAME=austin
-VERSION=0.4.1
+VERSION=0.4.2
+
 CPU0=/sys/devices/system/cpu/cpu0
 CPU4=/sys/devices/system/cpu/cpu4
-echo ----------------------------------------------
+
 echo Applying $CODENAME v.$VERSION Profile Settings
 
-
-echo ----------------------------------------------
-echo Appling I/O scheduler and settings
+# applying scheduler settings
 # echo > /sys/block/mmcblk0/queue/read_ahead_kb
 echo noop > /sys/block/mmcblk0/queue/scheduler
-echo fiops > /sys/block/mmcblk0/queue/scheduler
 
+# change permissions to set governor for LITTLE cluster
+chmod 644 $CPU0/cpu_freq/scaling_governor
+echo interactive > $CPU0/cpu_freq/scaling_governor
+chmod 444 $CPU0/cpu_freq/scaling_governor
 
-echo ----------------------------------------------
-echo Temporarily change permissions to governor
-echo files for LITTLE cluster to enable interactive
-echo governor
-chmod 644 $CPU0/scaling_governor
-echo interactive > $CPU0/scaling_governor
-chmod 444 $CPU0/scaling_governor
-
-
-echo ----------------------------------------------
-echo Applying settings to LITTLE CPU cluster
-echo 75 460000:69 600000:80 672000:12 768000:14 864000:13 960000:69 1248000:84 1344000:8 1478400:10 1555200:86 > $CPU0/cpufreq/interactive/target_loads
+# applying settings to LITTLE cluster
 echo 0 384000:20000 460000:10000 600000:10000 960000:20000 1248000:10000 > $CPU0/cpufreq//interactive/above_hispeed_delay
-echo 384000 > $CPU0/cpufreq/interactive/hispeed_freq # most used freq
-echo 10000 > $CPU0/cpufreq/interactive/timer_rate # laggy at 80000; try 20000 if battery poor, then 50000 
-echo 60000 > $CPU0/cpufreq/interactive/min_sample_time # previously 80000
-echo 80000 > $CPU0/cpufreq/interactive/max_freq_hysteresis # <-- battery - 80000 - x60000 - 20000 - 0 - performance -->
-echo 200 > $CPU0/cpufreq/interactive/go_hispeed_load
-echo 1 > $CPU0/cpufreq/interactive/use_migration_notif
-echo -1 > $CPU0/cpufreq/interactive/timer_slack
-echo 0 > $CPU0/cpufreq/interactive/boost_pulse_duration
-echo 0 > $CPU0/cpufreq/interactive/boost
 echo 0 > $CPU0/cpufreq/interactive/align_windows
+echo 0 > $CPU0/cpufreq/interactive/boost
+echo 0 > $CPU0/cpufreq/interactive/boost_pulse_duration
+echo 200 > $CPU0/cpufreq/interactive/go_hispeed_load
+echo 384000 > $CPU0/cpufreq/interactive/hispeed_freq # most used freq
+echo 80000 > $CPU0/cpufreq/interactive/max_freq_hysteresis # <-- battery - 80000 - x60000 - 20000 - 0 - performance -->
+echo 60000 > $CPU0/cpufreq/interactive/min_sample_time # x80000
+echo 75 460000:69 600000:80 672000:12 768000:14 864000:13 960000:69 1248000:84 1344000:8 1478400:10 1555200:86 > $CPU0/cpufreq/interactive/target_loads
+echo 50000 > $CPU0/cpufreq/interactive/timer_rate # slight lag at 80000; 20000 if laggy; x10000
+echo -1 > $CPU0/cpufreq/interactive/timer_slack
+echo 1 > $CPU0/cpufreq/interactive/use_migration_notif
 echo 0 > $CPU0/cpufreq/interactive/use_sched_load
 
-
-echo ----------------------------------------------
-echo Temporarily change permissions to governor
-echo files for Big cluster to enable interactive
-echo governor and to set minimum frequency
+# change permissions to set governor and min freq for Big cluster
 echo 1 > $CPU4/online
 chmod 644 $CPU4/cpufreq/scaling_governor
 echo interactive > $CPU4/cpufreq/scaling_governor
 chmod 444 $CPU4/cpufreq/scaling_governor
 chmod 644 $CPU4/cpufreq/scaling_min_freq
-chmod 644 $CPU4/cpufreq/scaling_min_freq
 echo 384000 > $CPU4/cpufreq/scaling_min_freq
 chmod 444 $CPU4/cpufreq/scaling_min_freq
 
-
-echo ----------------------------------------------
-echo Applying settings to Big CPU cluster
-echo 72 480000:25 633600:74 768000:21 864000:13 960000:11 1248000:30 1344000:8 1440000:7 1536000:7 1632000:6 1728000:6 1824000:6 1958400:7 > $CPU4/cpufreq/interactive/target_loads
-echo 0 384000:50000 633000:50000 864000:10000 960000:10000 1248000:20000 > $CPU4/cpufreq/interactive/above_hispeed_delay
+# applying settings to Big cluster
+echo 0 384000:50000 633600:50000 864000:10000 960000:10000 1248000:20000 > $CPU4/cpufreq/interactive/above_hispeed_delay
+echo 0 > $CPU4/cpufreq/interactive/align_windows
+echo 0 > $CPU4/cpufreq/interactive/boost
+echo 0 > $CPU4/cpufreq/interactive/boostpulse_duration
+echo 99 > $CPU4/cpufreq/interactive/go_hispeed_load # x20
 echo 384000 > $CPU4/cpufreq/interactive/hispeed_freq # most used freq
-echo 10000 > $CPU4/cpufreq/interactive/timer_rate
+echo 80000 > $CPU4/cpufreq/interactive/max_freq_hysteresis # x0
 echo 10000 > $CPU4/cpufreq/interactive/min_sample_time
-echo 20 > $CPU4/cpufreq/interactive/go_hispeed_load # 99 if battery poor
-echo 0 > $CPU4/cpufreq/interactive/max_freq_hysteresis
+echo 72 480000:25 633600:74 768000:21 864000:13 960000:11 1248000:30 1344000:8 1440000:7 1536000:7 1632000:6 1728000:6 1824000:6 1958400:7 > $CPU4/cpufreq/interactive/target_loads
+echo 10000 > $CPU4/cpufreq/interactive/timer_rate
 echo -1 > $CPU4/cpufreq/interactive/timer_slack
 echo 1 > $CPU4/cpufreq/interactive/use_migration_notif
-echo 0 > $CPU4/cpufreq/interactive/boostpulse_duration
-echo 0 > $CPU4/cpufreq/interactive/boost
-echo 0 > $CPU4/cpufreq/interactive/align_windows
 echo 0 > $CPU4/cpufreq/interactive/use_sched_load
 
-
-echo ----------------------------------------------
-echo Disabling TouchBoost
+# disabling touchboost
 echo 0 > /sys/module/msm_performance/parameters/touchboost
 #Disable Core Control and Enable Thermal Throttling allowing for longer sustained performance
 echo Disabling Aggressive CPU Thermal Throttling
 echo 0 > /sys/module/msm_thermal/core_control/enabled 
 echo Y > /sys/module/msm_thermal/parameters/enabled
 
-
-echo ----------------------------------------------
-echo Disabling Input Boost
+# disable input boost
 echo 0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0 > /sys/module/cpu_boost/parameters/input_boost_freq
 
-
-echo ----------------------------------------------
 echo Settings Successfully Applied!
-echo ----------------------------------------------
-

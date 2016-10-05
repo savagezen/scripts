@@ -1,5 +1,7 @@
 # /usr/bin/python
-# Character Generator for Dungeons and Dragons 5e
+
+# DnD Version 5e
+# Script Version 2.0
 
 # Imports
 import random
@@ -7,29 +9,53 @@ import math
 import itertools
 
 # Lists and Dictionaries
-races = [
-  "Dwarf",
-  "Mountain Dwarf",
-  "Hill Dwarf",
-  "Elf",
-  "Wood Elf",
-  "High Elf",
-  "Drow",
-  "Halfling",
-  "Lightfoot Halfling",
-  "Stout Halfling",
-  "Human",
-  "Dragonborn",
-  "Gnome",
-  "Forest Gnome",
-  "Half-Elf",
-  "Half-Orc",
-  "Tiefling"
+race_desc = [
+  "Dwarf              - Bold, hardy, warrior, miner, long memory and grudges",
+  "Mountain Dwarf     - Strong, hardy, rugged, tall for a dwarf",
+  "Hill Dwarf         - Keen senses, deep intuition, remarkable resilience",
+  "Elf                - Magical people of otherworldly grace, in but not of the world",
+  "Wood Elf           - Keen senses and intuition, fleet feet, and stealth",
+  "High Elf           - Keen mind and master of basic magic",
+  "Drow               - Follow the god Lolth down the path of evil and corruption",
+  "Halfling           - You love peace, food, hearth, and home",
+  "Lightfoot Halfling - You can easily hide, are inclined to get along with others",
+  "Stout Halfling     - Hardier than average and may be part dwarven blood",
+  "Human              - Young, short-lived race, innovators and achievers",
+  "Dragonborn         - A servant to dragons, a warrior, or a drifter",
+  "Gnome              - You delight in life, are an inventor, explorer, and explorer",
+  "Forest Gnome       - Knack for illusion and inherent quickness and stealth",
+  "Half-Elf           - Curious, inventive, ambitious, love nature, artistic",
+  "Half-Orc           - Adventurer with savage fury and barbaric customs",
+  "Tiefling           - Demonic heritage, self-reliant, suspicious, drifter"
+]
+
+race_short = [
+  "Dwarf", "Mountain Dwarf", "Hill Dwarf", "Elf", "Wood Elf", "High Elf", "Drow", "Halfling", "Lightfoot Halfling", "Stout Halfling", "Human", "Dragonborn", "Gnome", "Forest Gnome", "Half-Elf", "Half-Orc", "Tiefling"
+]
+
+class_desc = [
+  "Barbarian - The relentless combatant fueld by fury.",
+  "Bard      - A story witty storyteller or musician.",
+  "Cleric    - A holy man capable of helaing wounds.",
+  "Druid     - A nomad devoted to the powers of Nature",
+  "Fighter   - The skilled combatant and strategist.",
+  "Monk      - A martial artist pulling bodily powers.",
+  "Paladin   - A novice fighter bolstered by divine magic.",
+  "Ranger    - One who blends wilderness knowledge and martial ability",
+  "Rogue     - The theif, assassin, and stealthy character.",
+  "Sorcerer  - A magic user who draws power from within.",
+  "Warlock   - Pacted to a diety for empowering spells.",
+  "Wizard    - Keeper of arcane secrets and manipulator of magic."
+  ]
+## Class Descriptions - https://redd.it/2e9vzl
+
+class_short = [
+  "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"
 ]
 
 avg_stats = [
   "   Race        Hieght  Weight        Lifespan",
-  "   ====        ======  ======        ========",
+  "   ----        ------  ------        --------",
   "   Dwarf:      4-5'    150 lbs.      350 years",
   "   Elf:        5-6'+   150-170 lbs.  750 years",
   "   Halfling:   3-4'    40 lbs.       150 years",
@@ -40,21 +66,6 @@ avg_stats = [
   "   Half-Orc:   5-6'+   150-230 lbs.  < 80 years",
   "   Tiefling:   5-6'    130-200 lbs.  100 years"
 ]
-
-classes = [
-  "Barbarian",
-  "Bard",
-  "Cleric",
-  "Druid",
-  "Fighter",
-  "Monk",
-  "Paladin",
-  "Ranger",
-  "Rogue",
-  "Sorcerer",
-  "Warlock",
-  "Wizard"
-  ]
   
 abilities = [
   "   Strength:      natural athleticism, bodily power",
@@ -67,23 +78,23 @@ abilities = [
 
 # Functions
 def start_fn():
-  print('#############################################')
-  print('D&D 5e Character Generator by Austin Haedicke')
-  print('#############################################')
-  print('   Feel free to use, edit, and distribute!   ')
-  print('     But please give credit when reusing     ')
+  print('   D&D 5e Character Generator version 2.0  ')
+  print('            by Austin Haedicke             ')
+  print('-------------------------------------------')
+  print('  Feel free to use, edit, and distribute!  ')
+  print('    But please give credit when reusing    ')
   print('')
-  print('          (R)oll Dice                        ')
-  print('          (C)reate Charcter                  ')
+  print('        1) (R)oll Dice                      ')
+  print('        2) (C)reate Charcter                ')
   print('')
   option = input('What would you like to do? ')
-  if option in ('R', 'r'):
+  if option in ('R', 'r', '1'):
     dice = int(input('How many dice? '))
     sides = int(input('How many sides on each die? '))
     for _ in itertools.repeat(None, dice):
       print(random.randrange(1,sides))
       start()
-  elif option in ('C', 'c'):
+  elif option in ('C', 'c', '2'):
     pass
   else:
     start()
@@ -91,11 +102,14 @@ def start_fn():
 def race_fn():
   global char_race
   print('Available Races Include:')
-  for race in races:
-    print('  ',race)
-  char_race = input('Enter Your Race: ')
-  if char_race in races:
+  print('  (R)andom')
+  for char_race in race_desc:
+    print('  ',char_race)
+  char_race = input('Enter Your Race (effects age, height, weight): ')
+  if char_race in race_short:
     pass
+  elif char_race in ('R', 'r', 'Random', 'random'):
+    char_race = (random.choice(race_short))
   else:
     print('Race not available')
     race_fn()
@@ -103,33 +117,146 @@ def race_fn():
 def class_fn():
   def choose_class():
     global char_class
-    print('Available Classes for the', char_race, 'Class Inclue:')
-    for char_class in classes:
+    print('Available Classes Include:')
+    print('  (R)andom')
+    for char_class in class_desc:
       print('  ',char_class)
     char_class = input('Enter Your Class: ')
-    if char_class not in classes:
+    if char_class in ('R', 'r', 'Random', 'random'):
+      char_class = (random.choice(class_short))
+    elif char_class not in class_short:
       print('Class not available')
       choose_class()
     else:
       pass
   choose_class()
-  
-def misc_fn():
-  global char_heightft
-  global char_heightin
-  global char_weight
-  global char_gender
-  global char_age
-  print('Now we need to select some miscelaneous stats:')
+
+def height_fn ():
+  def rnd_height_fn():
+    if char_race == 'Human':
+      height = 56 + random.randrange(1,10) + random.randrange(1,10)
+    elif char_race in ('Dwarf', 'Hill Dwarf'):
+      height = 44 + random.randrange(1,4) + random.randrange(1,4)
+    elif char_race == 'Mountain Dwarf':
+      height = 48 + random.randrange(1,4) + random.randrange(1,4)
+    elif char_race in ('Elf', 'High Elf'):
+      height =  54 + random.randrange(1,10) + random.randrange(1,10)
+    elif char_race == 'Wood Elf':
+      height = 54 + random.randrange(1,10) + random.randrange(1,10)
+    elif char_race == 'Drow':
+      height = 53 + random.randrange(1,6) + random.randrange(1,6)
+    elif char_race in ('Halfling', 'Lightfoot Halfling', 'Stout Halfling'):
+      height = 31 + random.randrange(1,4) + random.randrange(1,4)
+    elif char_race == 'Dragonborn':
+      height = 66 + random.randrange(1,8) + random.randrange(1,8)
+    elif char_race in ('Gnome', 'Forest Gnome'):
+      height = 35 + random.randrange(1,4) + random.randrange(1,4)
+    elif char_race == 'Half-Elf':
+      height = 57 + random.randrange(1,8) + random.randrange(1,8)
+    elif char_race == 'Half-Orc':
+      height = 58 + random.randrange(1,10) + random.randrange(1,10)
+    elif char_race == 'Tiefling':
+      height = 57 + random.randrange(1,8) + random.randrange(1,8)
+    else:
+      pass
+    global char_heightft
+    global char_heightin
+    char_heightft = math.trunc(height/12)
+    char_heightin = height % 12
+
+  print('Select Charcter Height:')
   for entry in avg_stats:
     print(entry)
-  print('The race you selected was', char_race)
-  height = int(input('Enter Your Height in Total Inches (12 in / foot): '))
-  char_weight = int(input('Enter Your Weight in Pounds (lbs): '))
-  char_age = int(input('Enter Your Age: '))
-  char_gender = input('Enter Your Gender: ')
-  char_heightft = math.trunc(height/12)
-  char_heightin = height % 12
+  print('Your race is', char_race)
+  rnd_height = input('Do you want a random height? ')
+  if rnd_height in ('Y', 'y', 'Yes', 'yes'):
+    rnd_height_fn()
+  elif rnd_height in ('N', 'n', 'No', 'no'):
+    height = int(input('Enter your height in total inches: '))
+    global char_heightft
+    global char_heightin
+    char_heightft = math.trunc(height/12)
+    char_heightin = height % 12
+  else:
+    print(rnd_height, ' is not a valid choice')
+    height_fn()
+
+def weight_fn():
+  def rnd_weight_fn():
+    global char_weight
+    if char_race == 'Human':
+      char_weight = 110 * (random.randrange(1,4) + random.randrange(1,4))
+    if char_race in ('Dwarf', 'Hill Dwarf'):
+      char_weight = 115 * (random.randrange(1,6) + random.randrange(1,6))
+    if char_race == 'Mountain Dwarf':
+      char_weight = 130 * (random.randrange(1,6) + random.randrange(1,6))
+    if char_race in ('Elf', 'High Elf'):
+      char_weight = 90 * random.randrange(1,4)
+    if char_race == 'Wood Elf':
+      char_weight = 100 * random.randrange(1,4)
+    if char_race == 'Drow':
+      char_weight = 75 * random.randrange(1,4)
+    if char_race in ('Halfling', 'Lightfoot Halfling'):
+      char_weight = 35
+    if char_race == 'Stout Halfling':
+      char_weight = 35 * random.randrange(1,4)
+    if char_race == 'Dragonborn':
+      char_weight = 175 * random.randrange(1,6)
+    if char_race in ('Gnome', 'Forest Gnome'):
+      char_weight = 35
+    if char_race == 'Half-Elf':
+      char_weight = 110 * (random.randrange(1,4) + random.randrange(1,4))
+    if char_race == 'Half-Orc':
+      char_weight = 140 * (random.randrange(1,6) + random.randrange(1,6))
+    if char_race == 'Tiefling':
+      char_weight = 110 * (random.randrange(1,4) + random.randrange(1,4))
+
+  print('Select Charcter Weight:')
+  for entry in avg_stats:
+    print(entry)
+  print('Your race is' , char_race)
+  global rnd_height
+  rnd_weight = input('Do you want a random weight? ')
+  if rnd_weight in ('Y', 'y', 'Yes', 'yes'):
+    rnd_weight_fn()
+  elif rnd_weight in ('N', 'n', 'No', 'no'):
+    weight = int(input('Enter your weight in pounds: '))
+  else:
+    print(rnd_weight, ' is not a valid choice')
+    weight_fn()
+
+def misc_fn():
+  global char_gender
+  global char_age
+  print('Miscelaneous Characteristics:')
+  for entry in avg_stats:
+    print(entry)
+  rnd_age = input('Do you want a random age? ')
+  if rnd_age in ('Y', 'y', 'Yes', 'yes'):
+    if char_race in ('Dwarf', 'Mountain Dwarf', 'Hill Dwarf'):
+      char_age = random.randrange(125,350)
+    if char_race in ('Elf', 'Wood Elf', 'High Elf', 'Drow'):
+      char_age = random.randrange(175,750)
+    if char_race in ('Halfling', 'Lightfoot Halfling', 'Stout Halflingl'):
+      char_age = random.randrange(50,150)
+    if char_race == 'Human':
+      char_age = random.randrange(18,100)
+    if char_race == 'Dragonborn':
+      char_age = random.randrange(18,100)
+    if char_race in ('Gnome', 'Forest Gnome'):
+      char_age = random.randrange(100,150)
+    if char_race == 'Half-Elf':
+      char_age = random.randrange(62,180)
+    if char_race == 'Half-Orc':
+      char_age = random.randrange(30,80)
+    if char_race == 'Tiefling':
+      char_age = random.randrange(18,100)
+  elif rnd_age in ('N', 'n', 'No', 'no'):
+    char_age = int(input('Enter character age: '))
+  else:
+    print('Not a valid choice')
+    misc_fn()
+  char_gender = input('Enter character gender: ')
 
 def name_fn():
   global char_name
@@ -186,7 +313,7 @@ def abilities_fn():
   def wisdom():
 	  print('Remaining Scores: ', abl_scores)
 	  global abl_wis
-	  abl_wis = int(input('Entere the score to use for Wisdom: '))
+	  abl_wis = int(input('Enter the score to use for Wisdom: '))
 	  if abl_wis not in abl_scores:
 	    print('Score not valid')
 	    wisdom()
@@ -202,12 +329,37 @@ def abilities_fn():
 	  else:
 	    abl_scores.remove(abl_cha)
   def assign():
-    strength()
-    dexterity()
-    constitution()
-    intelligence()
-    wisdom()
-    charisma()
+    rnd_assign = input('Do you want to randomly assign stat rolls? ')
+    if rnd_assign in ('Y', 'y', 'Yes', 'yes'):
+      abl_ls = ['str', 'dex', 'con', 'int', 'wis', 'char']
+      random.shuffle(abl_scores)
+      global abl_str
+      global abl_dex
+      global abl_int
+      global abl_con
+      global abl_wis
+      global abl_cha
+      abl_str = random.choice(abl_scores)
+      abl_scores.remove(abl_str)
+      abl_dex = random.choice(abl_scores)
+      abl_scores.remove(abl_dex)
+      abl_con = random.choice(abl_scores)
+      abl_scores.remove(abl_con)
+      abl_int = random.choice(abl_scores)
+      abl_scores.remove(abl_int)
+      abl_wis = random.choice(abl_scores)
+      abl_scores.remove(abl_wis)
+      abl_cha = random.choice(abl_scores)
+    elif rnd_assign in ('N', 'n', 'No', 'no'):
+      strength()
+      dexterity()
+      constitution()
+      intelligence()
+      wisdom()
+      charisma()
+    else:
+      print('Invalid choice')
+      assign()
   print('Rolling random ability scores...')
   score1 = stat_roll()
   score2 = stat_roll()
@@ -480,11 +632,21 @@ def alignment_fn():
       alignment_fn()
     else:
       cont()
-  print('Finally choose an alignment.')
-  lawchaos()
-  goodevil()
-  print('The alignment you chose is ', align_lawchaos, '-', align_goodevil)
-  cont()
+  rnd_align = input('Finally choose alignment.  Do you want to use a random alignment? ')
+  if rnd_align in ('Y', 'y', 'Yes', 'yes'):
+    goodevil_ls = ['Good', 'Evil', 'Neutral']
+    lawchaos_ls = ['Lawful', 'Chaotic', 'Neutral']
+    global align_lawchaos
+    global align_goodevil
+    align_lawchaos = random.choice(lawchaos_ls)
+    align_goodevil = random.choice(goodevil_ls)
+  elif rnd_align in ('N', 'n', 'No', 'no'):
+    lawchaos()
+    goodevil()
+  else:
+    print ('Invalid choice')
+    alignment_fn()
+  print('Your alignment is ', align_lawchaos, '-', align_goodevil)
 
 def summary_fn():
   print('##########################################')
@@ -517,6 +679,10 @@ print('')
 race_fn()
 print('')
 class_fn()
+print('')
+height_fn()
+print('')
+weight_fn()
 print('')
 misc_fn()
 print('')
