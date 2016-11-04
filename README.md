@@ -14,8 +14,7 @@ Command Line Utilities
 * [silver fish - interactive profile for Nexus 6P by Sonicron and Alcolawl](https://github.com/gtbjj/scripts/blob/master/silverfish_v2.1.sh)
 
 #### Shell (Linux)
-* [AUR Package Updates](https://github.com/gtbjj/scripts/blob/master/upd-aur.sh)
-* [AUR Update Check](https://github.com/gtbjj/scripts/blob/master/aur-update-check.sh)
+* [AUR Package Updates](https://github.com/gtbjj/scripts/blob/master/aur-update.sh)
 * [Rip / Burn / Play DVDs](https://github.com/gtbjj/scripts/blob/master/dvd-tools.sh)
 * [Sync Media from Linux to Removable (Anroid) SD Card](https://github.com/gtbjj/scripts/blob/master/sd-sync.sh)
 * [Sync Music from Linux to Android over SSH](https://github.com/gtbjj/scripts/blob/master/ssh-music.sh)
