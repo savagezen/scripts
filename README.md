@@ -1,20 +1,31 @@
 Command Line Utilities
 ====================
 
-### Shell (Android)
-* [austin - personal interactive profile for Nexus 6P](https://github.com/gtbjj/scripts/blob/master/interactive-austin.sh)
-* [butterfly - interactive profile for Nexus 6P by SoniCron and Alcolawl](https://github.com/gtbjj/scripts/blob/master/interactive-butterfly.sh)
-* [cyan lion - interactive profile for Nexus 6P, settings by xSilas43](https://github.com/gtbjj/scripts/blob/master/interactive-cyanlion_r6.sh)
-* [dark spice - interactve profile for Nexus 6P, settings by
-* [eclipse - interactive profile for Nexus 6P, settings by
-* [ghost pepper - interactive profile for Nexus 6P by SoniCron and Alcolawl](https://github.com/gtbjj/scripts/blob/master/interactive-ghostpepper_v1.1.sh)
-* [hawk tail - interactive profile for Nexus 6p, settings by
-* [heimdal - interactive profile for Nexus 6P, settings by 
-* [mad dog - interactive profile for Nexus 6P by Sonicron and Alcolawal](https://github.com/gtbjj/scripts/blob/master/interactive-maddog.sh)
-* [silver fish - interactive profile for Nexus 6P by Sonicron and Alcolawl](https://github.com/gtbjj/scripts/blob/master/silverfish_v2.1.sh)
+### Android Governor Profiles (stable)
+* [butterfly](https://github.com/gtbjj/scripts/blob/master/android/interactive-butterfly.sh)
+* [cyan lion](https://github.com/gtbjj/scripts/blob/master/android/interactive-cyanlion_r6.sh)
+* [dark spice](https://github.com/gtbjj/scripts/blob/master/interactive-darkspice_7.5.sh)
+* [eclipse](https://github.com/gtbjj/scripts/blob/master/android/interactive-eclipse_r3.sh)
+* [ghost pepper](https://github.com/gtbjj/scripts/blob/master/android/interactive-ghostpepper_v1.1.sh)
+* [glass fish](https://github.com/gtbjj/scripts/blob/master/android/interactive-glassfish_v1.2.sh)
+* [heimdall](https://github.com/gtbjj/scripts/blob/master/android/interactive-heimdall_v5.sh)
+* [loki](https://github.com/gtbjj/scripts/blob/master/android/elementalx-loki_v1.sh)
+* [mad dog](https://github.com/gtbjj/scripts/blob/master/android/interactive-maddog.sh)
+* [silver fish](https://github.com/gtbjj/scripts/blob/master/android/silverfish_v2.1.sh)
+
+### Android Governor Profiles (alpha / beta)
+* [austin](https://github.com/gtbjj/scripts/blob/master/android/interactive-austin.sh)
+* [cyan lion remix 1](https://github.com/gtbjj/scripts/blob/master/android/interactive-clrmx1.sh)
+* [cyan lion remix 2](https://github.com/gtbjj/scripts/blob/master/android/interactive-clrmx2.sh)
+* [cyan lion remix 3](https://github.com/gtbjj/scripts/blob/master/android/interactive-clrmx3.sh)
+* [hawk tail](https://github.com/gtbjj/scripts/blob/master/android/interactive-hawktail_alpha.sh)
+* [heimdall remix 1](https://github.com/gtbjj/scripts/blob/master/android/interactive-hmdrmx1.sh)
+* [heimdall remix 2](https://github.com/gtbjj/scripts/blob/master/android/ineractive-hmdrmx2.sh)
+* [heimdall remix 3](https://github.com/gtbjj/scripts/blob/master/android/interactive-hmdrmx3.sh)
 
 #### Shell (Linux)
-* [AUR Package Updates](https://github.com/gtbjj/scripts/blob/master/aur-update.sh)
+* [AUR Package Install](https://github.com/gtbjj/scripts/blob/master/aur-get.sh)
+* [AUR Package Update](https://github.com/gtbjj/scripts/blob/master/aur-update.sh)
 * [Rip / Burn / Play DVDs](https://github.com/gtbjj/scripts/blob/master/dvd-tools.sh)
 * [Sync Media from Linux to Removable (Anroid) SD Card](https://github.com/gtbjj/scripts/blob/master/sd-sync.sh)
 * [Sync Music from Linux to Android over SSH](https://github.com/gtbjj/scripts/blob/master/ssh-music.sh)
