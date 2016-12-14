@@ -5,21 +5,12 @@
 #   https://androidfilehost.com/?fid=24391638059060083
 
 CODENAME=austin
-VERSION=0.5
+VERSION=0.6
 echo ----------------------------------------------
 echo Applying $CODENAME v.$VERSION Profile Settings
 
-BPROP=/system/build.prop
 CPU0=/sys/devices/system/cpu/cpu0/cpufreq/interactive
 CPU4=/sys/devices/system/cpu/cpu4/cpufreq/interactive
-
-echo ----------------------------------------------
-echo Applying build.prop settings
-# Google Assistant
-echo 'ro.product.model=Pixel XL' >> $BPROP
-# Rotate Lockscreen
-echo 'log.tag.launcher_force_rotate=VERBOSE' >> $BPROP
-echo 'lockscreen.rot_override=true' >> $BPROP
 
 echo ----------------------------------------------
 echo Appling I/O scheduler and settings
@@ -28,6 +19,8 @@ echo noop > /sys/block/mmcblk0/queue/scheduler
 echo fiops > /sys/block/mmcblk0/queue/scheduler
 
 # change permissions and set governor
+echo ----------------------------------------------
+echo Changing governor and permissions
 chmod 644 $CPU0/cpu_freq/scaling_governor
 echo interactive > $CPU0/cpu_freq/scaling_governor
 chmod 444 $CPU0/cpu_freq/scaling_governor
@@ -37,6 +30,8 @@ echo interactive > $CPU4/cpu_freq/scaling_governor
 chmod 444 $CPU4/cpu_freq/scaling_governor
 
 # apply settings to LITTLE cluster
+echo ----------------------------------------------
+echo Applying settings to LITTLE cluster
 echo 99 > $CPU0/go_hispeed_load
 echo 50000 672000:60000 864000:20000 > $CPU0/above_hispeed_delay 
 echo 50000 > $CPU0/timer_rate
@@ -51,6 +46,8 @@ echo 80000 > $CPU0/cpufreq/interactive/max_freq_hysteresis
 echo 80000 > $CPU0/cpufreq/interactive/boostpulse_duration
 
 # apply settings to Big cluster
+echo ----------------------------------------------
+echo Applying settings to Big cluster
 echo 99 > $CPU4/cpufreq/interactive/go_hispeed_load
 echo 40000 > $CPU4/cpufreq/interactive/above_hispeed_delay
 echo 50000 > $CPU4/cpufreq/interactive/timer_rate
@@ -65,9 +62,12 @@ echo 80000 > $CPU4/cpufreq/interactive/max_freq_hysteresis
 echo 80000 > $CPU4/cpufreq/interactive/boostpulse_duration
 
 # disabling touch and input boost
-/sys/module/cpu_boost/parameters/input_boost_freq 0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0
-/sys/module/cpu_boost/parameters/boost_ms 0
-/sys/module/cpu_boost/parameters/input_boost_ms 0
-/sys/module/msm_performance/parameters/touchboost 0
+echo ----------------------------------------------
+echo Disabling toucboost and input boost
+echo 0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0 > /sys/module/cpu_boost/parameters/input_boost_freq 
+echo 0 > /sys/module/cpu_boost/parameters/boost_ms
+echo 0 > /sys/module/cpu_boost/parameters/input_boost_ms
+echo 0 > /sys/module/msm_performance/parameters/touchboost
 
-echo "Settings Successfully Applied!"
+echo ----------------------------------------------\
+echo Settings Successfully Applied!

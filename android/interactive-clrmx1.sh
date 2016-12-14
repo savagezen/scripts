@@ -46,9 +46,9 @@ echo 80000 > $CPU4/cpufreq/interactive/max_freq_hysteresis
 echo 80000 > $CPU4/cpufreq/interactive/boostpulse_duration
 
 # disabling touch and input boost
-/sys/module/cpu_boost/parameters/input_boost_freq 0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0
-/sys/module/cpu_boost/parameters/boost_ms 0
-/sys/module/cpu_boost/parameters/input_boost_ms 0
-/sys/module/msm_performance/parameters/touchboost 0
+echo 0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0 > /sys/module/cpu_boost/parameters/input_boost_freq 
+echo 0 > /sys/module/cpu_boost/parameters/boost_ms
+echo 0 > /sys/module/cpu_boost/parameters/input_boost_ms
+echo 0 > /sys/module/msm_performance/parameters/touchboost
 
 echo "Settings Successfully Applied!"
