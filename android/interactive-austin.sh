@@ -1,17 +1,27 @@
-# Author:  Austin Haedicke / gtbjj @ github
+# Author:  Austin Haedicke / gtbjj @ GitHub
 # Device:  Nexus 6P (Angler)
 # Notes:   Please give credit when using this in your work!
 #   Based on Cyan Lion profile by xSilas43
 #   https://androidfilehost.com/?fid=24391638059060083
 
 CODENAME=austin
-VERSION=0.6
+VERSION=0.6.1
 echo ----------------------------------------------
 echo Applying $CODENAME v.$VERSION Profile Settings
 
 CPU0=/sys/devices/system/cpu/cpu0/cpufreq/interactive
 CPU4=/sys/devices/system/cpu/cpu4/cpufreq/interactive
 
+# virtual memory
+echo ----------------------------------------------
+echo Applying Virtual Memory settings
+echo 3 > /proc/sys/vm/dirty_ratio # default 30 (flash)
+echo 2 > /proc/sys/vm/dirty_background_ratio # default 5 (flash)
+echo 0 > /proc/sys/vm/dirty_expire_centisecs # ignore if not using swap, default 200
+echo 0 > /proc/sys/vm/dirty_writeback_centisecs # ignore if not using swap, default 500
+echo 0 > /proc/sys/vm/swappiness # lower = more RAM, should improve battery and performance unless clog, default 15
+
+# scheduler
 echo ----------------------------------------------
 echo Appling I/O scheduler and settings
 echo > 5120 /sys/block/mmcblk0/queue/read_ahead_kb
@@ -20,7 +30,7 @@ echo fiops > /sys/block/mmcblk0/queue/scheduler
 
 # change permissions and set governor
 echo ----------------------------------------------
-echo Changing governor and permissions
+echo Changing CPU governor and permissions
 chmod 644 $CPU0/cpu_freq/scaling_governor
 echo interactive > $CPU0/cpu_freq/scaling_governor
 chmod 444 $CPU0/cpu_freq/scaling_governor
@@ -31,7 +41,7 @@ chmod 444 $CPU4/cpu_freq/scaling_governor
 
 # apply settings to LITTLE cluster
 echo ----------------------------------------------
-echo Applying settings to LITTLE cluster
+echo Applying settings to LITTLE CPU cluster
 echo 99 > $CPU0/go_hispeed_load
 echo 50000 672000:60000 864000:20000 > $CPU0/above_hispeed_delay 
 echo 50000 > $CPU0/timer_rate
@@ -47,7 +57,7 @@ echo 80000 > $CPU0/cpufreq/interactive/boostpulse_duration
 
 # apply settings to Big cluster
 echo ----------------------------------------------
-echo Applying settings to Big cluster
+echo Applying settings to Big CPU cluster
 echo 99 > $CPU4/cpufreq/interactive/go_hispeed_load
 echo 40000 > $CPU4/cpufreq/interactive/above_hispeed_delay
 echo 50000 > $CPU4/cpufreq/interactive/timer_rate
@@ -63,7 +73,7 @@ echo 80000 > $CPU4/cpufreq/interactive/boostpulse_duration
 
 # disabling touch and input boost
 echo ----------------------------------------------
-echo Disabling toucboost and input boost
+echo Disabling CPU toucboost and input boost
 echo 0:0 1:0 2:0 3:0 4:0 5:0 6:0 7:0 > /sys/module/cpu_boost/parameters/input_boost_freq 
 echo 0 > /sys/module/cpu_boost/parameters/boost_ms
 echo 0 > /sys/module/cpu_boost/parameters/input_boost_ms
