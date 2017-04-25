@@ -132,31 +132,40 @@ def class_fn():
   choose_class()
 
 def height_fn ():
+  def height_mod_fn ():
+    global height_mod
+    if char_race in ('Dwarf', 'Hill Dwarf', 'Mountain Dwarf', 'Lightfoot Halfling', 'Stout Halfling', 'Forrest Gnome', 'Gnome'):
+      height_mod = random.randrange(1,4) + random.randrange(1,4)
+    elif char_race == 'Drow':
+      height_mod = random.randrange(1,6) + random.randrange(1,6)
+    elif char_race in ('Dragonborn', 'Half-Elf', 'Tiefling'):
+      height_mod = random.randrange(1,8) + random.randrange(1,8)
+    elif char_race in ('Human', 'High Elf', 'Wood Elf', 'Elf'):
+      height_mod = random.randrange(1,10) + random.randrange(1,10)
+    else: 
+      pass
+
   def rnd_height_fn():
     if char_race == 'Human':
-      height = 56 + random.randrange(1,10) + random.randrange(1,10)
+      height = 56 + height_mod
     elif char_race in ('Dwarf', 'Hill Dwarf'):
-      height = 44 + random.randrange(1,4) + random.randrange(1,4)
+      height = 44 + height_mod
     elif char_race == 'Mountain Dwarf':
-      height = 48 + random.randrange(1,4) + random.randrange(1,4)
-    elif char_race in ('Elf', 'High Elf'):
-      height =  54 + random.randrange(1,10) + random.randrange(1,10)
-    elif char_race == 'Wood Elf':
-      height = 54 + random.randrange(1,10) + random.randrange(1,10)
+      height = 48 + height_mod
+    elif char_race in ('Elf', 'High Elf', 'Wood Elf'):
+      height =  54 + height_mod
     elif char_race == 'Drow':
-      height = 53 + random.randrange(1,6) + random.randrange(1,6)
+      height = 53 + height_mod
     elif char_race in ('Halfling', 'Lightfoot Halfling', 'Stout Halfling'):
-      height = 31 + random.randrange(1,4) + random.randrange(1,4)
+      height = 31 + height_mod
     elif char_race == 'Dragonborn':
-      height = 66 + random.randrange(1,8) + random.randrange(1,8)
+      height = 66 + height_mod
     elif char_race in ('Gnome', 'Forest Gnome'):
-      height = 35 + random.randrange(1,4) + random.randrange(1,4)
-    elif char_race == 'Half-Elf':
-      height = 57 + random.randrange(1,8) + random.randrange(1,8)
+      height = 35 + height_mod
+    elif char_race in ('Half-Elf', 'Tiefling'):
+      height = 57 + height_mod
     elif char_race == 'Half-Orc':
-      height = 58 + random.randrange(1,10) + random.randrange(1,10)
-    elif char_race == 'Tiefling':
-      height = 57 + random.randrange(1,8) + random.randrange(1,8)
+      height = 58 + height_mod
     else:
       pass
     global char_heightft
@@ -168,6 +177,7 @@ def height_fn ():
   for entry in avg_stats:
     print(entry)
   print('Your race is', char_race)
+  height_mod_fn()
   rnd_height = input('Do you want a random height? ')
   if rnd_height in ('Y', 'y', 'Yes', 'yes'):
     rnd_height_fn()
@@ -182,39 +192,47 @@ def height_fn ():
     height_fn()
 
 def weight_fn():
+  def weight_mod_fn():
+    global weight_mod
+    if  char_race in ('Human', 'Half-Elf', 'Tiefling'):
+      weight_mod = height_mod * (random.randrange(1,4) + random.randrange(1,4))
+    elif char_race in ('Hill Dwarf', 'Mountain Dwarf', 'Dragonborn', 'Half-Orc'):
+      weight_mod = height_mod * (random.randrange(1,6) + random.randrange(1,6))
+    elif char_race in ('High Elf', 'Wood Elf', 'Elf'):
+      weight_mod = height_mod * random.randrange(1,4)
+    elif char_race == 'Drow':
+      weight_mod = height_mod * random.randrange(1,6)
+    elif char_race in ('Halfling', 'Gnome', 'Forrest Gnome'):
+      weight_mod = height_mod
+    else:
+      pass
+
   def rnd_weight_fn():
     global char_weight
-    if char_race == 'Human':
-      char_weight = 110 * (random.randrange(1,4) + random.randrange(1,4))
+    if char_race in ('Human', 'Half-Elf', 'Tiefling'):
+      char_weight = 110 + weight_mod
     if char_race in ('Dwarf', 'Hill Dwarf'):
-      char_weight = 115 * (random.randrange(1,6) + random.randrange(1,6))
+      char_weight = 115 + weight_mod
     if char_race == 'Mountain Dwarf':
-      char_weight = 130 * (random.randrange(1,6) + random.randrange(1,6))
+      char_weight = 130 + weight_mod
     if char_race in ('Elf', 'High Elf'):
-      char_weight = 90 * random.randrange(1,4)
+      char_weight = 90 + weight_mod
     if char_race == 'Wood Elf':
-      char_weight = 100 * random.randrange(1,4)
+      char_weight = 100 + weight_mod
     if char_race == 'Drow':
-      char_weight = 75 * random.randrange(1,4)
-    if char_race in ('Halfling', 'Lightfoot Halfling'):
-      char_weight = 35
-    if char_race == 'Stout Halfling':
-      char_weight = 35 * random.randrange(1,4)
+      char_weight = 75 + weight_mod
+    if char_race in ('Halfling', 'Lightfoot Halfling', 'Stout Halfling', 'Gnome', 'Forrest Gnome'):
+      char_weight = 35 + weight_mod
     if char_race == 'Dragonborn':
-      char_weight = 175 * random.randrange(1,6)
-    if char_race in ('Gnome', 'Forest Gnome'):
-      char_weight = 35
-    if char_race == 'Half-Elf':
-      char_weight = 110 * (random.randrange(1,4) + random.randrange(1,4))
+      char_weight = 175 + weight_mod
     if char_race == 'Half-Orc':
-      char_weight = 140 * (random.randrange(1,6) + random.randrange(1,6))
-    if char_race == 'Tiefling':
-      char_weight = 110 * (random.randrange(1,4) + random.randrange(1,4))
+      char_weight = 140 + weight_mod
 
   print('Select Charcter Weight:')
   for entry in avg_stats:
     print(entry)
   print('Your race is' , char_race)
+  weight_mod_fn()
   global rnd_height
   rnd_weight = input('Do you want a random weight? ')
   if rnd_weight in ('Y', 'y', 'Yes', 'yes'):
@@ -527,7 +545,7 @@ def modifiers_fn():
   print('   Intelligence', mod_int)
   print('   Wisdom      ', mod_wis)
   print('   Charisma    ', mod_cha)
-  print('Each character also gets an atck modifier based on their proficiency bonus + main stat modifier')
+  print('Each character also gets an attack modifier based on their proficiency bonus + main stat modifier')
   print('The proficiency bonus for Lvl 1 characters is 2')
   print('Your class is: ', char_class, '. Calculating attack bonus...')
   if char_class in ('Barbarian'):
