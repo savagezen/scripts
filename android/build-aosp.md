@@ -66,7 +66,12 @@ Backup](https://play.google.com/store/apps/details?id=com.keramidas.TitaniumBack
 
 **7) Post-Installation**
 
-- Install Gapps
+- Flash [vendor-fix-zip](https://forum.xda-developers.com/nexus-9/development/fix-build-prop-variety-fix-aka-contact-t3133347) for "Internal Error" message.
+- Check [SuperSU Veraion](http://www.supersu.com/download), download, and flash
+  - wipe dalvik and cache
+- Flash [Gapps](http://opengapps.org/) (ARCH = ARM64)
+  - wipe dalvik and cache
+- Reboot
 
 ---
 
@@ -77,4 +82,3 @@ Backup](https://play.google.com/store/apps/details?id=com.keramidas.TitaniumBack
 - [Preparing to Build](https://source.android.com/source/building)
 - [Arch Linux Wiki - Building Android](https://wiki.archlinux.org/index.php/android#Setting_up_the_build_environment)
 - [Running Builds](https://source.android.com/source/running)
-- [Add OpenGapps](https://github.com/opengapps/aosp_build)

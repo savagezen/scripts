@@ -93,7 +93,7 @@ def start_fn():
     sides = int(input('How many sides on each die? '))
     for _ in itertools.repeat(None, dice):
       print(random.randrange(1,sides))
-      start()
+      start_fn()
   elif option in ('C', 'c', '2'):
     pass
   else:
@@ -134,7 +134,7 @@ def class_fn():
 def height_fn ():
   def height_mod_fn ():
     global height_mod
-    if char_race in ('Dwarf', 'Hill Dwarf', 'Mountain Dwarf', 'Lightfoot Halfling', 'Stout Halfling', 'Forrest Gnome', 'Gnome'):
+    if char_race in ('Dwarf', 'Hill Dwarf', 'Mountain Dwarf', 'Lightfoot Halfling', 'Stout Halfling', 'Forest Gnome', 'Gnome'):
       height_mod = random.randrange(1,4) + random.randrange(1,4)
     elif char_race == 'Drow':
       height_mod = random.randrange(1,6) + random.randrange(1,6)
@@ -202,7 +202,7 @@ def weight_fn():
       weight_mod = height_mod * random.randrange(1,4)
     elif char_race == 'Drow':
       weight_mod = height_mod * random.randrange(1,6)
-    elif char_race in ('Halfling', 'Gnome', 'Forrest Gnome'):
+    elif char_race in ('Halfling', 'Gnome', 'Forest Gnome'):
       weight_mod = height_mod
     else:
       pass
@@ -221,7 +221,7 @@ def weight_fn():
       char_weight = 100 + weight_mod
     if char_race == 'Drow':
       char_weight = 75 + weight_mod
-    if char_race in ('Halfling', 'Lightfoot Halfling', 'Stout Halfling', 'Gnome', 'Forrest Gnome'):
+    if char_race in ('Halfling', 'Lightfoot Halfling', 'Stout Halfling', 'Gnome', 'Forest Gnome'):
       char_weight = 35 + weight_mod
     if char_race == 'Dragonborn':
       char_weight = 175 + weight_mod
