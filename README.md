@@ -35,7 +35,7 @@ Command Line Utilities
 * [WPA / Wifi setup using "iw" and "dhcpcd"](https://github.com/gtbjj/scripts/blob/master/wifi-wpa.sh)
 
 #### Python (3.x)
-* [Dungeons & Dragons 5e Character Generator & RPG Dice Roller](https://github.com/gtbjj/scripts/blob/master/ddchargen.py)
+* My Dungeons and Dragons scripts are now compiled as an AUR package.  See [Source Code](https://github.com/gtbjj/dnd-tools) and [PKGBUILD](https://github.com/gtbjj/pkgbuild).
 
 #### Python (2.7)
 * [Unit Conversions](https://github.com/gtbjj/scripts/blob/master/unit_conversion.py)

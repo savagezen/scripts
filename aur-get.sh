@@ -12,4 +12,4 @@ cd /tmp && tar -xvf $1.tar.gz
 cd $1 && makepkg -si
 
 # clean up
-rm -r /tmp/$1*
+#rm -r /tmp/$1*

@@ -7,7 +7,7 @@
 ```
 $ mkdir aosip
 $ cd aosip
-$ repo init -u https://github.com/AOSiP/platform_manifest.git -b nougat
+$ repo init -u https://github.com/AOSiP/platform_manifest.git -b n-mr2
 ```
 
 2) Sync

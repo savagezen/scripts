@@ -21,7 +21,7 @@ $ time repo sync -j3
 Download [vendor image](https://developers.google.com/android/drivers#angler) that matches the ```Build``` of the above repo branch, then:
 
 ```
-$ tar -xvf huawei-angler-VENORNUMVER-BUILDNUMBER.tgz
+$ tar -xvf huawei-angler-VENORNUMBER-BUILDNUMBER.tgz
 $ sh extract-huawe-angler.sh
 
 NOTE - Press 'Enter' to view license, once viewing press CTL + C to skip to agreement.
