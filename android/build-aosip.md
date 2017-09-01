@@ -7,7 +7,7 @@
 ```
 $ mkdir aosip
 $ cd aosip
-$ repo init -u https://github.com/AOSiP/platform_manifest.git -b n-mr2
+$ repo init -u https://github.com/AOSiP/platform_manifest.git -b nougat-mr2
 ```
 
 2) Sync
@@ -25,7 +25,6 @@ $ ./sync.sh
 ```
 $ virtualenv2 venv
 $ . venv/bin/activate
-$ make clobber
 $ . build/envsetup.sh
 $ lunch aosip_angler-userdebug
 $ make -j2 kronic

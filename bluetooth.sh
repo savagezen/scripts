@@ -1,9 +1,14 @@
 #!/usr/bin/sh
-# bluetooth scripts for Asus X205TA
+# bluetooth tools
+
+# initial setup
+# $ sudo systemctl start bluetooth
+# # bluetoothctl
+# # power on
+# # agent on
+# # default-agent
+# # scan on
+# # pair MAC:ADD:RESS
 
 sudo systemctl start bluetooth
-sudo systemctl start btattach
 
-sudo hciconfig hci0 up
-
-bluetoothctl

@@ -1,16 +1,19 @@
 #!/bin/sh
-#backup by system configuration
+# backup by system configuration
+
+HOME=/home/austin
 
 # archive boot
-tar -czf /home/austin/gdrive_bk/system/boot.tar.gz /boot
+tar -czf $HOME/gdrive/personal/pc_backup/system/boot.tar.gz /boot
 
 # system configs
-tar -czf /home/austin/gdrive_bk/system/etc.tar.gz /etc
+tar -czf $HOME/gdrive/personal/pc_backup/system/etc.tar.gz /etc
 
 # official packages
-pacman -Qqe > /home/austin/gdrive_bk/system/off.pkglist
+pacman -Qqe > $HOME/gdrive/personal/pc_backup/system/off.pkglist
 
 # aur packages
-pacman -Qqm > /home/austin/gdrive_bk/system/aur.pkglist
+pacman -Qqm > $HOME/gdrive/personal/pc_backup/system/aur.pkglist
 
-
+# change ownership
+chown -R austin $HOME/gdrive

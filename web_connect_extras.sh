@@ -20,11 +20,15 @@ $HOME/git/scripts/aur-update-check.sh                                           
 echo "--------------------"
 
 # gdrive sync
-rclone sync $HOME/pictures/archive/ remote:pc_backup/archive_pics/
-rclone sync $HOME/music/ remote:pc_backup/music/
-rsync -aAXv --exclude={keys,vault} $HOME/documents/ /tmp/documents
-rclone sync /tmp/documents/ remote:pc_backup/local_docs
-rm -r /tmp/documents
+echo "syncing Google Drive..."
+rclone sync gdrive_professional:/ $HOME/gdrive/professional/
+rclone sync gdrive_personal:/ $HOME/gdrive/personal/
+tar -czf $HOME/gdrive/personal/pc_backup/pictures_archive.tar.gz $HOME/pictures/archive
+tar -czf $HOME/gdrive/personal/pc_backup/music.tar.gz $HOME/music
+tar --exclude={keys,vault} -czf $HOME/gdrive/personal/pc_backup/documents.tar.gz $HOME/documents
+tar -czf $HOME/gdrive/personal/pc_backup/system/user-dotfiles.tar.gz $HOME/git/dotfiles
+rclone sync $HOME/gdrive/personal/pc_backup/ gdrive_personal:/pc_backup/
+echo "--------------------"
 
 # start local backup server
 echo "starting local backup server..."
