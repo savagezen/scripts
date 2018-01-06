@@ -1,90 +1,59 @@
-#!/usr/bin/zsh
-# Build AOSP for Nexus 6P (angler)
+#!/usr/bin/sh
+# AOSP for Nexus 6P
+# Build: OPM1.171019.011
 
-MANFC=huawei
-MODEL=angler
+BRANCH=android-8.1.0_r1
+BINARY_LINK=https://dl.google.com/dl/android/aosp/huawei-angler-opm1.171019.011-41db8ed5.tgz
+
+SOURCE_DIR=aosp
 SOURCE=https://android.googlesource.com/platform/manifest
-SOURCE_DIR=$HOME/aosp
-VENDOR=$(ls $SOURCE_DIR | grep tgz | tail -c +15 | head -n 6)
-OTA_FROM=$SOURCE_DIR/build/tools/releasetools/ota_from_target_files
-SIGN_APK=$SOURCE_DIR/build/tools/releasetools/sign_target_files_apks
-OUT_DIR=$SOURCE_DIR/out/target/product/$MODEL
-PKG_DIR=$HOME/git/only_aosp/ota
-KEY_CERT=$HOME/.android-certs
 
-# wants
-echo -n "Enter Codename Branch: "
-read BRANCH
-echo -n "Enter Download Link for Vendor Binary: "
-read BINARY_LINK
-
-echo ""
-echo "############################"
-echo "Fetch and Sync Repo...      "
-echo "############################"
-echo ""
-
+# create build directory
 mkdir -p $SOURCE_DIR
 cd $SOURCE_DIR
-#git config --global user.name "Your Name"
-#git config --globl user.email "you@example.com"
+
+# download source
+# git config --global user.name "Your Name"
+# git config --global user.email "you@example.com"
 repo init -u $SOURCE -b $BRANCH
-repo sync -j4 -c
+time repo sync -j4 -c
 
-echo ""
-echo "############################"
-echo "Fetching Vendor...          "
-echo "############################"
-echo ""
+# setup environment (also in ~/.zshrc)
+export USE_CCACHE=1
+export CCACHE_DIR=$(pwd)/.ccache
+prebuilts/misc/linux-x86/ccache/ccache -M 25G
+# make sure Android looks for Java in the right place
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 
-wget $BINARY_LINK
-tar -xvf *.tgz
-sh extract-$MANFC-$MODEL.sh
-# Enter, ctrl + c, "I ACCEPT"
-
-echo ""
-echo "#################################"
-echo "Setting up build environment...  "
-echo "################################"
-echo ""
-
+# Android expects python2 as 'python'
 virtualenv2 venv
 . venv/bin/activate
+
+# pull vendor binary
+wget $BINARY_LINK
+tar -xvf *.tgz
+bash extract-huawei-angler.sh
+# Enter > ctrl + c, "I ACCEPT"
+
+# clean & build
 make clobber
 . build/envsetup.sh
-lunch aosp_$MODEL-userdebug
+lunch aosp_angler-userdebug
+time make -j2
 
-echo ""
-echo "############################"
-echo "Making Android...           "
-echo "############################"
-echo ""
+# install
+echo " "
+echo "You can now:"
+echo "  $ adb reboot bootloader"
+echo "  $ fastboot flash boot boot.img"
+echo "  $ fastboot flash system system.img"
+echo "  $ fastboot flash vendor vendor.img"
+echo " "
+echo "Remember to also: "
+echo " - flash SuperSU.zip and wipe dalvik / cache"
+echo " - flash gapps.zip and wipe dalvik / cache"
+echo " - flash vendorfix.zip if needed"
+echo " - check TWRP version"
 
-make -j2
-
-# make -j2 otapackage
-# make -j2 dist
-## to SOURCE/out/dist/
-
-#echo ""
-#echo "############################"
-#echo "Packaging...                "
-#echo "############################"
-#echo ""
-
-#cp $OUT_DIR/{boot,system,vendor}.img $PKG_DIR/
-# cp other files
-#zip -r9 $OUT_DIR/AOSP-$MANFC-$MODEL-$VENDOR.zip $PKG_DIR/*
-
-#echo "############################"
-#echo "Signing package...         #"
-#echo "############################"
-#subject='/C=US/ST=California/L=Mountain View/O=Android/OU=Android/CN=Android/emailAddress=android@android.com'
-#mkdir -p ~/.android-certs
-#for x in releasekey platform shared media; do ./development/tools/make_key ~/.android-certs/$x "$subject"; done
-#$SIGN_APK -o -d $KEY_CERT out/dist/aosp_$MODEL-target_files-eng.$USER.zip /tmp/signed.zip
-#$OTA_FROM -k $KEY_CERT/platform /tmp/signed.zip /tmp/final-full-ota.zip
-
-#echo ""
-#echo "############################"
-#echo "Done!                       "
+# to do - package
+# mount / flash boot, system, vendor
