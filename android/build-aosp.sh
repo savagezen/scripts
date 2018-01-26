@@ -1,9 +1,8 @@
 #!/usr/bin/sh
 # AOSP for Nexus 6P
-# Build: OPM1.171019.011
 
-BRANCH=android-8.1.0_r1
-BINARY_LINK=https://dl.google.com/dl/android/aosp/huawei-angler-opm1.171019.011-41db8ed5.tgz
+BRANCH=android-8.1.0_r9
+BINARY_LINK=https://dl.google.com/dl/android/aosp/huawei-angler-opm5.171019.014-174056a3.tgz
 
 SOURCE_DIR=aosp
 SOURCE=https://android.googlesource.com/platform/manifest
@@ -40,6 +39,7 @@ make clobber
 . build/envsetup.sh
 lunch aosp_angler-userdebug
 time make -j2
+# time make -j2 otapackage
 
 # install
 echo " "
