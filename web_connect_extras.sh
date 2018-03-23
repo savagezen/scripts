@@ -25,13 +25,15 @@ rclone sync gdrive_professional:/ $HOME/gdrive_professional/
 rclone sync gdrive_personal:/ $HOME/gdrive_personal/
 
 # create local archives
-tar -czf $HOME/gdrive/personal/pc_backup/music.tar.gz $HOME/music
-tar --exclude={keys,vault} -czf $HOME/gdrive/personal/pc_backup/documents.tar.gz $HOME/documents
-tar -czf $HOME/gdrive/personal/pc_backup/system/user-dotfiles.tar.gz $HOME/git/dotfiles
+tar -czf $HOME/gdrive_personal/pc_backup/music.tar.gz $HOME/music
+tar --exclude={keys,vault} -czf $HOME/gdrive_personal/pc_backup/documents.tar.gz $HOME/documents
 
 # push to Google Drive
 rclone sync $HOME/gdrive_personal/pc_backup/ gdrive_personal:/pc_backup/
 echo "--------------------"
+
+# fetch local backups from Dropbox
+rclone sync dropbox:/ $HOME/dropbox/
 
 # start local backup server
 echo "starting local backup server..."

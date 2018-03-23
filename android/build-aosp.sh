@@ -1,9 +1,8 @@
 #!/usr/bin/sh
 # AOSP for Nexus 6P
 
-BRANCH=android-8.1.0_r9
-BINARY_LINK=https://dl.google.com/dl/android/aosp/huawei-angler-opm5.171019.014-174056a3.tgz
-
+BRANCH=android-8.1.0_r17
+BINARY_LINK=https://dl.google.com/dl/android/aosp/huawei-angler-opm5.171019.015-a4ae0930.tgz
 SOURCE_DIR=aosp
 SOURCE=https://android.googlesource.com/platform/manifest
 
@@ -38,22 +37,20 @@ bash extract-huawei-angler.sh
 make clobber
 . build/envsetup.sh
 lunch aosp_angler-userdebug
-time make -j2
-# time make -j2 otapackage
+#time make -j2
+time make otapackage -j2
 
-# install
-echo " "
-echo "You can now:"
-echo "  $ adb reboot bootloader"
-echo "  $ fastboot flash boot boot.img"
-echo "  $ fastboot flash system system.img"
-echo "  $ fastboot flash vendor vendor.img"
-echo " "
-echo "Remember to also: "
-echo " - flash SuperSU.zip and wipe dalvik / cache"
-echo " - flash gapps.zip and wipe dalvik / cache"
-echo " - flash vendorfix.zip if needed"
-echo " - check TWRP version"
+#time make -j2 updatepackage
 
-# to do - package
-# mount / flash boot, system, vendor
+#cd out/target/product/angler
+#adb devices
+#adb reboot bootloader
+#fastboot devices
+#fastboot flash boot boot.img
+#fastboot flash system system.img
+#fastboot flash vendor vendor.img
+
+#remember
+#check TWRP version
+#flash gapps
+#flash magisk
