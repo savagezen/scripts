@@ -9,7 +9,7 @@ ping -c 3 www.google.com
 echo "----------------------------"
 echo "establishing firewall..."
 echo "----------------------------"
-sudo /home/austin/scripts/iptables.rules
+sudo $HOME/documents/vault//iptables.rules
 
 # fetch rootkit scan for conky
 #echo "running rkhunter..."
@@ -27,4 +27,4 @@ checkupdates > /tmp/off.updates						# off pkg updates
 echo "----------------------------"
 echo "starting backup server..."
 echo "----------------------------"
-syncthing
+systemctl start syncthing@$USER.service

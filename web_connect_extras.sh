@@ -19,22 +19,27 @@ checkupdates > /tmp/off.updates                                                 
 $HOME/git/scripts/aur-update-check.sh                                                               # aur packages
 echo "--------------------"
 
-# pulling from Google Drive
-echo "Syncing Google Drive ..."
-rclone sync gdrive_professional:/ $HOME/gdrive_professional/
-rclone sync gdrive_personal:/ $HOME/gdrive_personal/
-
-# create local archives
-tar -czf $HOME/gdrive_personal/pc_backup/music.tar.gz $HOME/music
-tar --exclude={keys,vault} -czf $HOME/gdrive_personal/pc_backup/documents.tar.gz $HOME/documents
-
-# push to Google Drive
-rclone sync $HOME/gdrive_personal/pc_backup/ gdrive_personal:/pc_backup/
+# create pc backup
+echo "Creating PC Backup..."
+pacman -Qqm > $HOME/mega/pc_backup/system/aur.pkglist
+pacman -Qe > $HOME/mega/pc_backup/system/off.pkglist
+tar -czf $HOME/mega/pc_backup/system/etc.tar.gz /etc
+tar -czf $HOME/mega/pc_backup/system/boot.tar.gz /boot
+tar --exclude={keys,vault} -czf $HOME/mega/pc_backup/$HOME/documents.tar.gz $HOME/documents
 echo "--------------------"
 
-# fetch local backups from Dropbox
-rclone sync dropbox:/ $HOME/dropbox/
+# push to backups to Mega
+echo "Pushing PC and Phone Backups to Mega..."
+rclone sync $HOME/mega/pc_backup/ mega:/pc_backup/
+rclone sync $HOME/mega/phone_backup/ mega:/phone_backup/
+echo "--------------------"
+
+# pulling from Google Drive
+echo "Pulling  Google Drive ..."
+rclone sync gdrive_professional:/ $HOME/gdrive_professional/
+rclone sync gdrive_personal:/ $HOME/gdrive_personal/
+echo "--------------------"
 
 # start local backup server
-echo "starting local backup server..."
-syncthing
+echo "Starting Syncthing Daemon..."
+systemctl start syncthing@austin.service

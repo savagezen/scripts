@@ -1,8 +1,8 @@
 #!/usr/bin/sh
 # AOSP for Nexus 6P
 
-BRANCH=android-8.1.0_r17
-BINARY_LINK=https://dl.google.com/dl/android/aosp/huawei-angler-opm5.171019.015-a4ae0930.tgz
+BRANCH=android-8.1.0_r21
+BINARY_LINK=https://dl.google.com/dl/android/aosp/huawei-angler-opm3.171019.019-ec4a1fe9.tgz
 SOURCE_DIR=aosp
 SOURCE=https://android.googlesource.com/platform/manifest
 
@@ -19,7 +19,7 @@ time repo sync -j4 -c
 # setup environment (also in ~/.zshrc)
 export USE_CCACHE=1
 export CCACHE_DIR=$(pwd)/.ccache
-prebuilts/misc/linux-x86/ccache/ccache -M 25G
+prebuilts/misc/linux-x86/ccache/ccache -M 50G
 # make sure Android looks for Java in the right place
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 
@@ -33,14 +33,28 @@ tar -xvf *.tgz
 bash extract-huawei-angler.sh
 # Enter > ctrl + c, "I ACCEPT"
 
-# clean & build
+# clean & prep
 make clobber
 . build/envsetup.sh
 lunch aosp_angler-userdebug
-#time make -j2
-time make otapackage -j2
 
-#time make -j2 updatepackage
+# patch kernel
+cp -v ~/git/anykernel/ramdisk/* device/huawei/angler/
+# ..> add "import init.savagezen.rc" to device/huawei/angler/init.angler.rc
+cp -v ~/git/kernel_huawei_angler/arch/arm64/boot/Image.gz-dtb device/huawei/angler-kernel/
+
+# patch apps / makefile
+cp -v ~/git/aosp_build/make/target/product/core.mk build/target/product/core.mk
+
+# patch max fingerprint attempts
+sed -i 's/MAX_FAILED_ATTEMPTS_LOCKOUT_PERMANENT\ =\ 20/MAX_FAILED_ATTEMPTS_LOCKOUT_PERMANENT\ =\ 5/' frameworks/base/services/core/java/com/android/server/fingerprint/FingerprintService.java
+
+# patch settings app (temp until git sync)
+cp -v ~/git/aosp_packages_apps_Settings/res/xml/device_info_settings.xml packages/apps/Settings/res/xml/
+sed -i 's/mPasswordMaxLength\ =\ 16/mPasswordMaxLength\ =\ 64/' packages/apps/Settings/src/com/android/settings/password/ChooseLockPassword.java
+
+# build
+time make -j2 otapackage
 
 #cd out/target/product/angler
 #adb devices

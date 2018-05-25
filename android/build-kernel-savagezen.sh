@@ -59,6 +59,7 @@ make savagezen_defconfig
 # build kernel
 time make -j2
 cp -v arch/arm64/boot/Image.gz-dtb ../anykernel/zImage-dtb
+cp -v arch/arm64/boot/Image.gz-dtb ../aosp_device_huawei_angler-kernel/
 cd ../anykernel
 
 # package

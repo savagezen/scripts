@@ -2,6 +2,8 @@
 
 USER=/home/austin
 
+cp -r $HOME/.ethereum $HOME/documents/vault/
+
 tar -czf /tmp/vault.tar.gz $USER/documents/vault
 tar -czf /tmp/keys.tar.gz $USER/documents/keys
 
