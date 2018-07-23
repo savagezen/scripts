@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+# unlock gpg file and unzip archive
+
+gpg --output $*.tar.gz --decrypt $*.tar.gz.gpg ; tar -xvf $*.tar.gz ; rm -rf $*{.tar.gz,.tar.gz.gpg}

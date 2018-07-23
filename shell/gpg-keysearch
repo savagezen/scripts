@@ -1,0 +1,4 @@
+#!/usr/bin/sh
+# search keyserver for gpg key
+
+gpg --keyserver pgp.mit.edu --search "$*"

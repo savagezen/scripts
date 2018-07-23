@@ -1,9 +1,9 @@
 #!/bin/zsh
 
 #Filesystem defragment, scrub, blance
-find / -xdev -type d -print -exec btrfs filesystem defragment '{}' \;
-btrfs scrub start /								# verify checksums on metadata
-btrfs balance start /								# reorganize big data chunks
+#find / -xdev -type d -print -exec btrfs filesystem defragment '{}' \;
+#btrfs scrub start /								# verify checksums on metadata
+#btrfs balance start /								# reorganize big data chunks
 
 # Mirrorlist
 pacman -Syy											# for refresh of all mirrors

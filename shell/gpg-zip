@@ -1,0 +1,6 @@
+#!/usr/bin/sh
+# create gzip file and secure with gpg
+
+LEVEL=9
+
+tar -cf - $* | gzip -$LEVEL - | gpg -c -o $*.tar.gz.gpg && rm -rf $*

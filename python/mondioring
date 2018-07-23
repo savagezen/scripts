@@ -1,0 +1,29 @@
+#!/usr/bin/python
+#mondioring dog exercises
+
+import random
+import itertools
+
+exercises = {
+	1: "positions - sit @ 1m",
+	2: "positions - down @ 1m",
+	3: "positions - stand @ 1m",
+	4: "handler absence @ 20 sec",
+	5: "heeling - 2 changes @ 3 steps",
+	6: "heeling - 3 changes @ 2 steps",
+	7: "retrieve @ 5m",
+	8: "send away @ 5m",
+	9: "bark"
+}
+
+n = int(input("Number of Exercises: "))
+
+def roll_fn():
+	global roll
+	global output
+	for _ in itertools.repeat(None, n):
+		roll = random.randint(1,9)
+		output = exercises[roll]
+		print(output)
+
+roll_fn()

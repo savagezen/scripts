@@ -1,0 +1,6 @@
+#!/usr/bin/sh
+# create new keyfile
+
+KEYDIR=$HOME/documents/keys/
+
+dd bs=512 count=4 if=/dev/urandom of=$KEYDIR/$*.keyfile

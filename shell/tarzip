@@ -1,0 +1,8 @@
+#!/usr/bin/sh
+# create gzip compressed file from directory
+
+LEVEL=9
+
+tar -cf - $* | gzip -$LEVEL - > $*.tar.gz
+
+

@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+# create xz zipped file form directory
+
+LEVEL=9
+
+tar -cf - $* | xz -$LEVEL - > $*.tar.xz
+

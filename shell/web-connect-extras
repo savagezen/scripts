@@ -1,13 +1,16 @@
 #!/usr/bin/sh
 # post web connection utilities
 
+HOME=/home/austin
+RCLONE="rclone --config=$HOME/.rclone.conf"
+
 # testing connection
 ping -c 3 www.google.com
 echo "--------------------"
 
 # firewall
 echo "establishing firewall..."
-sudo /home/austin/documents/vault/iptables.rules
+$HOME/documents/vault/iptables.rules
 echo "--------------------"
 
 # fetch for conky
@@ -16,7 +19,6 @@ curl -o /tmp/ipinfo ipinfo.io                                                   
 curl http://www.ipinfodb.com/index.php | grep postal | tail -c 12 | head -c 5 > /tmp/zip        # zip code
 curl -o /tmp/forecast wttr.in/$(cat /tmp/zip)                                                   # forecast / weather
 checkupdates > /tmp/off.updates                                                                 # official packages
-$HOME/git/scripts/aur-update-check.sh                                                               # aur packages
 echo "--------------------"
 
 # create pc backup
@@ -30,16 +32,20 @@ echo "--------------------"
 
 # push to backups to Mega
 echo "Pushing PC and Phone Backups to Mega..."
-rclone sync $HOME/mega/pc_backup/ mega:/pc_backup/
-rclone sync $HOME/mega/phone_backup/ mega:/phone_backup/
+$RCLONE sync --ignore-existing $HOME/mega/pc_backup/ mega:/pc_backup/
+$RCLONE sync --ignore-existing $HOME/mega/phone_backup/ mega:/phone_backup/
 echo "--------------------"
 
 # pulling from Google Drive
 echo "Pulling  Google Drive ..."
-rclone sync gdrive_professional:/ $HOME/gdrive_professional/
-rclone sync gdrive_personal:/ $HOME/gdrive_personal/
+$RCLONE sync gdrive_professional:/ $HOME/gdrive_professional/
+$RCLONE sync gdrive_personal:/ $HOME/gdrive_personal/
 echo "--------------------"
 
 # start local backup server
 echo "Starting Syncthing Daemon..."
 systemctl start syncthing@austin.service
+
+# start mining crypto
+echo "Starting Minergate..."
+minergate-cli -u austin.haedicke@gmail.com --xmr 2
