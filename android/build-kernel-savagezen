@@ -1,0 +1,71 @@
+#!/usr/bin/sh
+# bulid kernel for Nexus 6P
+
+MSM_SRC=https://android.googlesource.com/kernel/msm
+# https://android.googlesource.com/kernel/msm/+refs
+MSM_TAG=android-8.1.0_r0.80
+
+LINUX-STABLE_SRC=https://kernel.googlesource.com/pub/scm/linux/kernel/git/stable/linux-stable.git
+# https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git/refs/tags
+LINUX-STABLE_TAG=v3.10.108
+
+NAME=angler-kernel-$(date +%Y%m%d)
+KERNEL_SOURCE=https://github.com/savagezen/kernel_huawei_angler
+
+AK_SOURCE=https://github.com/savagezen/anykernel
+AK_BRANCH=angler-personal
+
+#GOOGLETC=https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
+LINAROTC=https://android-git.linaro.org/git/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9-linaro.git
+TOOLCHAIN=$(pwd)/linaro-prebuilts/bin/aarch64-linux-android-
+
+FK_BRANCH=oreo-mr1
+FK_SOURCE=https://github.com/franciscofranco/angler
+
+# pull source
+git clone $LINAROTC linaro-prebuilts
+git clone $KERNEL_SOURCE -b $FK_BRANCH
+git clone $AK_SOURCE -b $AK_BRANCH
+
+# set up environment
+export ARCH=arm64
+export SUBARCH=arm64
+export CROSS_COMPILE=$TOOLCHAIN
+cd kernel_huawei_angler
+
+# merge franco kernel upstream
+git checkout oreo-mr1
+git fetch $FK_SOURCE $FK_BRANCH
+git merge FETCH_HEAD
+
+# linux stable upstream
+# git remote add linux-stable $LINUX-STABLE_SRC
+git fetch linux-stable
+# make kernelversion
+git merge $LINUX-STABLE_TAG
+# repeat merge for each missing version tag
+
+# msm upstream - monthly security patch
+# git remote add msm-upstream $MSM_SRC
+git fetch msm-upstream
+git merge $MSM_TAG
+
+# configure kernel
+make clean
+make mrproper
+make savagezen_defconfig
+
+# build kernel
+time make -j2
+# cp -v arch/arm64/boot/Image.gz-dtb ../aosp_device_huawei_angler-kernel/
+
+# package
+cd ../anykernel
+# clean demon files from AK
+# wget https://github.com/nathanchance/AnyKernel2/commit/addb6ea860aab14f0ef684f6956d17418f95f29a.diffpatch -p1 < addb6ea860aab14f0ef684f6956d17418f95f29a.diffrm addb6ea860aab14f0ef684f6956d17418f95f29a.diff
+cp -v kernel_huawei_angler/arch/arm64/boot/Image.gz-dtb zImage-dtb
+zip -r9 $NAME.zip * -x README.md $NAME.zip
+
+# Reference:
+# https://forum.xda-developers.com/android/software-hacking/reference-how-to-compile-android-kernel-t3627297
+# https://github.com/android-linux-stable/notes/blob/master/process/how-to.md

@@ -1,0 +1,89 @@
+#!/usr/bin/sh
+# AOSP for Nexus 6P
+
+BRANCH=android-8.1.0_r43 # 2018 August
+#BRANCH=oreo
+BINARY_HWI=https://dl.google.com/dl/android/aosp/huawei-angler-opm6.171019.030.h1-39376dfa.tgz
+BINARY_QCOM=https://dl.google.com/dl/android/aosp/qcom-angler-opm6.171019.030.h1-3688f18b.tgz
+SOURCE_DIR=$HOME/aosp
+#SOURCE_DIR=$HOME/havoc
+SOURCE=https://android.googlesource.com/platform/manifest
+#SOURCE=https://github.com/havoc-os/android_manifest.git
+REQ_PKGS="lib32-gcc-libs git gnupg flex bison gperf sdl wxgtk2 squashfs-tools curl ncurses zlib schedtool perl-switch zip unzip libxslt pyhon-virtualenv bc rsync lib32-zlib lib32-ncurses lib32-readline"
+REQ_AUR="ncurses5-compat-libs lib32-ncurses5-compat-libs xml2 lzop pngcrush imagemagick aosp-devel lineageos-devel"
+
+# create build directory
+mkdir -p $SOURCE_DIR
+cd $SOURCE_DIR
+
+# download source
+# git config --global user.name "Your Name"
+# git config --global user.email "you@example.com"
+repo init -u $SOURCE -b $BRANCH
+time repo sync -c # -j4
+
+# setup environment
+## update
+sudo pacman -S $REQ_PKGS
+for p in $REQ_AUR; do
+  cd /tmp
+  git clone https://aur.archlinux.org/$p
+  cd $p
+  makepkg -si
+  cd -
+  rm -rf $p
+done
+## python expects python2 as python
+virtualenv2 venv; source venv/bin/activate
+## build variables
+export JAVA_HOME=$(pwd)/prebuilts/jdk/jdk8/linux-x86
+export USE_CCACHE=1
+mkdir -p ccache
+export CCACHE_DIR=$(pwd)/ccache
+# due to flex errors on "newer OSs"
+export LC_ALL=C
+
+# pull vendor binary
+curl -o binaries-huawei.tgz $BINARY_HWI
+tar -xvf binaries-huawei.tgz
+./extract-huawei-angler.sh
+# Enter > ctrl + c, "I ACCEPT"
+
+# clean & prep
+make clobber
+source build/envsetup.sh
+lunch aosp_angler-userdebug
+
+# pull kernel image
+curl -o device/huawei/angler-kernel/Image.gz-dtb https://github.com/savagezen/anykernel/blob/angler-personal/zImage-dtb
+# pull and patch kernel init files
+curl -o device/huawei/angler/init.sz.rc https://raw.githubusercontent.com/savagezen/anykernel/angler-personal/ramdisk/init.supolicy.sh
+sed -i '19 a import init.sz.rc' device/huawei/angler/init.angler.rc
+curl -o device/huawei/angler/init.spectrum.rc https://raw.githubusercontent.com/savagezen/anykernel/angler-personal/ramdisk/init.spectrum.rc
+sed -i '20 a import init.spectrum.rc' device/huawei/angler/init.angler.rc
+curl -o device/huawei/angler/init.spectrum.sh https://raw.githubusercontent.com/savagezen/anykernel/angler-personal/ramdisk/init.spectrum.sh
+sed -i '21 a import init.spectrum.sh' device/huawei/angler/init.angler.rc
+
+# patch max fingerprint attempts
+sed -i 's/MAX_FAILED_ATTEMPTS_LOCKOUT_PERMANENT\ =\ 20/MAX_FAILED_ATTEMPTS_LOCKOUT_PERMANENT\ =\ 5/' frameworks/base/services/core/java/com/android/server/fingerprint/FingerprintService.java
+# patch max password length
+sed -i 's/mPasswordMaxLength\ =\ 16/mPasswordMaxLength\ =\ 64/' packages/apps/Settings/src/com/android/settings/password/ChooseLockPassword.java
+
+# patch apps / makefile
+cp -v ~/git/aosp_build/make/target/product/core.mk build/target/product/core.mk
+
+# build
+time make -j2 otapackage
+
+#cd out/target/product/angler
+#adb devices
+#adb reboot bootloader
+#fastboot devices
+#fastboot flash boot boot.img
+#fastboot flash system system.img
+#fastboot flash vendor vendor.img
+
+#remember
+#check TWRP version
+#flash gapps
+#flash magisk

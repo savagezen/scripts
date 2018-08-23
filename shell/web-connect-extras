@@ -23,8 +23,12 @@ echo "--------------------"
 
 # create pc backup
 echo "Creating PC Backup..."
+echo "==> pruning pacman cache to 1 old version"
+paccache -rk1 # clean /var/cache/pacman/pkg leaving one old version
+echo "==> getting list of packages"
 pacman -Qqm > $HOME/mega/pc_backup/system/aur.pkglist
 pacman -Qe > $HOME/mega/pc_backup/system/off.pkglist
+echo "==> creating archives"
 tar -czf $HOME/mega/pc_backup/system/etc.tar.gz /etc
 tar -czf $HOME/mega/pc_backup/system/boot.tar.gz /boot
 tar --exclude={keys,vault} -czf $HOME/mega/pc_backup/$HOME/documents.tar.gz $HOME/documents
@@ -47,5 +51,5 @@ echo "Starting Syncthing Daemon..."
 systemctl start syncthing@austin.service
 
 # start mining crypto
-echo "Starting Minergate..."
-minergate-cli -u austin.haedicke@gmail.com --xmr 2
+#echo "Starting Minergate..."
+#minergate-cli -u austin.haedicke@gmail.com --xmr 2

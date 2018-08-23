@@ -1,0 +1,17 @@
+ui_print("#######################################");
+ui_print("#         UNIFIED THERMAL MOD         #");
+ui_print("# (CTTMod + Xthermal Fast Charge Mod) #");
+ui_print("#        For Android Oreo 8.x.x       #");
+ui_print("#         by @shadowstep at XDA       #");
+ui_print("#######################################");
+ui_print(" ");
+ui_print("1. Mounting partitions");
+run_program("/sbin/busybox", "mount", "/system");
+show_progress(1, 15);
+ui_print("2. Copying required files");
+package_extract_dir("system", "/system");
+show_progress(1, 15);
+ui_print("3. Unmounting partitions");
+run_program("/sbin/busybox", "umount", "/system");
+ui_print(" ");
+ui_print("Installation complete!");
