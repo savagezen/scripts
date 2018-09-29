@@ -13,7 +13,7 @@ NAME=angler-kernel-$(date +%Y%m%d)
 KERNEL_SOURCE=https://github.com/savagezen/kernel_huawei_angler
 
 AK_SOURCE=https://github.com/savagezen/anykernel
-AK_BRANCH=angler-personal
+AK_BRANCH=angler-oreo
 
 #GOOGLETC=https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9
 LINAROTC=https://android-git.linaro.org/git/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9-linaro.git

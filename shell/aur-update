@@ -1,16 +1,14 @@
 #!/bin/sh
 
-# Creates list of AUR packages, pulls sources, compiles, 
-# and installs.  Does not account for dependencies.
+# update aur packages based on unofficial pacages listed in $pacman -Qqm
 
-PKGLIST=/tmp/aur.pkglist
-
-pacman -Qqm > $PKGLIST
-
-for PKG_NAME in $(cat $PKGLIST)
+for x in $(pacman -Qqm)
 do
-  curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/$PKG_NAME.tar.gz
-  tar -xvf $PKG_NAME.tar.gz
-  cd $PKG_NAME && makepkg -si
-  cd .. && rm -r $PKG_NAME && rm $PKG_NAME.tar.gz
+  cd /tmp
+  git clone https://aur.archlinux.org/$x
+  cd /tmp/$x
+  makepkg -si
+  sudo rm -r /tmp/$x
+  echo "=================="
+  echo " "
 done

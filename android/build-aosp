@@ -1,7 +1,7 @@
 #!/usr/bin/sh
 # AOSP for Nexus 6P
 
-BRANCH=android-8.1.0_r43 # 2018 August
+BRANCH=android-8.1.0_r45 # 2018 September
 #BRANCH=oreo
 BINARY_HWI=https://dl.google.com/dl/android/aosp/huawei-angler-opm6.171019.030.h1-39376dfa.tgz
 BINARY_QCOM=https://dl.google.com/dl/android/aosp/qcom-angler-opm6.171019.030.h1-3688f18b.tgz
@@ -55,7 +55,7 @@ source build/envsetup.sh
 lunch aosp_angler-userdebug
 
 # pull kernel image
-curl -o device/huawei/angler-kernel/Image.gz-dtb https://github.com/savagezen/anykernel/blob/angler-personal/zImage-dtb
+curl -o device/huawei/angler-kernel/Image.gz-dtb https://github.com/savagezen/anykernel/blob/angler-oreo/zImage-dtb
 # pull and patch kernel init files
 curl -o device/huawei/angler/init.sz.rc https://raw.githubusercontent.com/savagezen/anykernel/angler-personal/ramdisk/init.supolicy.sh
 sed -i '19 a import init.sz.rc' device/huawei/angler/init.angler.rc
