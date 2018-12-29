@@ -1,0 +1,14 @@
+#!/usr/bin/sh
+# build dwm with custom config
+
+SRC_CONF=https://raw.githubusercontent.com/savagezen/dotfiles/master/dwm-config.h
+
+cd /tmp
+git cone https://aur.archlinux.org/dwm-git.git
+cd dwm-git
+makepkg -s
+curl -o src/dwm/config.h $SRC_CONF
+makepkg -sfi
+
+
+

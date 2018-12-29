@@ -18,7 +18,7 @@ echo "fetching things for conky..."
 curl -o /tmp/ipinfo ipinfo.io                                                                   # ip info
 curl http://www.ipinfodb.com/index.php | grep postal | tail -c 12 | head -c 5 > /tmp/zip        # zip code
 curl -o /tmp/forecast wttr.in/$(cat /tmp/zip)                                                   # forecast / weather
-checkupdates > /tmp/off.updates                                                                 # official packages
+checkupdates > /tmp/off.updates # official packages
 echo "--------------------"
 
 # create pc backup
