@@ -1,8 +1,8 @@
 #!/usr/bin/sh
 # post web connection utilities
 
-HOME=/home/austin
-RCLONE="rclone --config=$HOME/.rclone.conf"
+USER_HOME=/home/austin
+RCLONE="rclone --config=$USER_HOME/.rclone.conf"
 
 # testing connection
 ping -c 3 www.google.com
@@ -10,7 +10,7 @@ echo "--------------------"
 
 # firewall
 echo "establishing firewall..."
-$HOME/documents/vault/iptables.rules
+$USER_HOME/documents/vault/iptables.rules
 echo "--------------------"
 
 # fetch for conky
@@ -25,27 +25,32 @@ echo "--------------------"
 echo "Creating PC Backup..."
 echo "==> pruning pacman cache to 1 old version"
 paccache -rk1 # clean /var/cache/pacman/pkg leaving one old version
+rm /boot/{initramfs-linux.img,initramfs-linux-hardened-fallback.img # need to make space for upgrades on /boot
 echo "==> getting list of packages"
-pacman -Qqm > $HOME/mega/pc_backup/system/aur.pkglist
-pacman -Qe > $HOME/mega/pc_backup/system/off.pkglist
+pacman -Qqm > $USER_HOME/mega/pc_backup/system/aur.pkglist
+pacman -Qe > $USER_HOME/mega/pc_backup/system/off.pkglist
 echo "==> creating archives"
-tar -czf $HOME/mega/pc_backup/system/etc.tar.gz /etc
-tar -czf $HOME/mega/pc_backup/system/boot.tar.gz /boot
-tar --exclude={keys,vault} -czf $HOME/mega/pc_backup/$HOME/documents.tar.gz $HOME/documents
+tar -czf $USER_HOME/mega/pc_backup/system/etc.tar.gz /etc
+tar -czf $USER_HOME/mega/pc_backup/system/boot.tar.gz /boot
+tar --exclude={keys,vault} -czf $USER_HOME/mega/pc_backup/$USER_HOME/documents.tar.gz $USER_HOME/documents
 echo "--------------------"
 
 # push to backups to Mega
 echo "Pushing PC and Phone Backups to Mega..."
-$RCLONE sync --ignore-existing $HOME/mega/pc_backup/ mega:/pc_backup/
-$RCLONE sync --ignore-existing $HOME/mega/phone_backup/ mega:/phone_backup/
+$RCLONE sync --ignore-times $USER_HOME/mega/pc_backup/ mega:/pc_backup/
+$RCLONE sync --ignore-times $USER_HOME/mega/phone_backup/ mega:/phone_backup/
 echo "--------------------"
 
 # pulling from Google Drive
 echo "Pulling  Google Drive ..."
-$RCLONE sync gdrive_professional:/ $HOME/gdrive_professional/
-$RCLONE sync gdrive_personal:/ $HOME/gdrive_personal/
-echo "--------------------"
+$RCLONE sync gdrive_professional:/ $USER_HOME/gdrive_professional/
+$RCLONE sync gdrive_personal:/ $USER_HOME/gdrive_personal/
+echo "Pushing PC and Phone Backups to Google Drive..."
+rsync -aAXv $USER_HOME/mega/pc_backup/ $USER_HOME/gdrive_personal/pc_backup/
+rsync -aAXv --exclude=sdcard/{Music,TitaniumBackup} $USER_HOME/mega/phone_backup/ $USER_HOME/gdrive_personal/phone_backup/
+$RCLONE sync $USER_HOME/gdrive_personal/ gdrive_personal:/
 
+echo "--------------------"
 # start local backup server
 echo "Starting Syncthing Daemon..."
 systemctl start syncthing@austin.service
