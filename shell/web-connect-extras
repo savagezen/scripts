@@ -25,7 +25,7 @@ echo "--------------------"
 echo "Creating PC Backup..."
 echo "==> pruning pacman cache to 1 old version"
 paccache -rk1 # clean /var/cache/pacman/pkg leaving one old version
-rm /boot/{initramfs-linux.img,initramfs-linux-hardened-fallback.img # need to make space for upgrades on /boot
+rm /boot/*fallback.img # need to make space for upgrades on /boot
 echo "==> getting list of packages"
 pacman -Qqm > $USER_HOME/mega/pc_backup/system/aur.pkglist
 pacman -Qe > $USER_HOME/mega/pc_backup/system/off.pkglist
@@ -45,12 +45,14 @@ echo "--------------------"
 echo "Pulling  Google Drive ..."
 $RCLONE sync gdrive_professional:/ $USER_HOME/gdrive_professional/
 $RCLONE sync gdrive_personal:/ $USER_HOME/gdrive_personal/
-echo "Pushing PC and Phone Backups to Google Drive..."
+echo "Pushing PC Backup to Google Drive..."
 rsync -aAXv $USER_HOME/mega/pc_backup/ $USER_HOME/gdrive_personal/pc_backup/
-rsync -aAXv --exclude=sdcard/{Music,TitaniumBackup} $USER_HOME/mega/phone_backup/ $USER_HOME/gdrive_personal/phone_backup/
-$RCLONE sync $USER_HOME/gdrive_personal/ gdrive_personal:/
+$RCLONE sync $USER_HOME/gdrive_personal/pc_backup gdrive_personal:/pc_backup/
 
 echo "--------------------"
+# misc alterations
+$USER_HOME/git/scripts/shell/playlist-conversion #make android playlists compatible with linux filetree
+
 # start local backup server
 echo "Starting Syncthing Daemon..."
 systemctl start syncthing@austin.service

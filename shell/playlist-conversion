@@ -1,0 +1,17 @@
+#!/usr/bin/sh
+# convert $PATH in playlists from Android to Linux file structure
+
+_USER=austin
+USER_HOME=/home/austin
+PLAY_DIR_AND=$USER_HOME/mega/phone_backup/sdcard/Playlists
+PLAY_DIR_LOC=$USER_HOME/playlists
+PATH_AND=/storage/emulated/0/Music
+PATH_LOC=$USER_HOME/music
+
+# setup
+rsync -aAXv $PLAY_DIR_AND/ $PLAY_DIR/
+chown $_USER $PLAY_DIR_LOC
+chown $_USER $PLAY_DIR_LOC/*
+
+cd $PLAY_DIR_LOC
+sed -i 's/\/storage\/emulated\/0\/Music/\/home\/austin\/music/g' *
