@@ -1,14 +1,15 @@
 #!/bin/sh
+# pull updates from AUR and build / install packages
 
-# update aur packages based on unofficial pacages listed in $pacman -Qqm
+mkdir -p /tmp/aur
 
 for x in $(pacman -Qqm)
 do
-  cd /tmp
+  cd /tmp/aur
   git clone https://aur.archlinux.org/$x
-  cd /tmp/$x
+  cd $x
   makepkg -si
-  sudo rm -r /tmp/$x
-  echo "=================="
-  echo " "
+  sudo rm -r /tmp/aur/$x
 done
+
+rm -r /tmp/aur

@@ -30,6 +30,8 @@ echo "==> getting list of packages"
 pacman -Qqm > $USER_HOME/mega/pc_backup/system/aur.pkglist
 pacman -Qe > $USER_HOME/mega/pc_backup/system/off.pkglist
 echo "==> creating archives"
+cp $USER_HOME/.gnupg $USER_HOME/documents/vault/
+cp $USER_HOME/.ssh $USER_HOME/documents/vault/
 tar -czf $USER_HOME/mega/pc_backup/system/etc.tar.gz /etc
 tar -czf $USER_HOME/mega/pc_backup/system/boot.tar.gz /boot
 tar --exclude={keys,vault} -czf $USER_HOME/mega/pc_backup/$USER_HOME/documents.tar.gz $USER_HOME/documents
