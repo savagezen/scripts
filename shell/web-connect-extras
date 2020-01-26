@@ -2,7 +2,7 @@
 # post web connection utilities
 
 USER_HOME=/home/austin
-RCLONE="rclone --config=$USER_HOME/.rclone.conf"
+RCLONE="rclone --config=$USER_HOME/.config/rclone/rclone.conf"
 
 # testing connection
 ping -c 3 www.google.com
@@ -30,8 +30,8 @@ echo "==> getting list of packages"
 pacman -Qqm > $USER_HOME/mega/pc_backup/system/aur.pkglist
 pacman -Qe > $USER_HOME/mega/pc_backup/system/off.pkglist
 echo "==> creating archives"
-cp $USER_HOME/.gnupg $USER_HOME/documents/vault/
-cp $USER_HOME/.ssh $USER_HOME/documents/vault/
+cp -r $USER_HOME/.gnupg $USER_HOME/documents/vault/
+cp -r $USER_HOME/.ssh $USER_HOME/documents/vault/
 tar -czf $USER_HOME/mega/pc_backup/system/etc.tar.gz /etc
 tar -czf $USER_HOME/mega/pc_backup/system/boot.tar.gz /boot
 tar --exclude={keys,vault} -czf $USER_HOME/mega/pc_backup/$USER_HOME/documents.tar.gz $USER_HOME/documents
@@ -41,12 +41,14 @@ echo "--------------------"
 echo "Pushing PC and Phone Backups to Mega..."
 $RCLONE sync --ignore-times $USER_HOME/mega/pc_backup/ mega:/pc_backup/
 $RCLONE sync --ignore-times $USER_HOME/mega/phone_backup/ mega:/phone_backup/
+$RCLONE sync --ignore-times $USER_HOME/videos/ mega:/videos/
 echo "--------------------"
 
 # pulling from Google Drive
 echo "Pulling  Google Drive ..."
-$RCLONE sync gdrive_professional:/ $USER_HOME/gdrive_professional/
-$RCLONE sync gdrive_personal:/ $USER_HOME/gdrive_personal/
+$RCLONE sync gdrive_peronal:/ $USER_HOME/gdrive_personal/
+$RCLONE sync gdrive_k9:/ $USER_HOME/gdrive_k9/
+$RCLONE sync gdrive_counseling:/ $USER_HOME/gdrive_counseling/
 echo "Pushing PC Backup to Google Drive..."
 rsync -aAXv $USER_HOME/mega/pc_backup/ $USER_HOME/gdrive_personal/pc_backup/
 $RCLONE sync $USER_HOME/gdrive_personal/pc_backup gdrive_personal:/pc_backup/
