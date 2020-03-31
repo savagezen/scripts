@@ -3,13 +3,13 @@
 
 _USER=austin
 USER_HOME=/home/austin
-PLAY_DIR_AND=$USER_HOME/mega/phone_backup/sdcard/Playlists
-PLAY_DIR_LOC=$USER_HOME/playlists
+PLAY_DIR_AND=$USER_HOME/playlists_android
+PLAY_DIR_LOC=$USER_HOME/playlists_linux
 PATH_AND=/storage/emulated/0/Music
 PATH_LOC=$USER_HOME/music
 
 # setup
-rsync -aAXv $PLAY_DIR_AND/ $PLAY_DIR/
+rsync -aAXv $PLAY_DIR_AND/ $PLAY_DIR_LOC/
 chown $_USER $PLAY_DIR_LOC
 chown $_USER $PLAY_DIR_LOC/*
 
