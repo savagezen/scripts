@@ -1,0 +1,20 @@
+#!/usr/bin/zsh
+# check installed aur versions against update rss
+
+mkdir -p /tmp/aur
+pacman -Qm > /tmp/aur/old.aurversion
+
+for x in $(pacman -Qqm)
+do
+  cd /tmp/aur
+  # pull aur source
+  git clone https://aur.archlinux.org/$x
+  # get new versions
+  echo $x\ $(cat $x/.SRCINFO | grep pkgver | tail -c +11)-$(cat $x/.SRCINFO | grep pkgrel | tail -c +11) >> new.aurversion
+done
+
+# compare versions
+diff -y --suppress-common-lines old.aurversion new.aurversion > /tmp/aur.updates
+
+####### old method - check against update RSS feed
+#curl https://aur.archlinux.org/rss/ | grep "<title>$(pacman -Qqm)</title>" | sed -e 's/<title>//' | sed -e 's/<\/title>//' | grep "$(pacman -Qqm)" > /tmp/aur.updates

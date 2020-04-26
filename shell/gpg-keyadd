@@ -1,5 +1,6 @@
 #!/usr/bin/sh
 # add and sign gpg key
 
-gpg --keyserver hkp://pgp.mit.edu --recv-keys $1
+#gpg --keyserver hkp://pgp.mit.edu --recv-keys $1
+gpg --keyserver keys.gnupg.net --recv-keys $1
 gpg --lsign $1

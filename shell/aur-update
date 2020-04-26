@@ -2,14 +2,25 @@
 # pull updates from AUR and build / install packages
 
 mkdir -p /tmp/aur
+pacman -Qm > /tmp/aur/old.aurversion
+
+for x in $(cat /tmp/aur.updates)
+do
+  git clone https://aur.archlinux.org/tmp/aur/$x
+  cd /tmp/aur/$x
+  makepkg -si
+done
+
+# update update list
 
 for x in $(pacman -Qqm)
 do
   cd /tmp/aur
+  # pull aur source
   git clone https://aur.archlinux.org/$x
-  cd $x
-  makepkg -si
-  sudo rm -r /tmp/aur/$x
+  # get new versions
+  echo $x\ $(cat $x/.SRCINFO | grep pkgver | tail -c +11)-$(cat $x/.SRCINFO | grep pkgrel | tail -c +11) >> /tmp/aur/new.aurversion
 done
 
-rm -r /tmp/aur
+# compare versions
+diff -y --suppress-common-lines old.aurversion new.aurversion > /tmp/aur.updates
