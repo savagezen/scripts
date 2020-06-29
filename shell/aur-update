@@ -2,13 +2,15 @@
 # pull updates from AUR and build / install packages
 
 mkdir -p /tmp/aur
-pacman -Qm > /tmp/aur/old.aurversion
+cd /tmp/aur
+pacman -Qm > old.aurversion
 
-for x in $(cat /tmp/aur.updates)
+for x in $(pacman -Qqm)
 do
-  git clone https://aur.archlinux.org/tmp/aur/$x
-  cd /tmp/aur/$x
+  git clone https://aur.archlinux.org/$x
+  cd $x
   makepkg -si
+  cd /tmp/aur
 done
 
 # update update list

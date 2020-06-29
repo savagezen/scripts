@@ -56,6 +56,10 @@ echo "--------------------"
 #$RCLONE sync $USER_HOME/gdrive_personal/pc_backup gdrive_personal:/pc_backup/
 
 echo "--------------------"
+# set bluelight blocking
+LATITUDE=33.43
+LONGITUDE=-84.91
+redshfit -l $LATITUDE:$LONGITUDE 
 # misc alterations
 $USER_HOME/git/scripts/shell/playlist-conversion #make android playlists compatible with linux filetree
 
