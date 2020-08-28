@@ -15,3 +15,18 @@ pacman -Syy											# sync to new mirrorlist
 pacman-optimize
 paccache -rk1			# keep most recent version of installed packages
 paccache -ruk0			# remove cached versions of unistalled packages
+
+# Local Backup
+#mount /dev/sdd1 /mnt
+#rsync -aAXv /boot/ /mnt/boot
+#rsync -aAXv /{root,etc,var,usr} /mnt/root/
+#rsync -aAXv /home/austin/ --exclude={.cache,.cache-bk}/ /mnt/home/austin/
+#umount /mnt
+
+# make arch usb
+MIRROR=http://mirror.cs.pitt.edu/archlinux/iso
+VERSION=$(date +%Y.%m).01)
+USB=/dev/sdc
+curl =-o /tmp/archlinux.iso $MIRROR/$VERSION/archlinux-$VERSION-x86_64.iso
+dd bs=4M if=/tmp/archlinux.iso of=$USB && sync
+rm /tmp/archlinux.iso

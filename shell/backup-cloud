@@ -1,0 +1,20 @@
+#!/bin/sh
+
+USER=austin
+USER_HOME=/home/$USER
+RCLONE=rclone --config=$USER_HOME/.config/rclone/rclone.conf
+
+pacman -Qqe > $USER_HOME/mega/backup-pc/system/aur.pkglist
+pacman -Qqm > $USER_HOME/mega/backup-pc/system/off.pkglist
+
+tar -cf - $USER_HOME/music | xz -9 -c - > $USER_HOME/mega/backup-pc/home/$USER/music.tar.xz
+tar -cf - $USER_HOME/playlists_linux | xz -9 -c - > $USER_HOME/mega/backup-pc/home/$USER/playlists_linux.tar.xz
+tar -cf - $USER_HOME/.config/BraveSoftware | xz -9 -c - > $USER_HOME/mega/backup-pc/home/$USER/.config/BraveSoftware.tar.xz
+
+rclone sync --ignore-times $USER_HOME/mega/backup-phone/ mega:/backup-phone/; rclone cleanup mega:/
+rclone sync --ignore-times $USER_HOME/videos/ mega:/videos/; rclone cleanup mega:/
+
+rclone sync gdrive_personal:/ $USER_HOME/gdrive_personal/
+rclone sync gdrive_k9:/ $USER_HOME/gdrive_k9/
+rclone sync gdrive_counseling:/ $USER_HOME/gdrive_counseling/
+

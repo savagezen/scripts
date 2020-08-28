@@ -1,8 +1,9 @@
 #!/usr/bin/sh
 # post web connection utilities
 
-#USER_HOME=/home/austin
-#RCLONE="rclone --config=$USER_HOME/.config/rclone/rclone.conf"
+USER=austin
+USER_HOME=/home/$USER
+RCLONE="rclone --config=$USER_HOME/.config/rclone/rclone.conf"
 
 # testing connection
 ping -c 3 www.google.com
@@ -18,48 +19,23 @@ echo "fetching things for conky..."
 curl -o /tmp/ipinfo ipinfo.io                                                                   # ip info
 curl http://www.ipinfodb.com/index.php | grep postal | tail -c 12 | head -c 5 > /tmp/zip        # zip code
 curl -o /tmp/forecast wttr.in/$(cat /tmp/zip)                                                   # forecast / weather
-checkupdates > /tmp/off.updates # official packages
+sudo $USER checkupdates > /tmp/off.updates							# check official updates
+$USER_HOME/git/scripts/shell/aur-checkupdate							# check aur updates
 echo "--------------------"
 
-# create pc backup
-#echo "Creating PC Backup..."
-#echo "==> pruning pacman cache to 1 old version"
-#paccache -rk1 # clean /var/cache/pacman/pkg leaving one old version
-#rm /boot/*fallback.img # need to make space for upgrades on /boot
-#echo "==> getting list of packages"
-#pacman -Qqm > $USER_HOME/pc_backup/system/aur.pkglist
-#pacman -Qqe > $USER_HOME/pc_backup/system/off.pkglist
-#echo "==> creating archives"
-#cp -r $USER_HOME/.gnupg $USER_HOME/documents/vault/
-#cp $USER_HOME/documents/vault.tar.gz.gpg $USER_HOME/pc_backup/$USER_HOME/
-#cp -r $USER_HOME/.ssh $USER_HOME/documents/vault/
-#cp $USER_HOME/documents/keys.tar.gz.gpg $USER_HOME/pc_backup/$USER_HOME/
-#tar -czf $USER_HOME/pc_backup/system/etc.tar.gz /etc
-#tar -czf $USER_HOME/pc_backup/system/boot.tar.gz /boot
-#tar --exclude={keys,vault} -czf $USER_HOME/pc_backup/$USER_HOME/documents.tar.gz $USER_HOME/documents
-#echo "--------------------"
-
-# push to backups to Mega
-#echo "Pushing PC and Phone Backups to Mega..."
-#$RCLONE sync --ignore-times $USER_HOME/mega/pc_backup/ mega:/pc_backup/
-#$RCLONE sync --ignore-times $USER_HOME/mega/phone_backup/ mega:/phone_backup/
-#$RCLONE sync --ignore-times $USER_HOME/videos/ mega:/videos/
-#echo "--------------------"
-
-# pulling from Google Drive
-#echo "Pulling  Google Drive ..."
-#$RCLONE sync gdrive_peronal:/ $USER_HOME/gdrive_personal/
-#$RCLONE sync gdrive_k9:/ $USER_HOME/gdrive_k9/
-#$RCLONE sync gdrive_counseling:/ $USER_HOME/gdrive_counseling/
-#echo "Pushing PC Backup to Google Drive..."
-#rsync -aAXv $USER_HOME/mega/pc_backup/ $USER_HOME/gdrive_personal/pc_backup/
-#$RCLONE sync $USER_HOME/gdrive_personal/pc_backup gdrive_personal:/pc_backup/
+# create remote and local backups
+echo "Creating Remote Backups..."
+paccache -rk1 											# clean /var/cache/pacman/pkg leaving one old version
+rm /boot/*fallback.img 										# need to make space for upgrades on /boot
+$USER_HOME/git/scripts/backup-cloud								# rclone, mega, gdrive
+$USER_HOME/git/scripts/backup-local								# rsync to USB
 
 echo "--------------------"
 # set bluelight blocking
-LATITUDE=33.43
-LONGITUDE=-84.91
-redshfit -l $LATITUDE:$LONGITUDE 
+# managed in .xinitrc
+#LATITUDE=33.43
+#LONGITUDE=-84.91
+#/bin/redshift -l $LATITUDE:$LONGITUDE 
 # misc alterations
 $USER_HOME/git/scripts/shell/playlist-conversion #make android playlists compatible with linux filetree
 

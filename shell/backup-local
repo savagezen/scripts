@@ -1,0 +1,16 @@
+#!/bin/sh
+
+USER=austin
+USER_HOME=/home/austin
+USB=/dev/sdb1
+DEST=/mnt
+RSYNC=sudo rsync -aAXv
+
+sudo mount $USB $DEST
+$RSYNC /boot/ $DEST/boot/
+$RSYNC /var/  $DEST/var/
+$RSYNC /usr/ $DEST/usr/
+$RSYNC /etc/ $DEST/etc/
+$RSYNC /home/ $DEST/home/
+$RSYNC /root/ $DEST/root/
+sudo umount $DEST

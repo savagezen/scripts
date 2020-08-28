@@ -1,9 +1,0 @@
-#!/bin/sh
-# manual script to check updates for AUR packages
-
-for x in $(pacman -Qqm)
-do
-  cd /tmp
-  git clone https://aur.archlinux.org/$x
-  pacman -Qi $x | grep Version    
-done
