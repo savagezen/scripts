@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# Downgrade official Arch Linux packages (not AUR) to previous verion
+# Syntax:
+# $ downgrade package_name
+
+ALPHA=$($1 | head -c 1)
+#first letter / alphabetical
+
+CURRENT_VERSION=$(pacman -Qi $1 | grep Version | tail -c +19)
+
+ARCH=$(uname -m)
+#CPU architecture
+
+SRC=https://archive.archlinux.org/packages/$ALPHA/$1/
+#Arch Linux archives
+
+cd /tmp
+curl -o $1_archives $SRC
+
+RECENT_VERSION=$(cat $1_archive | tail -n 4 | head -n 1)
+PREV_VERSION=$(cat $1_archive | tail -n 6 | head -n 1)
+
+print "Current Version of $1 in    : $CURRENT_VERSION"
+print "Most Recent Version of $1 in: $RECENT_VERSION"
+print "Previous Version of $ in    : $PREV_VERSION"
+read -p "Ener the version you want to install:" choice
+
+curl -o $SRC/$1-$choice-$ARCH.pkg.tar.*
+pacman -U $1-$choice-$ARCH.pkg.tar.zst
+#for older packages
+#pacman -U $1-$choice-$ARCH.pkg.tar.xz

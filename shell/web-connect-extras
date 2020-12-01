@@ -25,7 +25,7 @@ echo "--------------------"
 
 # create remote and local backups
 echo "Creating Remote Backups..."
-paccache -rk1 											# clean /var/cache/pacman/pkg leaving one old version
+paccache -rk2 											# clean /var/cache/pacman/pkg leaving current and one old version
 rm /boot/*fallback.img 										# need to make space for upgrades on /boot
 $USER_HOME/git/scripts/backup-cloud								# rclone, mega, gdrive
 $USER_HOME/git/scripts/backup-local								# rsync to USB
