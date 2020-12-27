@@ -11,24 +11,24 @@ echo "--------------------"
 
 # firewall
 echo "establishing firewall..."
-$USER_HOME/documents/vault/iptables.rules
+sudo systemctl start iptables
 echo "--------------------"
 
 # fetch for conky
-echo "fetching things for conky..."
-curl -o /tmp/ipinfo ipinfo.io                                                                   # ip info
-curl http://www.ipinfodb.com/index.php | grep postal | tail -c 12 | head -c 5 > /tmp/zip        # zip code
-curl -o /tmp/forecast wttr.in/$(cat /tmp/zip)                                                   # forecast / weather
-sudo $USER checkupdates > /tmp/off.updates							# check official updates
-$USER_HOME/git/scripts/shell/aur-checkupdate							# check aur updates
-echo "--------------------"
+curl -o /tmp/ipinfo https://ipinfo.io
+#curl -o /tmp/forecast wttr.in/$(cat /tmp/zip)                                                   # forecast / weather
+#sudo -u $USER checkupdates > /tmp/off.updates							# check official updates
+#$USER_HOME/scripts/shell/aur-checkupdate							# check aur updates
+#echo "--------------------"
 
-# create remote and local backups
-echo "Creating Remote Backups..."
-paccache -rk2 											# clean /var/cache/pacman/pkg leaving current and one old version
-rm /boot/*fallback.img 										# need to make space for upgrades on /boot
-$USER_HOME/git/scripts/backup-cloud								# rclone, mega, gdrive
-$USER_HOME/git/scripts/backup-local								# rsync to USB
+# create backups
+echo "creating boot time backups..."
+#$USER_HOME/git/scripts/backup-cloud	
+sudo $USER_HOME/scripts/backup-onboot
+#remove cached package version except most recent +1
+paccache -rk2
+# update mirrors by speed
+$USER_HOME/scripts/updmirrors
 
 echo "--------------------"
 # set bluelight blocking
@@ -37,12 +37,8 @@ echo "--------------------"
 #LONGITUDE=-84.91
 #/bin/redshift -l $LATITUDE:$LONGITUDE 
 # misc alterations
-$USER_HOME/git/scripts/shell/playlist-conversion #make android playlists compatible with linux filetree
+$USER_HOME/scripts/shell/playlist-conversion #make android playlists compatible with linux filetree
 
 # start local backup server
 echo "Starting Syncthing Daemon..."
 systemctl start syncthing@austin.service
-
-# start mining crypto
-#echo "Starting Minergate..."
-#minergate-cli -u austin.haedicke@gmail.com --xmr 2

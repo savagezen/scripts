@@ -1,0 +1,11 @@
+#!/bin/sh
+# requires pacman-contrib
+
+# backup current mirrorlist
+cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+
+# uncomment every mirror
+sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
+
+# output 10 fastest mirrors
+rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist

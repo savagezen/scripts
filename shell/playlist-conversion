@@ -3,8 +3,8 @@
 
 _USER=austin
 USER_HOME=/home/austin
-PLAY_DIR_AND=$USER_HOME/playlists_android
-PLAY_DIR_LOC=$USER_HOME/playlists_linux
+PLAY_DIR_AND=$USER_HOME/.config/playlists_android
+PLAY_DIR_LOC=$USER_HOME/.config/cmus/playlists
 PATH_AND=/storage/emulated/0/Music
 PATH_LOC=$USER_HOME/music
 

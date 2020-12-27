@@ -1,0 +1,38 @@
+#!/bin/sh
+
+USER=austin
+USER_HOME=/home/$USER
+CRYPT=/dev/sdb1
+DECRYPT=backup
+DEST=/mnt
+EXCLUDE=$USER_HOME/.config/user.exclude
+
+cryptsetup open $CRYPT $DECRYPT
+mount /dev/mapper/$DECRYPT $DEST
+
+#save kernel modules to $HOME/.config/modprobed.db
+modprobed-db store
+
+#configurations
+lsblk -f > $DEST/disk.structure
+
+#sytem directories
+echo "creating archive of /root................."
+tar -cf - /root | xz -c -9 - > $DEST/root.tar.xz
+echo "creating archive of /boot................."
+tar -cf - /boot | xz -c -9 - > $DEST/boot.tar.xz
+echo "creating archive of /etc.................."
+tar -cf - /etc | xz -c -9 - > $DEST/etc.tar.xz
+echo "creating archive of /var.................."
+tar -cf - /var | xz -c -9 - > $DEST/var.tar.xz
+echo "syncing /usr............................."
+rsync -aAXv /usr/ $DEST/usr/
+
+#user directories
+echo "syncing /home............................."
+rsync -aAXv /home/austin/ $DEST/home-austin/
+#tar -cf --exclude-from=$EXCLUDE - $USER_HOME | xz -c -9 - > $DEST/home-$USER.tar.xz
+
+#clean up
+umount /mnt
+cryptsetup close /dev/mapper/$DECRYPT

@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+
+# from $ip link
+DEVICE=enp0s16f1u1
+
+sudo ip link set $DEVICE
+sudo dhcpcd
