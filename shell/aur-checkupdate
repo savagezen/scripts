@@ -16,5 +16,8 @@ done
 # compare versions
 diff -y --suppress-common-lines old.aurversion new.aurversion > /tmp/aur.updates
 
+# clean up
+sudo rm -r /tmp/aur
+
 ####### old method - check against update RSS feed
 #curl https://aur.archlinux.org/rss/ | grep "<title>$(pacman -Qqm)</title>" | sed -e 's/<title>//' | sed -e 's/<\/title>//' | grep "$(pacman -Qqm)" > /tmp/aur.updates
