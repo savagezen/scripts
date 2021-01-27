@@ -1,0 +1,9 @@
+#!/bin/sh
+#mount user cache as tmpfs
+#see also entries in $HOME/.xinitrc
+#see also $HOME/scripts/shell/cache-bk
+
+cp -r $HOME/.cache-bk /tmp/$USER.cache
+ln -sf /tmp/$USER.cache $HOME/.cache
+
+

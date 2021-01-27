@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 # Dependencies: bash>=3.2, coreutils, file, grep, iputils, pacman, (yaourt or yay or auracle)
-# https://github.com/xtonousou/xfce4-genmon-scripts
+# https://github.com/xtonousou/xfce4-genmon-scripts/blob/master/pacman-panel.sh
 
+# Makes the script more portable
+#readonly DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Optional icon to display before the text
+# Insert the absolute path of the icon
+# Recommended size is 24x24 px
 readonly ICON="$HOME/.local/share/icons/xfce4-genmon/package-manager/pacman.png"
 
 # Calculate updates
-# aur-checkupdate script runs every 4 hours through cron
-# see $HOME/scripts/aur-checkupdate and $HOME/.config/root.crontab
-readonly AUR=$(cat /tmp/aur.update | wc -l)
+readonly AUR=$((yay -Qua 2>/dev/null || auracle sync 2>/dev/null || auracle outdated 2>/dev/null || yaourt -Qua 2>/dev/null) | wc -l)
 readonly OFFICIAL=$(checkupdates | wc -l)
 readonly ALL=$(( AUR + OFFICIAL ))
 

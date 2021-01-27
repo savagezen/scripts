@@ -1,0 +1,35 @@
+#!/bin/sh
+#backup prior to upgrade
+
+USER=austin
+USER_HOME=/home/$USER
+KEY=$USER_HOME/vault/backup.keyfile
+DEV=/dev/sdb1
+VOL=backup
+DEST=/mnt
+RSYNC=sudo rsync -aAXv
+
+# backup
+ecryptfs-mount-private
+sudo cryptsetup open $DEV $VOL --key-file $KEY
+sudo mount /dev/mapper/$VOL $DEST
+$RSYNC /boot/ $DEST/boot/
+$RSYNC /var/  $DEST/var/
+$RSYNC /usr/ $DEST/usr/
+$RSYNC /etc/ $DEST/etc/
+$RSYNC /root/ $DEST/root/
+$RSYNC --exclude-from=$USER_HOME/.config/user.exclude $USER_HOME/ $DEST/$USER_HOME/
+sudo umount $DEST
+cryptsetup close $VOL
+ecryptfs-umount-private
+
+# update mirrors
+sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
+sudo sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
+sudo rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
+
+# upgrade
+sudo pacman -Syu
+
+# install kernel modules
+sudo dkms autoinstall

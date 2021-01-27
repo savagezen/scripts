@@ -16,7 +16,7 @@ SCHED=$(cat /sys/block/sda/queue/scheduler)
 # Panel
 INFO="<img>${ICON}</img>"
 INFO+="<txt>"
-INFO+="$CPU_PERC% $CPU_TEMP_C ($CPU_TEMP_F 'F)"
+INFO+="$CPU_PERC% ($CPU_TEMP_F 'F)"
 INFO+="</txt>"
 
 # Tooltip

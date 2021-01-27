@@ -1,0 +1,11 @@
+#!/bin/sh
+#backup tmpfs mounted $USER/.cache
+#see also $HOME/.config/systemd/user/cache-bk.service
+#and $HOME/.config/systemd/user/cache-bk-timer.service
+#initiate with $systemctl --user enable target.service
+
+SOURCE=$HOME/.cache
+TARGET=$HOME/.cache-bk
+
+mkdir -p $TARGET
+rsync -aAXv $SOURCE/ $TARGET/

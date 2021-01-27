@@ -17,20 +17,26 @@ modprobed-db store
 lsblk -f > $DEST/disk.structure
 
 #sytem directories
-echo "creating archive of /root................."
-tar -cf - /root | xz -c -9 - > $DEST/root.tar.xz
-echo "creating archive of /boot................."
-tar -cf - /boot | xz -c -9 - > $DEST/boot.tar.xz
-echo "creating archive of /etc.................."
-tar -cf - /etc | xz -c -9 - > $DEST/etc.tar.xz
-echo "creating archive of /var.................."
-tar -cf - /var | xz -c -9 - > $DEST/var.tar.xz
-echo "syncing /usr............................."
+echo "syncing /root................."
+rsync -aAXv /root/ $DEST/root/
+echo "syncing /boot................."
+rsync -aAXv /boot/ $DEST/boot/
+echo "syncing /etc.................."
+rsync -aAXv /etc/ $DEST/etc/
+echo "syncing /var.................."
+rsync -aAXv /var/ $DEST/var/
+echo "syncing /usr.................."
 rsync -aAXv /usr/ $DEST/usr/
 
 #user directories
-echo "syncing /home............................."
-rsync -aAXv /home/austin/ $DEST/home-austin/
+echo "syncing /home/$USER..........."
+rsync -aAXv --exclude-from=$EXCLUDE $USER_HOME/ $DEST/$USER_HOME
+
+#switch to tar / compression if storage space is limited
+#tar -cf - /root | xz -c -9 - > $DEST/root.tar.xz
+#tar -cf - /boot | xz -c -9 - > $DEST/boot.tar.xz
+#tar -cf - /etc | xz -c -9 - > $DEST/etc.tar.xz
+#tar -cf - /var | xz -c -9 - > $DEST/var.tar.xz
 #tar -cf --exclude-from=$EXCLUDE - $USER_HOME | xz -c -9 - > $DEST/home-$USER.tar.xz
 
 #clean up

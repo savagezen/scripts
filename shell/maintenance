@@ -12,7 +12,6 @@ reflector --country 'United States' -l 50 -p http --sort rate --save /etc/pcman.
 pacman -Syy											# sync to new mirrorlist
 
 # Packages / Pacman
-pacman-optimize
 paccache -rk2			# keep most recent version of installed packages and one downgrade
 #paccache -ruk0			# remove cached versions of unistalled packages
 

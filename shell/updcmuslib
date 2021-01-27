@@ -1,0 +1,11 @@
+#!/bin/sh
+#update cmus library
+
+TERMINAL=xfce4-terminal
+SHELL=zsh
+
+cmus-remote -C clear
+cmus-remote -C "add $HOME/music"
+cmus-remote -C "update-cache -f"
+
+$TERMINAL -x $SHELL -c "cmus"

@@ -14,21 +14,35 @@ echo "establishing firewall..."
 sudo systemctl start iptables
 echo "--------------------"
 
-# fetch for conky
-curl -o /tmp/ipinfo https://ipinfo.io
+# fetch for conky (not needed with xfce-panel
+#sudo curl -o /tmp/ipinfo https://ipinfo.io
 #curl -o /tmp/forecast wttr.in/$(cat /tmp/zip)                                                   # forecast / weather
 #sudo -u $USER checkupdates > /tmp/off.updates							# check official updates
 #$USER_HOME/scripts/shell/aur-checkupdate							# check aur updates
 #echo "--------------------"
 
+# change I/O scheduler
+$HOME/scripts/shell/changeio
+
 # create backups
 echo "creating boot time backups..."
 #$USER_HOME/git/scripts/backup-cloud	
-sudo $USER_HOME/scripts/backup-onboot
+sudo $USER_HOME/scripts/shell/backup-onboot
+
+# system maintenance
 #remove cached package version except most recent +1
 paccache -rk2
 # update mirrors by speed
-$USER_HOME/scripts/updmirrors
+$USER_HOME/scripts/shell/updmirrors
+
+# pull from google drive
+rclone sync gdrive_personal:/ $USER_HOME/gdrive_personal/
+rclone sync gdrive_counseling:/ $USER_HOME/gdrive_counseling/
+rclone sync gdrive_k9:/ $USER_HOME/gdrive_k9/
+
+# push phone backup and videos to mega
+rclone sync $USER_HOME/mega/videos mega:/videos/; rclone cleanup mega:/
+rclone sync $USER_HOME/mega/backup-phone/ mega:/backup-phone/; rclone cleanup mega:/
 
 echo "--------------------"
 # set bluelight blocking
@@ -36,9 +50,11 @@ echo "--------------------"
 #LATITUDE=33.43
 #LONGITUDE=-84.91
 #/bin/redshift -l $LATITUDE:$LONGITUDE 
-# misc alterations
-$USER_HOME/scripts/shell/playlist-conversion #make android playlists compatible with linux filetree
 
+echo "--------------------"
+echo "Converting android playlists to linux filestructure..."
+#make android playlists compatible with linux filetree
+$USER_HOME/scripts/shell/playlist-conversion
 # start local backup server
 echo "Starting Syncthing Daemon..."
 systemctl start syncthing@austin.service

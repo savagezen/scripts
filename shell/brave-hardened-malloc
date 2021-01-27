@@ -1,0 +1,13 @@
+#!/bin/sh
+#launch brave browser with hardened malloc
+
+BRAVE=brave-nightly
+#brave version (e.g. nightly, dev, beta, etc.)
+
+#run as standalone
+export LD_PRELOAD='/usr/lib/libhardened_malloc.so'
+/usr/bin/$BRAVE --no-sandbox
+
+#run with firejail and apparmor
+#1/3/21 works with brave-bin, breaks with nightly
+#firejail --env=LD_PRELOAD='/usr/lib/libhardened_malloc.so' /usr/bin/$BRAVE --no-sandbox
