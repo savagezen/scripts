@@ -1,35 +1,43 @@
 #!/bin/sh
-#backup prior to upgrade
+# backup, upgrade, and maintenance
 
-USER=austin
-USER_HOME=/home/$USER
-KEY=$USER_HOME/vault/backup.keyfile
-DEV=/dev/sdb1
-VOL=backup
-DEST=/mnt
-RSYNC=sudo rsync -aAXv
+# $HOME/scripts/shell/backup-onboot
+sudo backup-onboot
 
-# backup
-ecryptfs-mount-private
-sudo cryptsetup open $DEV $VOL --key-file $KEY
-sudo mount /dev/mapper/$VOL $DEST
-$RSYNC /boot/ $DEST/boot/
-$RSYNC /var/  $DEST/var/
-$RSYNC /usr/ $DEST/usr/
-$RSYNC /etc/ $DEST/etc/
-$RSYNC /root/ $DEST/root/
-$RSYNC --exclude-from=$USER_HOME/.config/user.exclude $USER_HOME/ $DEST/$USER_HOME/
-sudo umount $DEST
-cryptsetup close $VOL
-ecryptfs-umount-private
+# $HOME/scripts/shell/updmirrors
+sudo updmirrors
 
-# update mirrors
-sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.backup
-sudo sed -i 's/^#Server/Server/' /etc/pacman.d/mirrorlist.backup
-sudo rankmirrors -n 10 /etc/pacman.d/mirrorlist.backup > /etc/pacman.d/mirrorlist
-
-# upgrade
+# upgrade official packages
 sudo pacman -Syu
+
+# upgrade aur packages
+mkdir -p /tmp/aur
+auracle -C /tmp/aur update
+# modify PKGBUILDs
+#for pkg in {linux-ck}
+#  do
+#    if ls /tmp/aur/ | grep '$pkg'
+#    then
+#    nano /tmp/aur/$pkg/PKGBUILD
+#    fi
+#  done
+if
+  ls /tmp/aur | grep 'linux-ck'
+  then
+  nano /tmp/aur/linux-ck/PKGBUILD
+fi
+
+# build packages
+for pkg in $(ls /tmp/aur)
+  do
+    cd /tmp/aur/$pkg
+    makepkg -sfi
+    sudo rm -r /tmp/aur/$pkg
+  done
 
 # install kernel modules
 sudo dkms autoinstall
+
+# maintenance
+sudo paccahce -rk2
+sudo mkarchusb				# $HOME/scripts/shell/mkarchusb

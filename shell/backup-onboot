@@ -2,12 +2,16 @@
 
 USER=austin
 USER_HOME=/home/$USER
+KEY=$USER_HOME/vault/backup.keyfile
 CRYPT=/dev/sdb1
 DECRYPT=backup
 DEST=/mnt
 EXCLUDE=$USER_HOME/.config/user.exclude
 
-cryptsetup open $CRYPT $DECRYPT
+
+#prep
+sudo -u $USER ecryptfs-mount-private
+cryptsetup open --key-file $KEY $CRYPT $DECRYPT
 mount /dev/mapper/$DECRYPT $DEST
 
 #save kernel modules to $HOME/.config/modprobed.db
