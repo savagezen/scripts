@@ -7,33 +7,29 @@ RCLONE="rclone --config=$USER_HOME/.config/rclone/rclone.conf"
 
 # testing connection
 ping -c 3 www.google.com
-echo "--------------------"
 
 # firewall
+echo "------------------------"
 echo "establishing firewall..."
+echo "------------------------"
 sudo systemctl start iptables
-echo "--------------------"
 
-# fetch for conky (not needed with xfce-panel
+# fetch for conky (not needed with xfce-panel)
 #sudo curl -o /tmp/ipinfo https://ipinfo.io
 #curl -o /tmp/forecast wttr.in/$(cat /tmp/zip)                                                   # forecast / weather
 #sudo -u $USER checkupdates > /tmp/off.updates							# check official updates
 #$USER_HOME/scripts/shell/aur-checkupdate							# check aur updates
 #echo "--------------------"
 
-# change I/O scheduler
-$HOME/scripts/shell/changeio
+# change I/O scheduler (set on kernel line)
+#sudo $USER_HOME/scripts/shell/changeio
 
 # create backups
+echo "-----------------------------"
 echo "creating boot time backups..."
+echo "-----------------------------"
 #$USER_HOME/git/scripts/backup-cloud	
 sudo $USER_HOME/scripts/shell/backup-onboot
-
-# system maintenance
-#remove cached package version except most recent +1
-paccache -rk2
-# update mirrors by speed
-$USER_HOME/scripts/shell/updmirrors
 
 # pull from google drive
 rclone sync gdrive_personal:/ $USER_HOME/gdrive_personal/
@@ -43,6 +39,15 @@ rclone sync gdrive_k9:/ $USER_HOME/gdrive_k9/
 # push phone backup and videos to mega
 rclone sync $USER_HOME/mega/videos mega:/videos/; rclone cleanup mega:/
 rclone sync $USER_HOME/mega/backup-phone/ mega:/backup-phone/; rclone cleanup mega:/
+
+
+# system maintenance
+echo "--------------------------"
+echo "maintenance and cleanup..."
+echo "--------------------------"
+sudo $USER_HOME/scripts/shell/maintenance
+
+
 
 echo "--------------------"
 # set bluelight blocking
