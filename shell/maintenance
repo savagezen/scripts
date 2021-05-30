@@ -22,9 +22,9 @@ journalctl --vacuum-size=50M
 # likely modules from old kernel versions, missed by pacman because package wasn't uninstalled
 # requires: lostfiles
 
-lostfiles > /tmp/lostfiles.txt
-for x in $(cat /tmp/lostfiles.txt | grep /usr/lib/modules)
-  rm -r $x
+#lostfiles > /tmp/lostfiles.txt
+#for x in $(cat /tmp/lostfiles.txt | grep /usr/lib/modules)
+#  rm -r $x
 
 # Make Arch Usb
 MIRROR=http://mirror.cs.pitt.edu/archlinux/iso

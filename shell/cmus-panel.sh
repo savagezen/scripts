@@ -9,9 +9,10 @@ readonly SHUFFLE=$(cmus-remote -Q | grep shuffle | tail -c +13)
 readonly REPEAT=$(cmus-remote -Q | grep repeat | head -n 1 | tail -c +12)
 
 # Panel
-  INFO="<img>$ICON</img>"
+#  INFO="<img>$ICON</img>"
   INFO+="<txt>"
-  INFO+=" Vol: $VOL% | $ARTIST - $TITLE"
+#  INFO+=" Vol: $VOL% | $ARTIST - $TITLE"
+  INFO+=" $ARTIST - $TITLE"
   INFO+="</txt>"
 
 # Tooltip

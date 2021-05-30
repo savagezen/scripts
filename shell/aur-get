@@ -3,10 +3,11 @@
 # install package from AUR
 
 # pull
-cd /tmp
+mkdir -p /tmp/aur
+cd /tmp/aur
 git clone https://aur.archlinux.org/$1.git
 
-# compile
+# compile and install
 cd $1
 makepkg -si
 
