@@ -8,7 +8,6 @@ DECRYPT=backup
 DEST=/mnt
 EXCLUDE=$USER_HOME/.config/user.exclude
 
-
 #prep
 sudo -u $USER ecryptfs-mount-private
 cryptsetup open --key-file $KEY $CRYPT $DECRYPT
@@ -20,23 +19,22 @@ modprobed-db store
 #configurations
 lsblk -f > $DEST/disk.structure
 
-#sytem directories
+#sync with rclone
 echo "syncing /root................."
-rsync -aAXv /root/ $DEST/root/
+rsync -aAXv /root/ $DEST/onboot/root/
 echo "syncing /boot................."
-rsync -aAXv /boot/ $DEST/boot/
+rsync -aAXv /boot/ $DEST/onboot/boot/
 echo "syncing /etc.................."
-rsync -aAXv /etc/ $DEST/etc/
+rsync -aAXv /etc/ $DEST/onboot/etc/
 echo "syncing /var.................."
-rsync -aAXv /var/ $DEST/var/
+rsync -aAXv /var/ $DEST/onboot/var/
 echo "syncing /usr.................."
-rsync -aAXv /usr/ $DEST/usr/
-
-#user directories
+rsync -aAXv /usr/ $DEST/onboot/usr/
 echo "syncing /home/$USER..........."
-rsync -aAXv --exclude-from=$EXCLUDE $USER_HOME/ $DEST/$USER_HOME
+rsync -aAXv --exclude-from=$EXCLUDE $USER_HOME/ $DEST/onboot/$USER_HOME
 
 #switch to tar / compression if storage space is limited
+#echo "creating archives with tar..........."
 #tar -cf - /root | xz -c -9 - > $DEST/root.tar.xz
 #tar -cf - /boot | xz -c -9 - > $DEST/boot.tar.xz
 #tar -cf - /etc | xz -c -9 - > $DEST/etc.tar.xz

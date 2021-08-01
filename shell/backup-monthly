@@ -1,0 +1,32 @@
+#!/bin/sh
+
+USER=austin
+USER_HOME=/home/$USER
+KEY=$USER_HOME/vault/backup.keyfile
+CRYPT=/dev/sdb1
+DECRYPT=backup
+DEST=/mnt
+LABEL=$(date +%F)
+EXCLUDE=$USER_HOME/.config/user.exclude
+
+#prep
+cryptsetup open --key-file $KEY $CRYPT $DECRYPT
+mount /dev/mapper/$DECRYPT $DEST
+
+#save kernel modules to $USER_HOME/.config/modprobed.db
+modprobed-db store
+
+#disk structure
+lsblk -f > $DEST/disk.strucutre
+
+#create archives
+tar -cf - /root | xz -c -9 - > $DEST/monthly/root.tar.xz
+tar -cf - /etc | xz -c -9 - > $DEST/monthly/etc.tar.xz
+tar -cf - /boot | xz -c -9 - > $DEST/monthly/boot.tar.xz
+tar -cf - /usr | xz -c -9 - > $DEST/monthly/usr.tar.xz
+tar -cf - /var | xz -c -9 - > $DEST/monthly/var.tar.xz
+tar -cf --exclude-from=$EXCLUDE - $USER_HOME | xz -c -9 - > $DEST/monthly/home-$USER.tar.xz
+
+#clean up
+umount /mnt
+cryptsetup clsoe /dev/mapper/$DECRYPT

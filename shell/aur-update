@@ -1,28 +1,40 @@
 #!/bin/sh
-# pull updates from AUR and build / install packages
+# requires auracle
+# see comments for manual version
 
 mkdir -p /tmp/aur
-cd /tmp/aur
-pacman -Qm > old.aurversion
 
-for x in $(pacman -Qqm)
-do
-  git clone https://aur.archlinux.org/$x
-  cd $x
-  makepkg -si
-  cd /tmp/aur
-done
+auracle -C /tmp/aur update --recurse
+
+for pkg in $(ls /tmp/aur)
+  do
+    cd /tmp/aur/$pkg
+    makepkg -sfi
+    sudo rm -r /tmp/aur/$pkg
+  done
+
+#mkdir -p /tmp/aur
+#cd /tmp/aur
+#pacman -Qm > old.aurversion
+
+#for x in $(pacman -Qqm)
+#do
+#  git clone https://aur.archlinux.org/$x
+#  cd $x
+#  makepkg -si
+#  cd /tmp/aur
+#done
 
 # update update list
 
-for x in $(pacman -Qqm)
-do
-  cd /tmp/aur
+#for x in $(pacman -Qqm)
+#do
+#  cd /tmp/aur
   # pull aur source
-  git clone https://aur.archlinux.org/$x
+#  git clone https://aur.archlinux.org/$x
   # get new versions
-  echo $x\ $(cat $x/.SRCINFO | grep pkgver | tail -c +11)-$(cat $x/.SRCINFO | grep pkgrel | tail -c +11) >> /tmp/aur/new.aurversion
-done
+#  echo $x\ $(cat $x/.SRCINFO | grep pkgver | tail -c +11)-$(cat $x/.SRCINFO | grep pkgrel | tail -c +11) >> /tmp/aur/new.aurversion
+#done
 
 # compare versions
-diff -y --suppress-common-lines old.aurversion new.aurversion > /tmp/aur.updates
+#diff -y --suppress-common-lines old.aurversion new.aurversion > /tmp/aur.updates

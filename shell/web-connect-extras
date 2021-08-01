@@ -64,4 +64,4 @@ T_DAY=6500
 T_NIGHT=1000 #default 4500
 B_DAY=1.0
 B_NIGHT=0.75
-/bin/redshift -b $B_DAY:$B_NIGHT -t $C_DAY:$C_NIGHT
+/bin/redshift -b $B_DAY:$B_NIGHT -t $T_DAY:$T_NIGHT

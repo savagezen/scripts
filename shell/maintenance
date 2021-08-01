@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/sh
 
 #Filesystem defragment, scrub, blance
 #find / -xdev -type d -print -exec btrfs filesystem defragment '{}' \;
