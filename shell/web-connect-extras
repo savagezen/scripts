@@ -40,16 +40,11 @@ rclone sync gdrive_k9:/ $USER_HOME/gdrive_k9/
 rclone sync $USER_HOME/mega/videos mega:/videos/; rclone cleanup mega:/
 rclone sync $USER_HOME/mega/backup-phone/ mega:/backup-phone/; rclone cleanup mega:/
 
-
 # system maintenance
 echo "--------------------------"
 echo "maintenance and cleanup..."
 echo "--------------------------"
 sudo $USER_HOME/scripts/shell/maintenance
-
-echo "--------------------"
-# set bluelight blocking
-# managed in .xinitrc
 
 echo "--------------------"
 echo "Converting android playlists to linux filestructure..."
@@ -60,8 +55,4 @@ echo "Starting Syncthing Daemon..."
 systemctl start syncthing@austin.service
 # enable bluelight blocking
 echo "Enableing bluelight blocking..."
-T_DAY=6500
-T_NIGHT=1000 #default 4500
-B_DAY=1.0
-B_NIGHT=0.75
-/bin/redshift -b $B_DAY:$B_NIGHT -t $T_DAY:$T_NIGHT
+sudo -u $USER redshift
