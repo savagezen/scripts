@@ -1,0 +1,11 @@
+#!/bin/sh
+# prep audio for podcast recording
+
+amixer sset Master 50%
+amixer sset Capture 75%
+pactl load-module module-loopback
+
+audacity
+
+# rembmer to unload pulse module
+# $ pactl unload-module module-loopback
